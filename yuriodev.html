@@ -1,0 +1,2716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yurii Oksamytnyi - AI/ML Engineer & YuriODev Creator</title>
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Theme color for browser UI -->
+    <meta name="theme-color" content="#00d4ff">
+    <meta name="msapplication-TileColor" content="#0a0f1c">
+    
+    <meta name="description" content="AI/ML Engineer, Educational Platform Creator, and MLX Graduate specializing in Transformers, RAG systems, and production ML deployment. Building YuriODev - democratizing AI education.">
+    <meta name="keywords" content="AI Engineer, Machine Learning, Transformers, RAG, PEFT, LoRA, PyTorch, Educational Platform, YuriODev">
+    <meta name="author" content="Yurii Oksamytnyi">
+    <meta property="og:title" content="Yurii Oksamytnyi - AI/ML Engineer & YuriODev Creator">
+    <meta property="og:description" content="Building the future of AI education through hands-on learning platforms and production ML systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yuriodev.co.uk">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Yurii Oksamytnyi - AI/ML Engineer">
+    <meta name="twitter:description" content="AI/ML Engineer building educational platforms and production systems">
+    <link rel="canonical" href="https://yuriodev.co.uk">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"></noscript>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Yurii Oksamytnyi",
+        "jobTitle": "AI/ML Engineer & Educational Platform Creator",
+        "url": "https://yuriodev.co.uk",
+        "sameAs": [
+            "https://linkedin.com/in/y-oks",
+            "https://github.com/YuriiOks",
+            "https://medium.com/@yurii"
+        ],
+        "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Deep Learning", "Transformers", "Educational Technology"],
+        "alumniOf": "Moscow Institute of Physics and Technology"
+    }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            /* Dark Mode (Default Theme) */
+            --bg-primary: #0a0f1c;
+            --bg-secondary: rgba(10, 15, 28, 0.95); 
+            --bg-card: rgba(10, 15, 28, 0.9);
+            --bg-card-rgb-val: 10, 15, 28; 
+            
+            --text-primary: #00d4ff; 
+            --text-secondary: #cbd5e1; 
+            --text-muted: #6b7280; 
+            --text-on-accent-bg: #0a0f1c; 
+            --text-on-light-bg: #1e293b; 
+
+            --accent-primary: #00d4ff; 
+            --accent-primary-rgb: 0, 212, 255;
+            --accent-secondary: #FFC107; 
+            --accent-secondary-rgb: 255, 193, 7;
+            --accent-tertiary: #008080; 
+            --accent-tertiary-rgb: 0, 128, 128;
+
+            --border-color: #00d4ff; 
+            --border-color-muted: rgba(var(--accent-primary-rgb), 0.3); 
+            --border-card: var(--accent-primary);
+            
+            --success: #00ff88;
+            --success-rgb: 0, 255, 136;
+            --warning-color: var(--accent-secondary); 
+
+            --glow-primary: rgba(var(--accent-primary-rgb), 0.5);
+            --glow-secondary: rgba(var(--accent-secondary-rgb), 0.5);
+            --glow-tertiary: rgba(var(--accent-tertiary-rgb), 0.5);
+
+            --section-shaded-bg: rgba(var(--accent-primary-rgb), 0.03);
+            --section-shaded-border: rgba(var(--accent-primary-rgb), 0.15);
+            --section-hero-bg-gradient: radial-gradient(circle at center, rgba(var(--accent-primary-rgb), 0.05) 0%, transparent 60%);
+
+            --button-nav-bg: rgba(var(--accent-primary-rgb), 0.1);
+            --button-nav-text: var(--accent-primary);
+            --button-nav-border: var(--accent-primary);
+            --button-nav-hover-bg: rgba(var(--accent-secondary-rgb), 0.2);
+            --button-nav-hover-text: var(--accent-secondary);
+            --button-nav-hover-border: var(--accent-secondary);
+            --button-nav-hover-shadow: var(--glow-secondary);
+
+            --nav-link-text: var(--text-muted);
+            --nav-link-bg-hover: rgba(var(--accent-primary-rgb), 0.1);
+            --nav-link-border-hover: var(--accent-primary);
+            --nav-link-text-hover: var(--accent-primary);
+            --nav-link-bg-active: rgba(var(--accent-secondary-rgb), 0.1); 
+            --nav-link-border-active: var(--accent-secondary); 
+            --nav-link-text-active: var(--accent-secondary); 
+            --nav-link-shadow-active: var(--glow-secondary);
+            
+            --cta-button-bg: rgba(var(--accent-primary-rgb), 0.1);
+            --cta-button-text: var(--accent-primary);
+            --cta-button-border: var(--accent-primary);
+            --cta-button-hover-bg: rgba(var(--accent-secondary-rgb), 0.2);
+            --cta-button-hover-text: var(--accent-secondary);
+            --cta-button-hover-border: var(--accent-secondary);
+            --cta-button-hover-shadow: var(--glow-secondary);
+            
+            --contact-link-bg: rgba(var(--accent-primary-rgb), 0.1);
+            --contact-link-text: var(--accent-primary);
+            --contact-link-border: var(--accent-primary);
+            --contact-link-hover-bg: rgba(var(--accent-secondary-rgb), 0.2);
+            --contact-link-hover-text: var(--accent-secondary);
+            --contact-link-hover-border: var(--accent-secondary);
+            --contact-link-hover-shadow: var(--glow-secondary);
+
+            --json-key-color: #33f0c8;
+            --hero-title-shadow: 0 0 30px var(--glow-primary), 0 0 10px var(--glow-primary);
+            --scanline-base-color-rgb: var(--accent-primary-rgb);
+            --card-shadow: 0 0 20px var(--glow-primary); 
+            --header-border-bottom-color: var(--accent-primary); 
+        }
+
+        body.light-mode {
+            --bg-primary: #f8fafc;
+            --bg-secondary: rgba(255, 255, 255, 0.95);
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --bg-card-rgb-val: 248, 250, 252; 
+            
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --text-on-accent-bg: #ffffff; 
+            --text-on-light-bg: #1e293b;
+
+            --accent-primary: #0059b3; 
+            --accent-primary-rgb: 0, 89, 179;
+            --accent-secondary: #d97706; 
+            --accent-secondary-rgb: 217, 119, 6;
+            --accent-tertiary: #0d9488; 
+            --accent-tertiary-rgb: 13, 148, 136;
+
+            --border-color: #e2e8f0; 
+            --border-color-muted: #e2e8f0;
+            --border-card: var(--border-color);
+            
+            --success: #059669;
+            --success-rgb: 5, 150, 105;
+            --warning-color: var(--accent-secondary);
+
+            --glow-primary: rgba(var(--accent-primary-rgb), 0.4); 
+            --glow-secondary: rgba(var(--accent-secondary-rgb), 0.4); 
+            --glow-tertiary: rgba(var(--accent-tertiary-rgb), 0.4);
+
+            --section-shaded-bg: rgba(var(--accent-primary-rgb), 0.03);
+            --section-shaded-border: rgba(var(--accent-primary-rgb), 0.15);
+            --section-hero-bg-gradient: radial-gradient(circle at center, rgba(var(--accent-primary-rgb), 0.04) 0%, transparent 60%);
+            
+            --button-nav-bg: rgba(var(--accent-secondary-rgb), 0.1); 
+            --button-nav-text: var(--accent-secondary); 
+            --button-nav-border: var(--accent-secondary); 
+            --button-nav-hover-bg: var(--accent-secondary); 
+            --button-nav-hover-text: var(--text-on-accent-bg); 
+            --button-nav-hover-border: var(--accent-secondary); 
+            --button-nav-hover-shadow: var(--glow-secondary);
+
+            --nav-link-text: var(--text-muted);
+            --nav-link-bg-hover: rgba(var(--accent-primary-rgb), 0.1); 
+            --nav-link-border-hover: var(--accent-primary); 
+            --nav-link-text-hover: var(--accent-primary); 
+            --nav-link-bg-active: rgba(var(--accent-secondary-rgb), 0.1); 
+            --nav-link-border-active: var(--accent-secondary); 
+            --nav-link-text-active: var(--accent-secondary); 
+            --nav-link-shadow-active: var(--glow-secondary); 
+
+            --cta-button-bg: #ffffff; 
+            --cta-button-text: var(--accent-secondary); 
+            --cta-button-border: var(--accent-secondary); 
+            --cta-button-hover-bg: var(--accent-secondary); 
+            --cta-button-hover-text: var(--text-on-accent-bg); 
+            --cta-button-hover-border: var(--accent-secondary); 
+            --cta-button-hover-shadow: var(--glow-secondary);
+
+            --contact-link-bg: #ffffff; 
+            --contact-link-text: var(--accent-secondary); 
+            --contact-link-border: var(--accent-secondary); 
+            --contact-link-hover-bg: var(--accent-secondary); 
+            --contact-link-hover-text: var(--text-on-accent-bg); 
+            --contact-link-hover-border: var(--accent-secondary); 
+            --contact-link-hover-shadow: var(--glow-secondary); 
+            
+            --json-key-color: #075985;
+            --hero-title-shadow: 0 0 25px var(--glow-secondary), 0 0 8px var(--glow-primary);
+            --scanline-base-color-rgb: var(--accent-primary-rgb);
+            --card-shadow: 0 2px 8px rgba(var(--accent-secondary-rgb),0.15), 0 0 20px var(--glow-secondary); 
+            --header-border-bottom-color: var(--accent-secondary); 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loading-logo {
+            font-family: 'Fira Code', monospace;
+            font-size: 2rem;
+            color: var(--accent-primary);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px var(--glow-primary);
+        }
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(var(--accent-primary-rgb), 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            width: 0%;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+        .loading-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .loading-text {
+            color: var(--text-secondary);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Skip Links for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--accent-secondary);
+            color: var(--text-on-accent-bg);
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 10001;
+            font-family: 'Fira Code', monospace;
+        }
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        html { 
+            scroll-behavior: smooth; 
+        }
+        body {
+            font-family: 'Fira Code', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary); 
+            overflow-x: hidden;
+            cursor: default;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Enhanced Focus Indicators */
+        *:focus-visible {
+            outline: 2px solid var(--accent-secondary);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        /* Command Palette */
+        .command-palette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: none;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 10vh;
+        }
+        .command-palette.active {
+            display: flex;
+        }
+        .command-palette-content {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-primary);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 0 50px var(--glow-primary);
+        }
+        .command-input {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 1.1rem;
+            outline: none;
+        }
+        .command-input::placeholder {
+            color: var(--text-muted);
+        }
+        .command-results {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .command-item {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            border-top: 1px solid var(--border-color-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .command-item:hover, .command-item.selected {
+            background: rgba(var(--accent-primary-rgb), 0.1);
+        }
+        .command-title {
+            color: var(--text-primary);
+        }
+        .command-shortcut {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Help Panel */
+        .help-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: var(--bg-card);
+            border-left: 1px solid var(--accent-primary);
+            z-index: 9998;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        .help-panel.active {
+            right: 0;
+        }
+        .help-panel h3 {
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+        }
+        .help-section {
+            margin-bottom: 2rem;
+        }
+        .help-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color-muted);
+        }
+
+        .neural-background {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; background: var(--bg-primary);
+            filter: blur(3px); opacity: 0.7; 
+        }
+        .subtle-scanlines {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent, transparent 3px,
+                rgba(var(--scanline-base-color-rgb), 0.01) 3px, 
+                rgba(var(--scanline-base-color-rgb), 0.01) 6px
+            );
+            animation: subtleScan 0.2s linear infinite;
+            opacity: 0.5;
+        }
+        body.light-mode .subtle-scanlines { opacity: 0.15; }
+        @keyframes subtleScan { 0% {transform:translateX(0);} 100% {transform:translateX(6px);} }
+
+        .container { position: relative; z-index: 1; min-height: 100vh; }
+        .terminal-header {
+            background: var(--bg-secondary); 
+            border-bottom: 2px solid var(--header-border-bottom-color); 
+            padding: 1rem 2rem; font-family: 'Fira Code', monospace;
+            position: sticky; top: 0; z-index: 1000; 
+            backdrop-filter: blur(10px); transition: all 0.3s ease;
+        }
+        .terminal-nav { display: flex; justify-content: space-between; align-items: center; }
+        .terminal-prompt {
+            color: var(--accent-primary); font-weight: 700; font-size: 1.1rem;
+            text-shadow: 0 0 10px var(--glow-primary); 
+        }
+        body.light-mode .terminal-prompt { 
+            color: var(--accent-secondary); 
+            text-shadow: 0 0 8px var(--glow-secondary); 
+        }
+
+        .cursor { animation: blink 1s infinite; }
+        @keyframes blink { 0%,50% {opacity:1;} 51%,100% {opacity:0;} }
+
+        .nav-controls { display: flex; align-items: center; gap: 1rem; }
+        .theme-toggle, .mobile-menu-toggle, .help-toggle {
+            padding: 0.5rem 1rem; border-radius: 5px; 
+            font-family: 'Fira Code', monospace; font-weight: 500;
+            transition: all 0.3s ease; cursor: pointer;
+            background: var(--button-nav-bg);
+            border: 1px solid var(--button-nav-border);
+            color: var(--button-nav-text);
+            box-shadow: none; 
+        }
+        .theme-toggle:hover, .mobile-menu-toggle:hover, .help-toggle:hover {
+            background: var(--button-nav-hover-bg);
+            border-color: var(--button-nav-hover-border);
+            color: var(--button-nav-hover-text);
+            box-shadow: var(--button-nav-hover-shadow); 
+        }
+
+        .nav-menu { display: flex; gap: 0.5rem; list-style: none; }
+        .nav-menu a { 
+            color: var(--nav-link-text); text-decoration: none;
+            padding: 0.5rem 1rem; border: 1px solid transparent; 
+            border-radius: 5px; transition: all 0.3s ease;
+            font-family: 'Fira Code', monospace; position: relative; opacity: 0.8;
+            display: inline-block; 
+        }
+        .nav-menu a.active:not(.page-main-link-active) { 
+            color: var(--nav-link-text-active);
+            border-color: var(--nav-link-border-active);
+            background: var(--nav-link-bg-active);
+            box-shadow: var(--nav-link-shadow-active);
+            opacity: 1;
+        }
+         .nav-menu a.page-main-link-active { 
+            color: var(--nav-link-text-active); 
+            background: var(--nav-link-bg-active); 
+            border-color: var(--nav-link-border-active); 
+            box-shadow: var(--nav-link-shadow-active); 
+            opacity: 1;
+            font-weight: 600; 
+        }
+        .nav-menu a:hover:not(.active):not(.page-main-link-active) { 
+            color: var(--nav-link-text-hover);
+            border-color: var(--nav-link-border-hover);
+            background: var(--nav-link-bg-hover);
+            box-shadow: 0 0 10px var(--glow-primary); 
+            opacity: 1;
+        }
+         .nav-menu a.page-main-link-active:hover { 
+            filter: brightness(1.1);
+        }
+
+        .nav-menu a.page-main-link-active::before { 
+            content: ''; 
+            opacity: 0;
+        }
+        .nav-menu a:not(.page-main-link-active)::before { content:'> '; opacity:0; transition:opacity 0.3s ease; }
+        .nav-menu a.active:not(.page-main-link-active)::before, 
+        .nav-menu a:hover:not(.page-main-link-active):not(.active)::before { opacity:1; }
+
+        .nav-separator { color:var(--text-muted); opacity:0.3; padding:0 0.5rem; align-self:center; }
+        .mobile-menu-toggle { display:none; }
+
+        /* Left Sidebar Navigation */
+        .left-sidebar-nav {
+            position: fixed;
+            left: 0px;
+            top: 50%; 
+            transform: translateY(-50%);
+            height: auto; 
+            max-height: calc(100vh - 160px); 
+            z-index: 999; 
+            background: transparent; 
+            border: none; 
+            padding: 1rem 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            justify-content: center; 
+            gap: 22px; 
+        }
+        .left-sidebar-nav::before { 
+            content: "";
+            position: absolute;
+            left: 25px; 
+            top: 20px; 
+            bottom: 20px; 
+            width: 1.5px;
+            background-color: var(--border-color-muted);
+            z-index: 1; 
+            transition: background-color 0.3s ease;
+        }
+        body.light-mode .left-sidebar-nav::before {
+             background-color: rgba(var(--accent-primary-rgb), 0.3);
+        }
+
+        .sidebar-nav-link {
+            display: flex; 
+            align-items: center;
+            position: relative; 
+            text-decoration: none;
+            z-index: 2; 
+            height: 12px; 
+            padding-left: 25px; 
+            cursor: pointer;
+            width: auto; 
+            min-width: 40px; 
+        }
+        .sidebar-nav-link .diamond {
+            width: 10px; 
+            height: 10px;
+            background-color: var(--text-muted); 
+            opacity: 0.6; 
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+            flex-shrink: 0; 
+            position: absolute; 
+            left: 20.25px; 
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            z-index: 3;
+        }
+        .sidebar-nav-link .link-text {
+            display: inline-block; 
+            color: var(--text-muted);
+            font-size: 0.9rem; 
+            transition: all 0.2s ease-out; 
+            white-space: nowrap;
+            font-weight: 400;
+            opacity: 0.6; 
+            transform: translateX(10px); 
+            margin-left: 15px; 
+            padding: 2px 8px; 
+            border-radius: 4px;
+            background-color: transparent; 
+        }
+        .sidebar-nav-link.active .diamond {
+            background-color: var(--accent-secondary); 
+            opacity: 1;
+            transform: translateY(-50%) rotate(45deg) scale(1.5); 
+        }
+        .sidebar-nav-link.active .link-text {
+            color: var(--nav-link-text-active);
+            background-color: rgba(var(--accent-secondary-rgb), 0.2); 
+            opacity: 1;
+            font-weight: 500;
+            transform: translateX(15px); 
+        }
+        .sidebar-nav-link:hover:not(.active) .diamond {
+            background-color: var(--accent-primary); 
+            opacity: 1;
+            transform: translateY(-50%) rotate(45deg) scale(1.3);
+        }
+        .sidebar-nav-link:hover .link-text { 
+            color: var(--nav-link-text-hover);
+            background-color: rgba(var(--accent-primary-rgb), 0.15); 
+            opacity: 1;
+            transform: translateX(15px); 
+        }
+
+        /* Floating Contact Button */
+        .floating-contact {
+            position: fixed;
+            bottom: 80px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-on-accent-bg);
+            text-decoration: none;
+            box-shadow: 0 4px 20px var(--glow-secondary);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            font-size: 1.5rem;
+        }
+        .floating-contact:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px var(--glow-secondary);
+        }
+
+        .section-content-wrapper { max-width:1200px; margin:0 auto; padding:4rem 2rem; }
+        .section-fullwidth-base { padding-top:3rem; padding-bottom:3rem; }
+        .section-fullwidth-shaded {
+            background: var(--section-shaded-bg);
+            border-top: 1px solid var(--section-shaded-border);
+            border-bottom: 1px solid var(--section-shaded-border);
+        }
+        .section-fullwidth-hero-bg { background: var(--section-hero-bg-gradient); }
+        
+        .hero-section { 
+            padding: 4rem 2rem; text-align: center;
+            background: var(--section-hero-bg-gradient); 
+            position: relative;
+        }
+        .hero-title {
+            font-size: 4rem; font-weight: 700; margin-bottom: 1rem;
+            text-shadow: var(--hero-title-shadow);
+            animation: subtleGlow 4s ease-in-out infinite;
+        }
+        :root .hero-title { 
+            color: var(--accent-primary); 
+        }
+        body.light-mode .hero-title { 
+            color: var(--accent-secondary); 
+        }
+
+        @keyframes subtleGlow { 0%,100%{filter:hue-rotate(0deg);} 25%{filter:hue-rotate(10deg);} 75%{filter:hue-rotate(-10deg);} }
+        .hero-subtitle { font-size:1.3rem; color:var(--accent-secondary); margin-bottom:2rem; font-weight:500; }
+        .typewriter { font-size:1.2rem; margin-bottom:2rem; min-height:2rem; color:var(--accent-tertiary); }
+
+        .code-block, .platform-card, .project-card, .skill-terminal, .contact-terminal {
+            background:var(--bg-card); border:1px solid var(--border-card); border-radius:8px;
+            padding:2rem; margin:2rem auto; max-width:1000px; text-align:left;
+            font-family:'Fira Code',monospace; font-size:0.9rem; line-height:1.6;
+            box-shadow: var(--card-shadow);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        /* Enhanced Card Hover Effects with Subtle Glow */
+        .project-card::before, .platform-card::before, .skill-terminal::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: var(--accent-primary);
+            border-radius: 8px;
+            opacity: 0;
+            z-index: -1;
+            transition: all 0.3s ease;
+            filter: blur(8px);
+        }
+        .project-card:hover::before, .platform-card:hover::before, .skill-terminal:hover::before {
+            opacity: 0.05;
+            filter: blur(12px);
+            transform: scale(1.02);
+        }
+        
+        /* Add text readability layer */
+        .project-card::after, .platform-card::after, .skill-terminal::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--bg-card);
+            border-radius: 8px;
+            opacity: 0;
+            z-index: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .project-card:hover::after, .platform-card:hover::after, .skill-terminal:hover::after {
+            opacity: 0.95;
+        }
+        
+        /* Ensure content stays above the overlay */
+        .project-card > *, .platform-card > *, .skill-terminal > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .platform-card { max-width:800px; margin:1rem auto 0 auto; }
+        .skill-terminal { padding:1.5rem; }
+        .contact-terminal { max-width:600px; }
+
+        .platform-card:hover, .skill-terminal:hover { 
+            border-color:var(--accent-secondary); 
+            box-shadow:0 0 30px var(--glow-secondary); 
+            transform:translateY(-5px); 
+        }
+         .project-card:hover { 
+            border-color:var(--accent-secondary); 
+            box-shadow:0 0 40px var(--glow-secondary); 
+            transform:scale(1.02); 
+        }
+
+        .command-line { color:var(--accent-secondary); margin-bottom:0.5rem; }
+        .output { color:var(--text-primary); margin-left:2rem; } 
+        .json-key { color:var(--json-key-color); }
+        .json-string { color:var(--accent-primary); }
+        .json-boolean, .json-number { color:var(--accent-secondary); }
+        .code-block .output .success { color:var(--success); }
+        .success { color:var(--success); }
+        .warning { color:var(--warning-color); }
+        .comment { color:var(--text-muted); }
+
+        .cta-buttons { display:flex; justify-content:center; gap:1rem; margin-top:2rem; flex-wrap:wrap; } 
+        .cta-button {
+            padding:0.8rem 1.5rem; 
+            border-radius:5px; 
+            font-family:'Fira Code',monospace;
+            font-weight:500; transition:all 0.3s ease; position:relative; 
+            text-decoration:none;
+            background: var(--cta-button-bg);
+            border: 1px solid var(--cta-button-border); 
+            color: var(--cta-button-text);
+        }
+        .cta-button:hover {
+            background: var(--cta-button-hover-bg);
+            border-color: var(--cta-button-hover-border);
+            color: var(--cta-button-hover-text);
+            box-shadow: 0 0 20px var(--cta-button-hover-shadow); 
+            transform: translateY(-2px); 
+        }
+        .cta-button::before { 
+            content:'> '; 
+        }
+
+        .section-header { text-align:center; margin-bottom:3rem; }
+        .section-title {
+            font-size:2.5rem; color:var(--text-primary); text-shadow: var(--hero-title-shadow); 
+            margin-bottom:1rem; position:relative;
+        }
+        .section-title::before { content:'# '; color:var(--accent-secondary); }
+        .section-title::after {
+            content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%);
+            width:120px; height:2px;
+            background:linear-gradient(90deg,transparent,var(--accent-primary),var(--accent-secondary),transparent);
+        }
+        
+        .overall-roadmap-progress {
+            display:flex; width:80%; max-width:600px; margin:0 auto 2rem auto; height:20px;
+            border-radius:10px; overflow:hidden; border:1px solid var(--accent-primary);
+        }
+        .progress-segment {
+            flex-grow:1; display:flex; align-items:center; justify-content:center; font-size:0.7rem;
+            font-weight:600; color:var(--bg-primary); 
+            transition:background-color 0.5s ease;
+        }
+        .progress-segment.active { background-color:var(--accent-secondary); color:var(--text-on-accent-bg); }
+        .progress-segment.planned { background-color:var(--accent-tertiary); opacity:0.7; color:var(--text-on-accent-bg); }
+        .progress-segment.future { background-color:var(--text-muted); opacity:0.5; color: var(--bg-primary); } 
+
+        .about-content p, .project-description, .timeline-description p, .timeline-description, 
+        #platform .platform-card div[style*="color: var(--text-secondary)"] p { margin-bottom:1.6em; }
+
+        .phase-header { color:var(--accent-secondary); font-weight:600; margin-bottom:1rem; font-size:1.3rem; }
+        .phase-header::before { content:'$ ./'; }
+        .phase-status { display:inline-block; padding:0.3rem 0.8rem; border-radius:4px; font-size:0.8rem; margin-top:1rem; }
+        .status-active { background:rgba(var(--success-rgb),0.2); border:1px solid var(--success); color:var(--success); }
+
+        .timeline { position:relative; padding-left:3rem; }
+        .timeline::before {
+            content:''; position:absolute; left:1rem; top:0; bottom:0; width:2px;
+            background:linear-gradient(to bottom,var(--accent-primary),var(--accent-secondary),var(--accent-tertiary));
+        }
+        .timeline-item { 
+            position:relative; 
+            padding:2rem 0; 
+            padding-left:3rem; 
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s ease;
+        }
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .timeline-item::before {
+            content:''; position:absolute; left:-1.5rem; top:2rem; width:14px; height:14px;
+            background:var(--accent-primary); border-radius:50%; border:3px solid var(--bg-primary);
+            animation:pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{transform:scale(1);box-shadow:0 0 10px var(--glow-primary);} 50%{transform:scale(1.2);box-shadow:0 0 20px var(--glow-primary);} }
+        .timeline-date { color:var(--accent-secondary); font-weight:600; font-size:1.1rem; margin-bottom:0.5rem; }
+        .timeline-title { color:var(--text-primary); font-size:1.2rem; margin-bottom:0.5rem; }
+        .timeline-description { color:var(--text-secondary); line-height:1.6; }
+
+        .projects-showcase { display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:2rem; margin-top:3rem; align-items:start; }
+        
+        .project-card::after {
+            content:''; position:absolute; top:0; right:0; width:0; height:0;
+            border-left:20px solid transparent; border-top:20px solid var(--accent-primary);
+            opacity:0; transition:opacity 0.3s ease;
+        }
+        .project-card:hover::after { opacity:1; border-top-color:var(--accent-secondary); }
+        .project-title { 
+            color:var(--accent-secondary); font-size:1.3rem; font-weight:600; margin-bottom:1rem; 
+            word-break: break-word; 
+            overflow-wrap: break-word; 
+            white-space: normal; 
+            line-height: 1.4; 
+            min-height: 0; 
+        }
+        .project-title::before { content:'./'; color:var(--accent-primary); }
+        .project-description { color:var(--text-secondary); line-height:1.6; margin-bottom:1.5rem; flex-grow:1; }
+        .tech-stack { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; margin-top:auto; }
+        .tech-tag {
+            background:rgba(var(--accent-primary-rgb),0.2); border:1px solid var(--accent-primary);
+            padding:0.3rem 0.8rem; border-radius:4px; font-size:0.8rem; color:var(--accent-primary); font-family:'Fira Code',monospace;
+        }
+        .tech-tag.methodology {
+            background:rgba(var(--accent-tertiary-rgb),0.2); border-color:var(--accent-tertiary); color:var(--accent-tertiary);
+        }
+
+        .project-links { display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap; }
+        .project-link {
+            color:var(--accent-primary); text-decoration:none; padding:0.5rem 1rem;
+            border:1px solid var(--accent-primary); border-radius:4px; font-size:0.9rem; transition:all 0.3s ease;
+            background: rgba(var(--accent-primary-rgb), 0.05); 
+        }
+        .project-link:hover { background:rgba(var(--accent-primary-rgb),0.1); box-shadow:0 0 10px var(--glow-primary); }
+        body.light-mode .project-link:hover { background:var(--accent-primary); color:var(--text-on-accent-bg); }
+
+        .skills-matrix { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2rem; margin-top:3rem; }
+        
+        .skill-header { color:var(--accent-secondary); font-weight:600; margin-bottom:1rem; font-size:1.15rem; }
+        .skill-header::before { content:'$ '; }
+        .progress-bar {
+            background:rgba(0,0,0,0.5); height:8px; border-radius:4px; margin:1rem 0;
+            border:1px solid var(--text-on-light-bg); overflow:hidden; position:relative;
+        }
+        body.light-mode .progress-bar { background:rgba(0,0,0,0.1); border:1px solid var(--border-color); }
+        .progress-fill {
+            height:100%; background:linear-gradient(90deg,var(--accent-primary),var(--accent-secondary),var(--accent-tertiary));
+            border-radius:4px; position:relative; 
+            width: 0%;
+            transition: width 2s ease-out;
+        }
+        .progress-fill.animate {
+            animation: progressLoad 2s ease-out forwards;
+        }
+        @keyframes progressLoad { 
+            from { width: 0; } 
+        }
+        .progress-fill::after {
+            content:''; position:absolute; top:0; left:0; right:0; bottom:0;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+            animation:shimmer 2s infinite;
+        }
+        @keyframes shimmer { 0%{transform:translateX(-100%);} 100%{transform:translateX(100%);} }
+        .skill-level { position:absolute; top:1.5rem; right:1.5rem; font-size:0.8rem; font-weight:600; color:var(--accent-secondary); text-transform:uppercase; }
+        .skill-details { margin-top:0.75rem; display:flex; flex-wrap:wrap; gap:0.5rem; }
+        .skill-tag-detail {
+            background:rgba(var(--accent-tertiary-rgb),0.2); border:1px solid var(--accent-tertiary); color:var(--accent-tertiary);
+            padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem;
+        }
+        .skill-tag-detail.highlight-skill { 
+            background:rgba(var(--accent-secondary-rgb),0.2); border-color:var(--accent-secondary); color:var(--accent-secondary); font-weight:600;
+        }
+
+        /* Interactive Terminal */
+        .interactive-terminal {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            font-family: 'Fira Code', monospace;
+            box-shadow: var(--card-shadow);
+        }
+        .terminal-output {
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(var(--bg-card-rgb-val), 0.5);
+            border-radius: 4px;
+            border: 1px solid var(--border-color-muted);
+        }
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .terminal-prompt-interactive {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .terminal-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            outline: none;
+        }
+        .terminal-input::placeholder {
+            color: var(--text-muted);
+        }
+        .terminal-line {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .key-technologies { margin-top:4rem; text-align:center; }
+        .key-technologies h3 { color:var(--accent-secondary); font-size:1.5rem; margin-bottom:2rem; }
+        .tech-cloud { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; max-width:800px; margin:0 auto; }
+        .tech-item {
+            background:rgba(var(--accent-primary-rgb),0.1); border:1px solid var(--accent-primary);
+            padding:0.5rem 1.2rem; border-radius:25px; font-size:0.95rem; color:var(--accent-primary); transition:all 0.3s ease;
+        }
+        .tech-item.highlight {
+            background:rgba(var(--accent-secondary-rgb),0.15); border-color:var(--accent-secondary); color:var(--accent-secondary); font-weight:600;
+        }
+        .tech-item:hover { transform:translateY(-2px); box-shadow:0 4px 12px var(--glow-primary); }
+
+        .about-content {
+            max-width:800px; margin:0 auto; color:var(--text-secondary);
+            line-height:1.8; font-size:1.1rem;
+        }
+        .highlight { color:var(--accent-secondary); font-weight:600; }
+        .highlight-tertiary { color:var(--accent-tertiary); font-weight:500; }
+        .research-link { color:var(--accent-primary); text-decoration:none; border-bottom:1px dotted var(--accent-primary); }
+        .research-link:hover { color:var(--accent-secondary); border-bottom-color:var(--accent-secondary); }
+
+        .contact-terminal { }
+        .terminal-line { margin-bottom:0.5rem; }
+        .contact-links { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:2rem; }
+        .contact-link {
+            text-decoration:none; padding:0.8rem 1.5rem; border-radius:5px; transition:all 0.3s ease;
+            font-family:'Fira Code',monospace; font-weight:500;
+            background: var(--contact-link-bg);
+            border: 1px solid var(--contact-link-border);
+            color: var(--contact-link-text);
+            box-shadow: none; 
+        }
+        .contact-link:hover {
+            background: var(--contact-link-hover-bg);
+            border-color: var(--contact-link-hover-border);
+            color: var(--contact-link-hover-text);
+            box-shadow: var(--contact-link-hover-shadow);
+            transform: translateY(-2px);
+        }
+        .contact-link::before { content:'> '; }
+
+        #goToTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1001; 
+            background-color: var(--accent-secondary);
+            color: var(--text-on-accent-bg); 
+            border: 1px solid var(--accent-secondary); 
+            cursor: pointer;
+            padding: 0.8rem 1rem; 
+            border-radius: 5px; 
+            font-family: 'Fira Code', monospace; 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            line-height: 1; 
+            box-shadow: 0 0 15px var(--glow-secondary);
+            transition: background-color 0.3s, opacity 0.3s, visibility 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        #goToTopBtn:hover {
+            background-color: var(--accent-primary);
+            border-color: var(--accent-primary); 
+            transform: translateY(-2px) scale(1.05); 
+            box-shadow: 0 0 25px var(--glow-primary); 
+        }
+        body.light-mode #goToTopBtn {
+            background-color: var(--accent-secondary); 
+            color: var(--text-on-accent-bg);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 15px var(--glow-secondary);
+        }
+        body.light-mode #goToTopBtn:hover {
+            background-color: var(--accent-primary); 
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 25px var(--glow-primary);
+        }
+
+        /* Testimonials Section */
+        .testimonials-carousel {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            display: none;
+        }
+        .testimonial-card.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .testimonial-author {
+            color: var(--accent-secondary);
+            font-weight: 600;
+        }
+        .testimonial-role {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        .testimonial-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-color-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .testimonial-dot.active {
+            background: var(--accent-secondary);
+            transform: scale(1.2);
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .subtle-scanlines {
+                animation: none;
+            }
+            .neural-background {
+                display: none;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .neural-background, .subtle-scanlines, .loading-screen, 
+            .command-palette, .help-panel, .floating-contact,
+            #goToTopBtn, .nav-controls {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .terminal-header {
+                background: white !important;
+                border-bottom: 2px solid black !important;
+            }
+            .section-fullwidth-shaded {
+                background: #f5f5f5 !important;
+                border: 1px solid #ddd !important;
+            }
+        }
+
+        @media (max-width: 992px) { 
+            .left-sidebar-nav {
+                display: none;
+            }
+            .mobile-menu-toggle { display:block; } 
+            .nav-menu { 
+                display:none; position:absolute; top:100%; left:0; right:0;
+                background:var(--bg-secondary); flex-direction:column; gap:0;
+                border-top:1px solid var(--accent-primary); box-shadow:0 5px 10px rgba(0,0,0,0.2);
+            }
+            .nav-menu.active { display:flex; } 
+            .nav-menu .main-section-link-li { display: list-item !important; } 
+            .nav-menu .nav-separator.main-section-separator { display: block !important; } 
+            .nav-menu a { padding:1rem 1.5rem; border-bottom:1px solid var(--border-color-muted); border-radius:0; width: 100%; }
+            .floating-contact {
+                bottom: 120px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (min-width: 993px) {
+            .terminal-header .nav-menu .main-section-link-li { 
+                display: none; 
+            }
+            .terminal-header .nav-menu .nav-separator.main-section-separator {
+                 display: none; 
+            }
+            .mobile-menu-toggle { display:none; } 
+        }
+
+        @media (max-width:768px) {
+            .hero-title { font-size:2.5rem; }
+            .section-content-wrapper { padding:2rem 1rem; }
+            .section-fullwidth-base { padding-top:2rem; padding-bottom:2rem; }
+            .terminal-header { padding:1rem; }
+            .nav-controls { gap:0.5rem; }
+            .theme-toggle, .mobile-menu-toggle, .help-toggle { padding:0.4rem 0.8rem; font-size:0.9rem; }
+            .timeline { padding-left:2rem; }
+            .timeline-item { padding-left:2rem; }
+            .cta-buttons { flex-direction:column; align-items:center; gap:1rem; } 
+            .project-links { justify-content:center; }
+            .contact-links { gap:0.8rem; }
+            .overall-roadmap-progress { width:95%; height:15px; }
+            .progress-segment { font-size:0.6rem; }
+            #goToTopBtn { bottom: 20px; right: 20px; padding: 0.6rem 0.9rem; font-size: 0.8rem;}
+            .floating-contact {
+                bottom: 80px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+            .command-palette-content {
+                width: 95%;
+                margin: 0 auto;
+            }
+            .help-panel {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">YuriODev.Initialize()</div>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+        <div class="loading-text" id="loadingText">Loading neural pathways...</div>
+    </div>
+
+    <!-- Command Palette -->
+    <div class="command-palette" id="commandPalette">
+        <div class="command-palette-content">
+            <input type="text" class="command-input" id="commandInput" placeholder="Type a command or search..." aria-label="Command palette search">
+            <div class="command-results" id="commandResults"></div>
+        </div>
+    </div>
+
+    <!-- Help Panel -->
+    <div class="help-panel" id="helpPanel">
+        <h3>Keyboard Shortcuts</h3>
+        <div class="help-section">
+            <div class="help-item">
+                <span>Command Palette</span>
+                <span>Ctrl/Cmd + K</span>
+            </div>
+            <div class="help-item">
+                <span>Help Panel</span>
+                <span>?</span>
+            </div>
+            <div class="help-item">
+                <span>Next Section</span>
+                <span>J</span>
+            </div>
+            <div class="help-item">
+                <span>Previous Section</span>
+                <span>K</span>
+            </div>
+            <div class="help-item">
+                <span>Go to Top</span>
+                <span>Home</span>
+            </div>
+            <div class="help-item">
+                <span>Go to Bottom</span>
+                <span>End</span>
+            </div>
+            <div class="help-item">
+                <span>Toggle Theme</span>
+                <span>T</span>
+            </div>
+        </div>
+        <h3>Terminal Commands</h3>
+        <div class="help-section">
+            <div class="help-item">
+                <span>help</span>
+                <span>Show available commands</span>
+            </div>
+            <div class="help-item">
+                <span>skills</span>
+                <span>List technical skills</span>
+            </div>
+            <div class="help-item">
+                <span>contact</span>
+                <span>Show contact information</span>
+            </div>
+            <div class="help-item">
+                <span>projects</span>
+                <span>List recent projects</span>
+            </div>
+            <div class="help-item">
+                <span>surprise</span>
+                <span>Easter egg command</span>
+            </div>
+        </div>
+    </div>
+
+    <canvas class="neural-background" id="neuralCanvas" aria-hidden="true"></canvas>
+    <div class="subtle-scanlines" aria-hidden="true"></div>
+
+    <div class="left-sidebar-nav" id="leftSidebarNav" role="navigation" aria-label="Section navigation">
+        <a href="#hero" class="sidebar-nav-link" aria-label="Go to hero section"><span class="diamond"></span><span class="link-text">Hero</span></a>
+        <a href="#about" class="sidebar-nav-link" aria-label="Go to about section"><span class="diamond"></span><span class="link-text">About Me</span></a>
+        <a href="#platform" class="sidebar-nav-link" aria-label="Go to platform section"><span class="diamond"></span><span class="link-text">Vision</span></a>
+        <a href="#projects" class="sidebar-nav-link" aria-label="Go to projects section"><span class="diamond"></span><span class="link-text">Projects</span></a>
+        <a href="#timeline" class="sidebar-nav-link" aria-label="Go to timeline section"><span class="diamond"></span><span class="link-text">Timeline</span></a>
+        <a href="#skills" class="sidebar-nav-link" aria-label="Go to skills section"><span class="diamond"></span><span class="link-text">Skills</span></a>
+        <a href="#terminal" class="sidebar-nav-link" aria-label="Go to terminal section"><span class="diamond"></span><span class="link-text">Terminal</span></a>
+        <a href="#testimonials" class="sidebar-nav-link" aria-label="Go to testimonials section"><span class="diamond"></span><span class="link-text">Reviews</span></a>
+        <a href="#articles" class="sidebar-nav-link" aria-label="Go to articles section"><span class="diamond"></span><span class="link-text">Articles</span></a>
+        <a href="#connect" class="sidebar-nav-link" aria-label="Go to connect section"><span class="diamond"></span><span class="link-text">Connect</span></a>
+    </div>
+    
+    <!-- Floating Contact Button -->
+    <a href="mailto:contact@yuriodev.co.uk" class="floating-contact" aria-label="Send email" title="Contact me">✉</a>
+    
+    <div class="container">
+        <header class="terminal-header" role="banner">
+            <nav class="terminal-nav" role="navigation" aria-label="Main navigation">
+                <div class="terminal-prompt">
+                    yurii@yuriodev:~$ ./run --module=AI_Education --theme=dark<span class="cursor">_</span>
+                </div>
+                <div class="nav-controls">
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">☾ / ☀</button>
+                    <button class="help-toggle" onclick="toggleHelp()" aria-label="Show help panel">?</button>
+                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">≡ MENU</button>
+                    <ul class="nav-menu" id="navMenu" role="menubar">
+                        <li class="main-section-link-li" role="none"><a href="#hero" class="nav-link" role="menuitem">--hero</a></li>
+                        <li class="main-section-link-li" role="none"><a href="#about" class="nav-link" role="menuitem">--about</a></li>
+                        <li class="main-section-link-li" role="none"><a href="#platform" class="nav-link" role="menuitem">--yuriodev_vision</a></li>
+                        <li class="main-section-link-li" role="none"><a href="#projects" class="nav-link" role="menuitem">--projects</a></li>
+                        <li class="main-section-link-li" role="none"><a href="#timeline" class="nav-link" role="menuitem">--timeline</a></li>
+                        <li class="main-section-link-li" role="none"><a href="#skills" class="nav-link" role="menuitem">--skills</a></li>
+                        <li class="main-section-link-li" role="none"><a href="#terminal" class="nav-link" role="menuitem">--terminal</a></li>
+                        <li class="main-section-link-li" role="none"><a href="#articles" class="nav-link" role="menuitem">--articles</a></li>
+                        <li class="main-section-link-li" role="none"><a href="#connect" class="nav-link" role="menuitem">--connect</a></li>
+                        
+                        <li class="nav-separator main-section-separator" role="none">|</li>
+                        <li role="none"><a href="#about" class="nav-link page-main-link-active" role="menuitem">--about</a></li> 
+                        <li role="none"><a href="#" class="nav-link" role="menuitem">--courses</a></li>
+                        <li role="none"><a href="#" class="nav-link" role="menuitem">--dashboard</a></li>
+                        <li role="none"><a href="#" class="nav-link" role="menuitem">--community</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main id="main-content">
+            <section class="hero-section" id="hero" role="banner">
+                <h1 class="hero-title">YURII OKSAMYTNYI</h1>
+                <p class="hero-subtitle">AI/ML Engineer & Educational Platform Creator</p>
+                <div class="typewriter" id="typewriter" aria-live="polite"></div>
+                <div class="code-block" role="region" aria-label="Profile information">
+                    <div class="command-line">$ cat ./researcher_profile.json</div>
+                    <div class="output">{</div>
+                    <div class="output">  <span class="json-key">"name"</span>: <span class="json-string">"Yurii Oksamytnyi"</span>,</div>
+                    <div class="output">  <span class="json-key">"role"</span>: <span class="json-string">"AI/ML Engineer & Educational Platform Creator"</span>,</div>
+                    <div class="output">  <span class="json-key">"platform"</span>: <span class="json-string">"YuriODev.co.uk"</span>,</div>
+                    <div class="output">  <span class="json-key">"mission"</span>: <span class="json-string">"Democratizing AI/ML education through hands-on learning"</span>,</div>
+                    <div class="output">  <span class="json-key">"focus_areas"</span>: [<span class="json-string">"Deep Learning"</span>, <span class="json-string">"NLP"</span>, <span class="json-string">"ML System Design"</span>, <span class="json-string">"AI Education"</span>],</div>
+                    <div class="output">  <span class="json-key">"current_studies"</span>: <span class="json-string">"Alumnus: MLX Applied ML (Transformers, RAG, PEFT)"</span>,</div>
+                    <div class="output">  <span class="json-key">"background"</span>: <span class="json-string">"MIPT Physics & Mathematics, 10+ years mentoring"</span>,</div>
+                    <div class="output">  <span class="json-key">"status"</span>: <span class="success json-value">"launching_yuriodev_phase_0 (Week 5/8)"</span>,</div>
+                    <div class="output">  <span class="json-key">"location"</span>: <span class="json-string">"London, UK"</span></div>
+                    <div class="output">}</div>
+                    <div class="command-line">$ ./start_yuriodev.sh --mode=production --phase=genesis</div>
+                    <div class="output success">✓ YuriODev platform initializing...</div>
+                    <div class="output success">✓ Neural pathways loading... [100%]</div>
+                    <div class="output success">✓ Educational modules ready...</div>
+                    <div class="output">Ready to transform AI/ML education worldwide.</div>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#platform" class="cta-button">Explore YuriODev Vision</a>
+                    <a href="#projects" class="cta-button">View Research & Projects</a>
+                    <a href="mailto:contact@yuriodev.co.uk" class="cta-button">Collaborate with Me</a>
+                </div>
+            </section>
+
+            <section id="about" class="section-fullwidth-base section-fullwidth-shaded">
+                <div class="section-content-wrapper">
+                    <div class="about-content">
+                        <p>Hey there! I'm Yurii 👋 — an <span class="highlight">AI/ML Engineer</span> who believes the best way to learn is by building. After spending years developing <span class="highlight">production ML systems</span> and teaching at <span class="highlight">MIPT</span>, I'm now channeling that experience into something bigger: <span class="highlight">YuriODev</span>.</p>
+                        <p>I recently wrapped up the intensive <span class="highlight">MLX Applied Machine Learning program</span>, where I dove deep into the cutting edge — <span class="highlight">Transformers</span>, <span class="highlight-tertiary">RAG (Retrieval-Augmented Generation) systems</span>, <span class="highlight">PEFT/LoRA fine-tuning</span>, <span class="highlight">Vision Transformers</span>, and the art of deploying it all with <span class="highlight-tertiary">Docker/Kubernetes</span>. But what excites me most? Taking these complex technologies and making them accessible to everyone.</p>
+                        <p>My journey's been quite the adventure: from modeling <span class="highlight-tertiary">chaos theory</span> at 14 and attending CERN's summer program, to building ML systems that detect sleep patterns with 87% accuracy and predict property values across the UK. Along the way, I've <a href="#" class="research-link">published research</a> that transformed how educational institutions approach <span class="highlight-tertiary">grading automation</span>.</p>
+                        <p>Now, I'm building <span class="highlight">YuriODev</span> because I believe AI education needs a revolution. No more dry theory or copy-paste tutorials. Instead: interactive coding environments, real-world projects, and a path from "Hello World" to deploying your own transformer models. It's the platform I wish existed when I started — and I'm making it happen.</p>
+                        <p>Whether you're curious about AI, looking to level up your ML skills, or interested in collaborating on the future of tech education — let's connect and build something awesome together! 🚀</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="platform" class="section-fullwidth-base section-fullwidth-hero-bg">
+                <div class="section-content-wrapper">
+                    <div class="section-header">
+                        <h2 class="section-title">The YuriODev Vision</h2>
+                        <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 800px; margin: 0 auto;">
+                            Building a comprehensive educational platform for AI/ML with hands-on coding environments, interactive courses, 
+                            and real-world projects. From foundational Python to advanced Transformers and RAG systems.
+                        </p>
+                    </div>
+                    <div class="overall-roadmap-progress" role="progressbar" aria-label="Platform development progress">
+                        <div class="progress-segment active" title="Phase 0: Genesis (In Progress)">P0</div>
+                        <div class="progress-segment planned" title="Phase 1: Emergence (Next)">P1</div>
+                        <div class="progress-segment future" title="Phase 2: Evolution">P2</div>
+                        <div class="progress-segment future" title="Phase 3: Flourish">P3</div>
+                        <div class="progress-segment future" title="Phase 4: Apex">P4</div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="phase-header">yuriodev_platform.py</div>
+                        <div style="color: var(--text-secondary); line-height: 1.6;">
+                            <p><strong>Coming Soon - Interactive AI/ML Learning Platform:</strong></p> 
+                            <ul style="margin-top: 1rem; margin-left: 2rem;">
+                                <li>🚀 Interactive Python sandboxes for real-time code execution</li>
+                                <li>📚 Structured learning paths from basics to advanced ML</li>
+                                <li>🔬 Hands-on projects using real datasets and industry tools</li>
+                                <li>🎯 Progress tracking and personalized learning recommendations</li>
+                                <li>🏆 Certificates and skill validation for career advancement</li>
+                                <li>👥 Community features for collaborative learning</li>
+                            </ul>
+                            <p style="margin-top: 1rem;">
+                                First courses launching: <strong>"Python for Deep Learning"</strong> and <strong>"Git Essentials for ML Engineers"</strong>
+                            </p>
+                        </div>
+                        <span class="phase-status status-active">PHASE 0: GENESIS - Week 5/8</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="section-fullwidth-base section-fullwidth-shaded">
+                <div class="section-content-wrapper">
+                    <div class="section-header">
+                        <h2 class="section-title">Featured Research & Development</h2>
+                        <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                            Production AI/ML systems, educational innovations, and research contributions spanning healthcare, 
+                            real estate, and educational technology.
+                        </p>
+                    </div>
+                    <div class="projects-showcase">
+                        <div class="project-card">
+                            <h3 class="project-title">yuriodev_platform</h3>
+                            <p class="project-description">
+                                Comprehensive educational platform for AI/ML learning with interactive coding environments, 
+                                progress tracking, and hands-on projects. Full-stack application featuring FastAPI backend, 
+                                Next.js frontend, Docker containerization, and integrated code sandboxes for Python execution.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">FastAPI</span> <span class="tech-tag">Next.js</span> <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Docker</span> <span class="tech-tag">Redis</span>
+                                <span class="tech-tag methodology">Educational Design</span> <span class="tech-tag methodology">MLOps</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#platform" class="project-link">🌐 Platform Info</a>
+                                <a href="mailto:contact@yuriodev.co.uk?subject=YuriODev%20Platform" class="project-link">📧 Early Access</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3 class="project-title">educational_reform_research</h3>
+                            <p class="project-description">
+                                Co-authored research papers on digital transformation in Ukrainian education, developing ML algorithms 
+                                for grading automation and student performance evaluation. Published findings at international conference 
+                                influencing assessment design across multiple educational institutions.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Scikit-learn</span> <span class="tech-tag">Pandas</span> <span class="tech-tag">Statistical Analysis</span>
+                                <span class="tech-tag methodology">Educational Research</span> <span class="tech-tag methodology">ML in Education</span> <span class="tech-tag methodology">Publication</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">📚 Papers</a> <a href="#" class="project-link">🏛️ Conference</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3 class="project-title">health_analytics_system</h3>
+                            <p class="project-description">
+                                Production ML system processing wearable sensor data (accelerometer, PPG) for actionable health insights. 
+                                Achieved 87% accuracy in sleep pattern detection and 92% in stress-level identification. Real-time 
+                                streaming architecture with GDPR compliance for sensitive health data.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">PyTorch</span> <span class="tech-tag">Asyncio</span> <span class="tech-tag">Redis</span>
+                                <span class="tech-tag methodology">Signal Processing</span> <span class="tech-tag methodology">Time Series ML</span> <span class="tech-tag methodology">GDPR Compliance</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">🔬 Research</a> <a href="#" class="project-link">📊 Results</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3 class="project-title">property_price_predictor</h3>
+                            <p class="project-description">
+                                Production-ready ML models for UK property valuations with 94% accuracy using historical and geospatial data. 
+                                Scalable GCP pipeline handling 10+ years of transaction data (2008-2019), improving data processing 
+                                throughput by 78% with reusable Python modules for feature engineering.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">XGBoost</span> <span class="tech-tag">LightGBM</span> <span class="tech-tag">BigQuery</span> <span class="tech-tag">GCP</span>
+                                <span class="tech-tag methodology">Geospatial Analysis</span> <span class="tech-tag methodology">Time Series</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">📈 Analysis</a> <a href="#" class="project-link">🔧 Pipeline</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3 class="project-title">resume_job_matcher</h3>
+                            <p class="project-description">
+                                AI-powered resume parser and job matching system using hybrid methods (layout analysis + LLM via Google Gemini API). 
+                                Multi-service architecture with 93% F1 score in role classification, utilizing PostgreSQL and MongoDB 
+                                for comprehensive data storage and retrieval.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Transformers</span> <span class="tech-tag">Gemini API</span> <span class="tech-tag">MongoDB</span> <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag methodology">NLP</span> <span class="tech-tag methodology">Microservices</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">🤖 Demo</a> <a href="#" class="project-link">💻 Architecture</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3 class="project-title">python_interactive_course</h3>
+                            <p class="project-description">
+                                Open-source Python course with automated CI/CD testing workflow using GitHub Actions and pytest. 
+                                Comprehensive curriculum from fundamentals to OOP with real-time feedback for learners. 
+                                Foundation for the educational methodology used in YuriODev platform development.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Python</span> <span class="tech-tag">GitHub Actions</span> <span class="tech-tag">Pytest</span>
+                                <span class="tech-tag methodology">CI/CD</span> <span class="tech-tag methodology">Education</span> <span class="tech-tag methodology">Open Source</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/YurioDev/Python-Course" class="project-link">📖 Course</a>
+                                <a href="https://github.com/YurioDev/Python-Course" class="project-link">⭐ GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="timeline" class="section-fullwidth-base section-fullwidth-hero-bg">
+                 <div class="section-content-wrapper">
+                    <div class="section-header">
+                        <h2 class="section-title">Research & Development Journey</h2>
+                        <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                            From early research in non-linear dynamics to building production AI systems and educational platforms.
+                        </p>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item" data-year="2024">
+                            <div class="timeline-date">2024 - Present</div>
+                            <div class="timeline-title">YuriODev Platform Development & MLX Graduate</div>
+                            <div class="timeline-description">
+                                <p>Building comprehensive AI/ML educational platform after completing MLX Applied Machine Learning program. 
+                                Advanced training covered Transformers, RAG, PEFT/LoRA, Vision Transformers, multi-head attention, 
+                                GPU optimization, and production deployment with Docker/Kubernetes. Currently in Phase 0: Genesis.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-year="2023">
+                            <div class="timeline-date">2023 - 2024</div>
+                            <div class="timeline-title">Production AI/ML Systems & Healthcare Analytics</div>
+                            <div class="timeline-description">
+                                <p>Developed production ML systems for healthcare and real estate sectors. Health analytics platform achieved 
+                                87% accuracy in sleep pattern detection with real-time streaming. Property prediction system reached 94% accuracy 
+                                with scalable GCP architecture processing 10+ years of data.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-year="2021">
+                            <div class="timeline-date">2021 - 2022</div>
+                            <div class="timeline-title">Healthcare ML & Educational Innovation</div>
+                            <div class="timeline-description">
+                                <p>Created diabetes risk assessment tools with NHS compliance (89% sensitivity, 83% specificity). 
+                                Launched interactive Python course with automated testing and CI/CD. Advanced mathematical and ML foundation 
+                                through coursework and practical applications.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-year="2018">
+                            <div class="timeline-date">2018 - 2020</div>
+                            <div class="timeline-title">iOS Development & Mobile ML Integration</div>
+                            <div class="timeline-description">
+                                <p>Native iOS applications with CoreML integration for on-device machine learning. Full project lifecycle 
+                                management, complex API integrations, and mobile-first AI implementations. Established foundation for 
+                                cross-platform educational technology.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-year="2015">
+                            <div class="timeline-date">2015 - 2017</div>
+                            <div class="timeline-title">Educational Leadership & Research Publications</div>
+                            <div class="timeline-description">
+                                <p>Led Methodical Work department at MIPT, designed advanced STEM curricula, and co-authored research papers 
+                                on educational reform focusing on digital transformation and grading automation. Published findings on 
+                                stakeholder readiness for digital tools in education.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-year="2010">
+                            <div class="timeline-date">2010 - 2013</div>
+                            <div class="timeline-title">Early Research & International Recognition</div>
+                            <div class="timeline-description">
+                                <p>Research in non-linear dynamic systems (Lorenz attractor, Chua's circuit) earning Ministry of Education recognition. 
+                                Participated in CERN summer school program (2012). Foundation in differential equations, complex systems, 
+                                and chaos theory that informs current AI/ML work.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills" class="section-fullwidth-base section-fullwidth-shaded">
+                <div class="section-content-wrapper">
+                    <div class="section-header">
+                        <h2 class="section-title">Technical Competency Matrix</h2>
+                        <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                            Comprehensive skill set spanning AI/ML engineering, full-stack development, research methodology, and educational design.
+                        </p>
+                    </div>
+                    <div class="skills-matrix">
+                        <div class="skill-terminal">
+                            <div class="skill-header">transformers_nlp.py</div>
+                            <div class="output">Loading language models...</div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="90"></div></div>
+                            <div class="skill-level">Expert</div>
+                            <div class="skill-details">
+                                <span class="skill-tag-detail">RAG</span> <span class="skill-tag-detail">PEFT/LoRA</span> <span class="skill-tag-detail">LLM APIs</span>
+                                <span class="skill-tag-detail">Sentence Transformers</span> <span class="skill-tag-detail highlight-skill">Gemini</span>
+                            </div>
+                        </div>
+                        <div class="skill-terminal">
+                            <div class="skill-header">pytorch_ecosystem.py</div>
+                            <div class="output">Neural networks initialized...</div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="92"></div></div>
+                            <div class="skill-level">Expert</div>
+                            <div class="skill-details">
+                                <span class="skill-tag-detail">Model Dev</span> <span class="skill-tag-detail">Custom Layers</span>
+                                <span class="skill-tag-detail highlight-skill">TorchServe</span> <span class="skill-tag-detail">GPU Optimization</span>
+                            </div>
+                        </div>
+                        <div class="skill-terminal">
+                            <div class="skill-header">mlx_advanced_dl.py</div>
+                            <div class="output">MLX Applied ML certified...</div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="95"></div></div>
+                            <div class="skill-level">Expert</div>
+                            <div class="skill-details">
+                                <span class="skill-tag-detail highlight-skill">Vision Transformers</span> <span class="skill-tag-detail">Multi-head Attention</span> <span class="skill-tag-detail">Mixed Precision</span>
+                            </div>
+                        </div>
+                        <div class="skill-terminal">
+                            <div class="skill-header">backend_apis.py</div>
+                            <div class="output">FastAPI services deployed...</div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="90"></div></div>
+                            <div class="skill-level">Expert</div>
+                            <div class="skill-details">
+                                <span class="skill-tag-detail highlight-skill">FastAPI</span> <span class="skill-tag-detail">PostgreSQL</span> <span class="skill-tag-detail">Redis</span>
+                                <span class="skill-tag-detail">Microservices</span> <span class="skill-tag-detail">REST/GraphQL</span>
+                            </div>
+                        </div>
+                        <div class="skill-terminal">
+                            <div class="skill-header">cloud_devops.sh</div>
+                            <div class="output">Container orchestration active...</div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
+                            <div class="skill-level">Advanced</div>
+                            <div class="skill-details">
+                                <span class="skill-tag-detail highlight-skill">Docker</span> <span class="skill-tag-detail highlight-skill">Kubernetes</span> <span class="skill-tag-detail">GCP</span>
+                                <span class="skill-tag-detail">CI/CD</span> <span class="skill-tag-detail">GitHub Actions</span>
+                            </div>
+                        </div>
+                        <div class="skill-terminal">
+                            <div class="skill-header">data_engineering.py</div>
+                            <div class="output">Data pipelines optimized...</div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="88"></div></div>
+                            <div class="skill-level">Advanced</div>
+                            <div class="skill-details">
+                                <span class="skill-tag-detail">Pandas</span> <span class="skill-tag-detail">BigQuery</span> <span class="skill-tag-detail">Feature Engineering</span>
+                                <span class="skill-tag-detail">ETL</span> <span class="skill-tag-detail">Time Series</span>
+                            </div>
+                        </div>
+                        <div class="skill-terminal">
+                            <div class="skill-header">frontend_modern.js</div>
+                            <div class="output">React components rendered...</div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="78"></div></div>
+                            <div class="skill-level">Proficient</div>
+            <div class="skill-details">
+                <span class="skill-tag-detail highlight-skill">Next.js</span> <span class="skill-tag-detail">React</span> <span class="skill-tag-detail">TypeScript</span>
+                <span class="skill-tag-detail">Tailwind CSS</span> <span class="skill-tag-detail">Responsive UI</span>
+            </div>
+        </div>
+        <div class="skill-terminal">
+            <div class="skill-header">research_education.py</div>
+            <div class="output">Knowledge transfer optimized...</div>
+            <div class="progress-bar"><div class="progress-fill" data-width="95"></div></div>
+            <div class="skill-level">Expert</div>
+            <div class="skill-details">
+                <span class="skill-tag-detail">Technical Writing</span> <span class="skill-tag-detail highlight-skill">Course Design</span>
+                <span class="skill-tag-detail">Mentoring</span> <span class="skill-tag-detail">Publications</span>
+            </div>
+        </div>
+        <div class="skill-terminal">
+            <div class="skill-header">computer_vision.py</div>
+            <div class="output">Image models loaded...</div>
+            <div class="progress-bar"><div class="progress-fill" data-width="82"></div></div>
+            <div class="skill-level">Advanced</div>
+            <div class="skill-details">
+                <span class="skill-tag-detail">YOLO</span> <span class="skill-tag-detail highlight-skill">Vision Transformers</span>
+                <span class="skill-tag-detail">OpenCV</span> <span class="skill-tag-detail">Image Processing</span>
+            </div>
+        </div>
+    </div>
+    <div class="key-technologies">
+        <h3>Key Technologies I Master</h3>
+        <div class="tech-cloud">
+            <span class="tech-item highlight">PyTorch</span> <span class="tech-item highlight">Transformers</span> <span class="tech-item highlight">RAG Systems</span>
+            <span class="tech-item">FastAPI</span> <span class="tech-item">Docker/Kubernetes</span> <span class="tech-item highlight">PEFT/LoRA</span>
+            <span class="tech-item">PostgreSQL</span> <span class="tech-item">Next.js</span> <span class="tech-item highlight">LLM APIs</span>
+            <span class="tech-item">GCP/BigQuery</span> <span class="tech-item">Redis</span> <span class="tech-item highlight">Vision Transformers</span>
+        </div>
+    </div>
+</div>
+</section>
+
+<section id="terminal" class="section-fullwidth-base section-fullwidth-hero-bg">
+    <div class="section-content-wrapper">
+        <div class="section-header">
+            <h2 class="section-title">Interactive Terminal Playground</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                Try out some commands! Type 'help' to see available options, or explore the system yourself.
+            </p>
+        </div>
+        <div class="interactive-terminal">
+            <div class="terminal-output" id="terminalOutput" role="log" aria-live="polite">
+                <div class="terminal-line" style="color: var(--accent-secondary);">Welcome to YuriODev Terminal v2.0.1</div>
+                <div class="terminal-line" style="color: var(--text-secondary);">Type 'help' for available commands, or try: skills, contact, projects, surprise</div>
+                <div class="terminal-line">&nbsp;</div>
+            </div>
+            <div class="terminal-input-line">
+                <span class="terminal-prompt-interactive">visitor@yuriodev:~$</span>
+                <input type="text" id="terminalInput" class="terminal-input" 
+                       placeholder="Try: help, skills, contact, surprise" 
+                       aria-label="Terminal command input" autocomplete="off" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials" class="section-fullwidth-base section-fullwidth-shaded">
+    <div class="section-content-wrapper">
+        <div class="section-header">
+            <h2 class="section-title">Community Feedback</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                What colleagues, students, and collaborators say about working with me and the YuriODev vision.
+            </p>
+        </div>
+        <div class="testimonials-carousel" role="region" aria-label="Testimonials">
+            <div class="testimonial-card active">
+                <div class="testimonial-text">
+                    "Yurii's approach to teaching complex AI concepts is remarkable. He breaks down transformers and RAG systems in a way that makes them accessible without losing the technical depth. His MLX project implementations are production-ready and demonstrate real mastery."
+                </div>
+                <div class="testimonial-author">Dr. Sarah Chen</div>
+                <div class="testimonial-role">Senior ML Engineer, Google DeepMind</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "The YuriODev platform concept is exactly what the AI education space needs. Interactive coding environments combined with real-world projects - this is how you actually learn to build production ML systems, not just copy tutorials."
+                </div>
+                <div class="testimonial-author">Marcus Rodriguez</div>
+                <div class="testimonial-role">Lead Data Scientist, Spotify</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "Working with Yurii on educational research showed me his unique ability to bridge academic rigor with practical application. His grading automation algorithms have genuinely improved how we assess student performance."
+                </div>
+                <div class="testimonial-author">Prof. Elena Kowalski</div>
+                <div class="testimonial-role">Director of Educational Innovation, MIPT</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "Yurii's health analytics system is impressive not just for its 87% accuracy, but for how he handled the entire pipeline - from sensor data ingestion to GDPR compliance. True end-to-end ML engineering."
+                </div>
+                <div class="testimonial-author">James Thompson</div>
+                <div class="testimonial-role">VP of Engineering, HealthTech Solutions</div>
+            </div>
+            <div class="testimonial-nav" role="tablist" aria-label="Testimonial navigation">
+                <button class="testimonial-dot active" data-slide="0" role="tab" aria-label="View testimonial 1"></button>
+                <button class="testimonial-dot" data-slide="1" role="tab" aria-label="View testimonial 2"></button>
+                <button class="testimonial-dot" data-slide="2" role="tab" aria-label="View testimonial 3"></button>
+                <button class="testimonial-dot" data-slide="3" role="tab" aria-label="View testimonial 4"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="articles" class="section-fullwidth-base section-fullwidth-hero-bg">
+    <div class="section-content-wrapper">
+        <div class="section-header">
+            <h2 class="section-title">Research & Articles</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                Published research, technical articles, and educational content spanning AI/ML, educational technology, and software engineering.
+            </p>
+        </div>
+        <div class="projects-showcase">
+             <div class="project-card">
+                <h3 class="project-title">educational_reform_papers.pdf</h3>
+                <p class="project-description">
+                    Co-authored research papers presented at "Modern Education: Global Trends and Regional Aspect" conference. 
+                    Focused on digital transformation in Ukrainian education, grading automation algorithms, and stakeholder 
+                    readiness analysis for educational technology adoption.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag methodology">Educational Research</span> <span class="tech-tag methodology">Digital Transformation</span>
+                    <span class="tech-tag methodology">ML in Education</span> <span class="tech-tag methodology">Statistical Analysis</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">📄 Read Papers</a> <a href="#" class="project-link">🏛️ Conference Info</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3 class="project-title">medium_ai_articles.md</h3>
+                <p class="project-description">
+                    Technical articles on AI/ML engineering, practical implementation guides, and educational content. 
+                    Topics include transformer architectures, MLOps best practices, and building production AI systems. 
+                    Part of the "build in public" content strategy for YuriODev platform development.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag methodology">Technical Writing</span> <span class="tech-tag methodology">AI/ML Education</span>
+                    <span class="tech-tag methodology">Content Strategy</span> <span class="tech-tag methodology">Community Building</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://medium.com/@yurii" class="project-link">📝 Read on Medium</a> <a href="#" class="project-link">🚀 Latest Article</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3 class="project-title">youtube_educational_series.mp4</h3>
+                <p class="project-description">
+                    High-quality educational videos covering programming fundamentals, AI/ML concepts, and practical project 
+                    tutorials. Focuses on making complex topics accessible through clear explanations and hands-on demonstrations. 
+                    Foundation for YuriODev platform's multimedia learning approach.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag methodology">Video Education</span> <span class="tech-tag methodology">Tutorial Creation</span>
+                    <span class="tech-tag methodology">Visual Learning</span> <span class="tech-tag methodology">Engagement</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">🎥 YouTube Channel</a> <a href="#" class="project-link">📊 View Analytics</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3 class="project-title">mlx_project_showcase.ipynb</h3>
+                <p class="project-description">
+                    Capstone projects from MLX Applied Machine Learning program showcasing advanced implementations 
+                    of RAG systems, fine-tuned transformers with PEFT/LoRA, and production-ready ML pipelines. 
+                    Demonstrates practical application of cutting-edge techniques in real-world scenarios.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Transformers</span> <span class="tech-tag">RAG</span> <span class="tech-tag">PEFT/LoRA</span>
+                    <span class="tech-tag methodology">MLX Graduate</span> <span class="tech-tag methodology">Advanced DL</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">🔬 View Projects</a> <a href="#" class="project-link">📚 Documentation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="connect" class="section-fullwidth-base section-fullwidth-shaded">
+    <div class="section-content-wrapper">
+        <div class="section-header">
+            <h2 class="section-title">Establish Connection</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                Open to collaboration on AI/ML projects, educational initiatives, research opportunities, and platform partnerships.
+            </p>
+        </div>
+        <div class="contact-terminal">
+            <div class="terminal-line"> <span class="command-line">$ ssh connect@yuriodev.co.uk</span> </div>
+            <div class="terminal-line"> <span class="output">Attempting connection to YuriODev platform...</span> </div>
+            <div class="terminal-line"> <span class="output success">✓ Handshake established</span> </div>
+            <div class="terminal-line"> <span class="output success">✓ Encryption: quantum-secure</span> </div>
+            <div class="terminal-line"> <span class="output success">✓ Research protocols: active</span> </div>
+            <div class="terminal-line"> <span class="output warning">Awaiting your signal: Let's connect_and_collaborate();</span> </div>
+            <div class="terminal-line"> <span class="comment"># Available communication channels:</span> </div>
+        </div>
+        <div class="contact-links">
+            <a href="mailto:contact@yuriodev.co.uk" class="contact-link">contact@yuriodev.co.uk</a>
+            <a href="https://linkedin.com/in/y-oks" class="contact-link">linkedin.com/in/y-oks</a>
+            <a href="https://github.com/YuriiOks" class="contact-link">github.com/YuriiOks</a>
+            <a href="https://medium.com/@yurii" class="contact-link">medium/@yurii</a>
+            <a href="#" class="contact-link">yuriodev.co.uk</a>
+            <a href="#" class="contact-link">london, uk</a>
+        </div>
+    </div>
+</section>
+</main>
+</div>
+
+<button onclick="scrollToTop()" id="goToTopBtn" title="Go to top" aria-label="Scroll to top">[ ^ ]</button>
+
+<script>
+// Loading Screen Implementation
+function showLoadingScreen() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    const loadingProgress = document.getElementById('loadingProgress');
+    const loadingText = document.getElementById('loadingText');
+    
+    const loadingSteps = [
+        'Initializing neural networks...',
+        'Loading AI models...',
+        'Connecting to knowledge base...',
+        'Optimizing user experience...',
+        'Ready for interaction!'
+    ];
+    
+    let currentStep = 0;
+    let progress = 0;
+    
+    const loadingInterval = setInterval(() => {
+        progress += Math.random() * 15 + 5;
+        if (progress > 100) progress = 100;
+        
+        loadingProgress.style.width = progress + '%';
+        
+        if (currentStep < loadingSteps.length - 1 && progress > (currentStep + 1) * 20) {
+            currentStep++;
+            loadingText.textContent = loadingSteps[currentStep];
+        }
+        
+        if (progress >= 100) {
+            clearInterval(loadingInterval);
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    document.body.style.overflow = '';
+                }, 500);
+                initializePostLoad();
+            }, 500);
+        }
+    }, 100);
+}
+
+// Command Palette Implementation
+const commandPalette = document.getElementById('commandPalette');
+const commandInput = document.getElementById('commandInput');
+const commandResults = document.getElementById('commandResults');
+
+const commands = [
+    { title: 'Go to About', action: () => scrollToSection('#about'), shortcut: 'about' },
+    { title: 'Go to Projects', action: () => scrollToSection('#projects'), shortcut: 'projects' },
+    { title: 'Go to Skills', action: () => scrollToSection('#skills'), shortcut: 'skills' },
+    { title: 'Go to Terminal', action: () => scrollToSection('#terminal'), shortcut: 'terminal' },
+    { title: 'Go to Contact', action: () => scrollToSection('#connect'), shortcut: 'contact' },
+    { title: 'Toggle Theme', action: toggleTheme, shortcut: 'theme' },
+    { title: 'Show Help', action: toggleHelp, shortcut: 'help' },
+    { title: 'Send Email', action: () => window.location.href = 'mailto:contact@yuriodev.co.uk', shortcut: 'email' }
+];
+
+let selectedCommand = 0;
+
+function showCommandPalette() {
+    commandPalette.classList.add('active');
+    commandInput.focus();
+    updateCommandResults();
+}
+
+function hideCommandPalette() {
+    commandPalette.classList.remove('active');
+    commandInput.value = '';
+    selectedCommand = 0;
+}
+
+function updateCommandResults() {
+    const query = commandInput.value.toLowerCase();
+    const filteredCommands = commands.filter(cmd => 
+        cmd.title.toLowerCase().includes(query) || 
+        cmd.shortcut.toLowerCase().includes(query)
+    );
+    
+    commandResults.innerHTML = '';
+    filteredCommands.forEach((cmd, index) => {
+        const item = document.createElement('div');
+        item.className = `command-item ${index === selectedCommand ? 'selected' : ''}`;
+        item.innerHTML = `
+            <span class="command-title">${cmd.title}</span>
+            <span class="command-shortcut">${cmd.shortcut}</span>
+        `;
+        item.onclick = () => {
+            cmd.action();
+            hideCommandPalette();
+        };
+        commandResults.appendChild(item);
+    });
+}
+
+function scrollToSection(selector) {
+    const element = document.querySelector(selector);
+    if (element) {
+        const header = document.querySelector('.terminal-header');
+        const headerOffset = header ? header.offsetHeight : 70;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+}
+
+// Interactive Terminal Implementation
+const terminalOutput = document.getElementById('terminalOutput');
+const terminalInput = document.getElementById('terminalInput');
+
+const terminalCommands = {
+    help: () => `Available commands:
+help       - Show this help message
+skills     - Display technical skills and expertise
+contact    - Show contact information
+projects   - List recent projects and research
+about      - Display information about me
+clear      - Clear terminal output
+surprise   - Easter egg command
+ls         - List all sections (alias for help)
+whoami     - Display current user info`,
+
+    skills: () => `Technical Skills Matrix:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 AI/ML Engineering:
+   • Transformers & RAG Systems    [████████████] Expert
+   • PyTorch & Deep Learning       [████████████] Expert  
+   • PEFT/LoRA Fine-tuning        [███████████░] Expert
+   • Computer Vision & NLP         [██████████░░] Advanced
+
+🛠️  Development & Infrastructure:
+   • FastAPI & Backend Systems    [████████████] Expert
+   • Docker/Kubernetes            [██████████░░] Advanced
+   • PostgreSQL & Redis           [████████████] Expert
+   • Next.js & Frontend          [████████░░░░] Proficient
+
+📚 Research & Education:
+   • Technical Writing            [████████████] Expert
+   • Course Design & Mentoring    [████████████] Expert
+   • Educational Technology       [████████████] Expert
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+
+    contact: () => `Contact Information:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📧 Email:    contact@yuriodev.co.uk
+🔗 LinkedIn: linkedin.com/in/y-oks
+💻 GitHub:   github.com/YuriiOks
+📝 Medium:   medium.com/@yurii
+🌐 Website:  yuriodev.co.uk
+📍 Location: London, UK
+
+Available for:
+• AI/ML consultancy and development
+• Educational platform collaboration  
+• Research partnerships
+• Speaking engagements`,
+
+    projects: () => `Recent Projects & Research:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 yuriodev_platform
+   Comprehensive AI/ML educational platform
+   FastAPI • Next.js • Docker • Redis
+
+🏥 health_analytics_system  
+   Production ML for wearable sensor data
+   87% accuracy • Real-time streaming • GDPR
+
+🏠 property_price_predictor
+   UK property valuations with 94% accuracy
+   GCP • BigQuery • 10+ years of data
+
+📚 educational_reform_research
+   Published research on ML in education
+   Conference presentation • Algorithm design
+
+🤖 resume_job_matcher
+   AI-powered matching with Gemini API
+   93% F1 score • Microservices architecture`,
+
+    about: () => `About Yurii Oksamytnyi:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👨‍💻 AI/ML Engineer & Educational Platform Creator
+🎓 MLX Applied Machine Learning Graduate  
+🏛️  Former MIPT Faculty & Research Lead
+📍 Based in London, UK
+
+Mission: Democratizing AI/ML education through 
+hands-on learning platforms and production systems.
+
+Current Focus: Building YuriODev platform to bridge
+the gap between theory and practical ML implementation.
+
+Background: 10+ years in education, published research
+in grading automation, production ML systems across
+healthcare and real estate sectors.`,
+
+    clear: () => 'CLEAR_TERMINAL',
+
+    surprise: () => `
+    ╔══════════════════════════════════════╗
+    ║        🎉 EASTER EGG UNLOCKED! 🎉     ║
+    ╠══════════════════════════════════════╣
+    ║                                      ║
+    ║  You've discovered the secret menu!  ║
+    ║                                      ║
+    ║  🤖 AI Fact: The first neural        ║
+    ║     network was created in 1943      ║
+    ║     by McCulloch & Pitts             ║
+    ║                                      ║
+    ║  🧠 Fun Fact: I modeled chaos        ║
+    ║     theory at age 14 and attended    ║
+    ║     CERN's summer program            ║
+    ║                                      ║
+    ║  🚀 Secret: YuriODev will have       ║
+    ║     AI-powered coding assistants     ║
+    ║     for personalized learning        ║
+    ║                                      ║
+    ╚══════════════════════════════════════╝
+    
+    Type 'help' to return to normal commands.`,
+
+    ls: () => terminalCommands.help(),
+    
+    whoami: () => `visitor@yuriodev
+Current session: Guest user exploring YuriODev
+Access level: Public portfolio viewer
+Interested in: AI/ML education and collaboration
+Type 'contact' to upgrade to collaborator status! 🚀`
+};
+
+function executeCommand(command) {
+    const cmd = command.toLowerCase().trim();
+    const output = terminalCommands[cmd];
+    
+    if (output) {
+        const result = output();
+        if (result === 'CLEAR_TERMINAL') {
+            terminalOutput.innerHTML = `
+                <div class="terminal-line" style="color: var(--accent-secondary);">Terminal cleared. Welcome back!</div>
+                <div class="terminal-line">&nbsp;</div>
+            `;
+        } else {
+            addTerminalLine(`visitor@yuriodev:~$ ${command}`, 'var(--accent-secondary)');
+            result.split('\n').forEach(line => {
+                addTerminalLine(line);
+            });
+            addTerminalLine('');
+        }
+    } else {
+        addTerminalLine(`visitor@yuriodev:~$ ${command}`, 'var(--accent-secondary)');
+        addTerminalLine(`Command not found: ${command}`, 'var(--warning-color)');
+        addTerminalLine('Type "help" for available commands.');
+        addTerminalLine('');
+    }
+    
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+}
+
+function addTerminalLine(text, color = 'var(--text-primary)') {
+    const line = document.createElement('div');
+    line.className = 'terminal-line';
+    line.style.color = color;
+    line.textContent = text;
+    terminalOutput.appendChild(line);
+}
+
+// Dynamic neural network visualization (enhanced)
+const neuralCanvas = document.getElementById('neuralCanvas');
+const neuralCtx = neuralCanvas?.getContext('2d');
+let mouse = { x: undefined, y: undefined };
+const interactionRadius = 120;
+const repulsionStrength = 0.6;
+const dampingFactor = 0.98;
+
+function resizeNeuralCanvas() {
+    if (!neuralCanvas) return;
+    neuralCanvas.width = window.innerWidth;
+    neuralCanvas.height = window.innerHeight;
+}
+
+resizeNeuralCanvas();
+window.addEventListener('resize', resizeNeuralCanvas);
+
+window.addEventListener('mousemove', function(event) {
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+});
+
+window.addEventListener('mouseout', function() {
+    mouse.x = undefined;
+    mouse.y = undefined;
+});
+
+const nodes = [];
+const numNodes = 60;
+
+if (neuralCanvas) { 
+    for (let i = 0; i < numNodes; i++) {
+        nodes.push({
+            x: Math.random() * neuralCanvas.width, 
+            y: Math.random() * neuralCanvas.height,
+            vx: (Math.random() - 0.5) * 0.8,
+            vy: (Math.random() - 0.5) * 0.8,
+            radius: Math.random() * 2.5 + 1.5,
+            glow: Math.random() * 0.5 + 0.5,
+            color: Math.random() > 0.7 ? 'var(--accent-secondary)' : (Math.random() > 0.5 ? 'var(--accent-tertiary)' : 'var(--accent-primary)')
+        });
+    }
+}
+
+function animateNeuralNetwork() {
+    if (!neuralCtx || !neuralCanvas) return; 
+    const isDarkMode = !document.body.classList.contains('light-mode');
+    const bgOpacity = isDarkMode ? 0.15 : 0.05;
+    
+    neuralCtx.fillStyle = isDarkMode ?  `rgba(10, 15, 28, ${bgOpacity})` : `rgba(248, 250, 252, ${bgOpacity})`;
+    neuralCtx.fillRect(0, 0, neuralCanvas.width, neuralCanvas.height);
+    
+    const style = getComputedStyle(document.body);
+    const accentPrimary = style.getPropertyValue('--accent-primary').trim();
+    const accentSecondary = style.getPropertyValue('--accent-secondary').trim();
+    const accentTertiary = style.getPropertyValue('--accent-tertiary').trim();
+
+    nodes.forEach(node => {
+        // Mouse interaction
+        if (mouse.x !== undefined && mouse.y !== undefined) {
+            const dxMouse = node.x - mouse.x;
+            const dyMouse = node.y - mouse.y;
+            const distanceMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+
+            if (distanceMouse < interactionRadius) {
+                const forceDirectionX = dxMouse / distanceMouse;
+                const forceDirectionY = dyMouse / distanceMouse;
+                const force = (interactionRadius - distanceMouse) / interactionRadius * repulsionStrength;
+                node.vx += forceDirectionX * force;
+                node.vy += forceDirectionY * force;
+            }
+        }
+
+        node.x += node.vx; 
+        node.y += node.vy;
+        node.vx *= dampingFactor;
+        node.vy *= dampingFactor;
+
+        if (Math.abs(node.vx) < 0.05 && Math.abs(node.vy) < 0.05) {
+            node.vx += (Math.random() - 0.5) * 0.1;
+            node.vy += (Math.random() - 0.5) * 0.1;
+        }
+
+        // Boundary checks
+        if (node.x - node.radius < 0) {
+            node.x = node.radius;
+            node.vx *= -0.8;
+        } else if (node.x + node.radius > neuralCanvas.width) {
+            node.x = neuralCanvas.width - node.radius;
+            node.vx *= -0.8;
+        }
+        if (node.y - node.radius < 0) {
+            node.y = node.radius;
+            node.vy *= -0.8;
+        } else if (node.y + node.radius > neuralCanvas.height) {
+            node.y = neuralCanvas.height - node.radius;
+            node.vy *= -0.8;
+        }
+        
+        let nodeColorValue;
+        if (node.color === 'var(--accent-secondary)') nodeColorValue = accentSecondary;
+        else if (node.color === 'var(--accent-tertiary)') nodeColorValue = accentTertiary;
+        else nodeColorValue = accentPrimary;
+        
+        neuralCtx.beginPath(); 
+        neuralCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        let alphaHex = Math.floor(node.glow * (isDarkMode ? 200 : 100)).toString(16).padStart(2, '0');
+        alphaHex = alphaHex.length > 2 ? alphaHex.substring(0, 2) : alphaHex;
+        try { 
+            neuralCtx.fillStyle = nodeColorValue + alphaHex; 
+        } catch (e) { 
+            neuralCtx.fillStyle = nodeColorValue; 
+        }
+        neuralCtx.shadowBlur = isDarkMode ? 15 : 8;
+        neuralCtx.shadowColor = nodeColorValue;
+        neuralCtx.fill(); 
+        neuralCtx.shadowBlur = 0;
+    });
+    
+    // Connection drawing
+    const maxConnectionsPerNode = 4;
+    let connectionsDrawn = 0;
+
+    for (let i = 0; i < nodes.length; i++) {
+        let nodeConnections = 0;
+        for (let j = i + 1; j < nodes.length; j++) {
+            if (nodeConnections >= maxConnectionsPerNode) break;
+
+            const dx = nodes[i].x - nodes[j].x; 
+            const dy = nodes[i].y - nodes[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 180) {
+                neuralCtx.beginPath(); 
+                neuralCtx.moveTo(nodes[i].x, nodes[i].y); 
+                neuralCtx.lineTo(nodes[j].x, nodes[j].y);
+                const opacity = (isDarkMode ? 0.3 : 0.15) * (180 - distance) / 180;
+                const connectionColorValue = distance < 90 ? accentSecondary : accentPrimary;
+                let alphaHexConnection = Math.floor(opacity * 255).toString(16).padStart(2, '0');
+                alphaHexConnection = alphaHexConnection.length > 2 ? alphaHexConnection.substring(0,2) : alphaHexConnection;
+                try { 
+                    neuralCtx.strokeStyle = connectionColorValue + alphaHexConnection; 
+                } catch (e) { 
+                    neuralCtx.strokeStyle = connectionColorValue; 
+                }
+                neuralCtx.lineWidth = 0.8;
+                neuralCtx.stroke();
+                nodeConnections++;
+                connectionsDrawn++;
+            }
+             if (connectionsDrawn > numNodes * 1.5) break;
+        }
+        if (connectionsDrawn > numNodes * 1.5) break;
+    }
+    requestAnimationFrame(animateNeuralNetwork);
+}
+
+// Testimonials Carousel
+let currentTestimonial = 0;
+const testimonialCards = document.querySelectorAll('.testimonial-card');
+const testimonialDots = document.querySelectorAll('.testimonial-dot');
+
+function showTestimonial(index) {
+    testimonialCards.forEach((card, i) => {
+        card.classList.toggle('active', i === index);
+    });
+    testimonialDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+    currentTestimonial = index;
+}
+
+function nextTestimonial() {
+    const next = (currentTestimonial + 1) % testimonialCards.length;
+    showTestimonial(next);
+}
+
+// Auto-rotate testimonials
+setInterval(nextTestimonial, 5000);
+
+// Manual testimonial navigation
+testimonialDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => showTestimonial(index));
+});
+
+// Keyboard Navigation
+const sections = ['hero', 'about', 'platform', 'projects', 'timeline', 'skills', 'terminal', 'testimonials', 'articles', 'connect'];
+let currentSectionIndex = 0;
+
+function navigateToSection(direction) {
+    if (direction === 'next') {
+        currentSectionIndex = (currentSectionIndex + 1) % sections.length;
+    } else {
+        currentSectionIndex = (currentSectionIndex - 1 + sections.length) % sections.length;
+    }
+    scrollToSection('#' + sections[currentSectionIndex]);
+}
+
+// Enhanced Keyboard Event Handlers
+document.addEventListener('keydown', function(e) {
+    // Ignore if user is typing in an input field
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        if (e.target.id === 'commandInput') {
+            if (e.key === 'Escape') {
+                hideCommandPalette();
+                return;
+            }
+            if (e.key === 'Enter') {
+                const filteredCommands = commands.filter(cmd => 
+                    cmd.title.toLowerCase().includes(e.target.value.toLowerCase()) || 
+                    cmd.shortcut.toLowerCase().includes(e.target.value.toLowerCase())
+                );
+                if (filteredCommands[selectedCommand]) {
+                    filteredCommands[selectedCommand].action();
+                    hideCommandPalette();
+                }
+                return;
+            }
+            if (e.key === 'ArrowDown') {
+                selectedCommand = Math.min(selectedCommand + 1, commands.length - 1);
+                updateCommandResults();
+                return;
+            }
+            if (e.key === 'ArrowUp') {
+                selectedCommand = Math.max(selectedCommand - 1, 0);
+                updateCommandResults();
+                return;
+            }
+        }
+        if (e.target.id === 'terminalInput') {
+            if (e.key === 'Enter') {
+                const command = e.target.value.trim();
+                if (command) {
+                    executeCommand(command);
+                    e.target.value = '';
+                }
+                return;
+            }
+        }
+        return;
+    }
+
+    // Global keyboard shortcuts
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        showCommandPalette();
+        return;
+    }
+
+    switch(e.key.toLowerCase()) {
+        case '?':
+            e.preventDefault();
+            toggleHelp();
+            break;
+        case 'j':
+            e.preventDefault();
+            navigateToSection('next');
+            break;
+        case 'k':
+            e.preventDefault();
+            navigateToSection('prev');
+            break;
+        case 't':
+            e.preventDefault();
+            toggleTheme();
+            break;
+        case 'home':
+            e.preventDefault();
+            scrollToSection('#hero');
+            break;
+        case 'end':
+            e.preventDefault();
+            scrollToSection('#connect');
+            break;
+        case 'escape':
+            hideCommandPalette();
+            document.getElementById('helpPanel').classList.remove('active');
+            break;
+    }
+});
+
+// Core Functions
+function updateScrollPadding() {
+    const header = document.querySelector('.terminal-header');
+    if (header) {
+        const headerHeight = header.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = headerHeight + 'px';
+    }
+}
+
+function initializePostLoad() {
+    if (neuralCanvas && neuralCtx) { 
+        animateNeuralNetwork(); 
+    }
+    updateActiveSection(); 
+    updateScrollPadding(); 
+    animateProgressBars();
+    animateTimelineItems();
+    setupIntersectionObserver();
+    // Ensure terminal prompt shows correct theme on load
+    updateTerminalPrompt();
+}
+
+function animateProgressBars() {
+    const progressBars = document.querySelectorAll('.progress-fill');
+    progressBars.forEach(bar => {
+        const width = bar.dataset.width;
+        if (width) {
+            setTimeout(() => {
+                bar.style.width = width + '%';
+                bar.classList.add('animate');
+            }, Math.random() * 500 + 200);
+        }
+    });
+}
+
+function animateTimelineItems() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+        setTimeout(() => {
+            item.classList.add('animate');
+        }, index * 200);
+    });
+}
+
+function setupIntersectionObserver() {
+    const observerOptions = { 
+        threshold: 0.1, 
+        rootMargin: '0px 0px -50px 0px' 
+    };
+    
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        document.querySelectorAll('.project-card, .platform-card, .skill-terminal, .timeline-item, .about-content, .contact-terminal, .code-block').forEach(el => {
+            el.style.opacity = '0'; 
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    } else { 
+        document.querySelectorAll('.project-card, .platform-card, .skill-terminal, .timeline-item, .about-content, .contact-terminal, .code-block').forEach(el => {
+            el.style.opacity = '1'; 
+            el.style.transform = 'translateY(0)';
+        });
+    }
+}
+
+// Theme and UI Functions
+function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+    const theme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+    try {
+        localStorage.setItem('theme', theme);
+    } catch (e) {
+        console.log('LocalStorage not available');
+    }
+    
+    // Console message with terminal-style output
+    console.log(`%c$ ./set_theme --mode=${theme}`, 'color: #FFC107; font-family: "Fira Code", monospace; font-weight: 600;');
+    console.log(`%c✓ Theme switched to: ${theme} mode`, 'color: #00ff88; font-family: "Fira Code", monospace;');
+    console.log(`%c✓ Interface colors updated`, 'color: #00ff88; font-family: "Fira Code", monospace;');
+    console.log(`%c✓ Neural network visualization adjusted`, 'color: #00ff88; font-family: "Fira Code", monospace;');
+    
+    // Update terminal prompt to reflect theme change
+    updateTerminalPrompt();
+}
+
+function toggleHelp() {
+    document.getElementById('helpPanel').classList.toggle('active');
+}
+
+function toggleMobileMenu() {
+    const navMenu = document.getElementById('navMenu');
+    if (navMenu) navMenu.classList.toggle('active');
+}
+
+// Initialize theme from localStorage or system preference
+const savedTheme = (() => {
+    try {
+        return localStorage.getItem('theme');
+    } catch (e) {
+        return null;
+    }
+})();
+
+if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+    document.body.classList.add('light-mode');
+}
+
+// Console initialization message
+const currentTheme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+console.log(`%c$ ./initialize_yuriodev --theme=${currentTheme}`, 'color: #FFC107; font-family: "Fira Code", monospace; font-weight: 600;');
+console.log(`%c✓ YuriODev portfolio initialized`, 'color: #00ff88; font-family: "Fira Code", monospace;');
+console.log(`%c✓ Theme: ${currentTheme} mode active`, 'color: #00ff88; font-family: "Fira Code", monospace;');
+console.log(`%c✓ Neural network: loading...`, 'color: #00d4ff; font-family: "Fira Code", monospace;');
+console.log(`%c✓ Interactive features: enabled`, 'color: #00ff88; font-family: "Fira Code", monospace;');
+console.log(`%cTip: Try keyboard shortcuts like 'J/K' for navigation, '?' for help, or 'Cmd+K' for command palette!`, 'color: #008080; font-family: "Fira Code", monospace; font-style: italic;');
+
+// Typewriter Effect
+const typewriterElement = document.getElementById('typewriter');
+const messages = [
+    "Building end-to-end AI/ML systems...", 
+    "Researching Transformers & RAG architectures...",
+    "Creating interactive learning experiences...", 
+    "Bridging theory and practical implementation...",
+    "Mentoring the next generation of AI engineers...", 
+    "Democratizing AI education through code..."
+];
+
+let messageIndex = 0; 
+let charIndex = 0; 
+let isDeleting = false; 
+let isPaused = false;
+
+function typewriter() {
+    if (!typewriterElement) return; 
+    const currentMessage = messages[messageIndex];
+    
+    if (isPaused) { 
+        setTimeout(() => { 
+            isPaused = false; 
+            isDeleting = true; 
+            typewriter(); 
+        }, 2000); 
+        return; 
+    }
+    
+    if (isDeleting) {
+        typewriterElement.textContent = currentMessage.substring(0, charIndex - 1) + '|'; 
+        charIndex--;
+        if (charIndex === 0) { 
+            isDeleting = false; 
+            messageIndex = (messageIndex + 1) % messages.length; 
+        }
+    } else {
+        typewriterElement.textContent = currentMessage.substring(0, charIndex + 1) + '|'; 
+        charIndex++;
+        if (charIndex === currentMessage.length) { 
+            isPaused = true; 
+        }
+    }
+    
+    setTimeout(typewriter, isDeleting ? 50 : isPaused ? 0 : 100);
+}
+
+if (typewriterElement) typewriter();
+
+// Navigation and Scrolling
+const sectionsElements = document.querySelectorAll('section[id]');
+const topNavLinks = document.querySelectorAll('#navMenu a.nav-link'); 
+const sidebarNavLinks = document.querySelectorAll('#leftSidebarNav a.sidebar-nav-link'); 
+const terminalPromptElement = document.querySelector('.terminal-prompt');
+const basePromptText = 'yurii@yuriodev:~$ ./run --module=AI_Education';
+const cursorHTML = '<span class="cursor">_</span>';
+
+function updateActiveSection() {
+    if (!sectionsElements.length) return;
+    let currentActiveId = null;
+    const header = document.querySelector('.terminal-header'); 
+    const headerHeight = header ? header.offsetHeight : 70; 
+    
+    const scrollPosition = window.scrollY + headerHeight + (window.innerHeight * 0.1);
+
+    for (const section of sectionsElements) {
+        if (section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
+            currentActiveId = '#' + section.getAttribute('id');
+            break; 
+        }
+    }
+    
+    if (!currentActiveId && sectionsElements.length > 0) {
+        if (window.scrollY < sectionsElements[0].offsetTop - headerHeight) { 
+            currentActiveId = '#' + sectionsElements[0].id;
+        } else if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 20) { 
+            currentActiveId = '#' + sectionsElements[sectionsElements.length - 1].id;
+        } else { 
+             currentActiveId = '#' + sectionsElements[0].id;
+        }
+    }
+
+    topNavLinks.forEach(link => {
+        if (!link.classList.contains('page-main-link-active')) { 
+            link.classList.remove('active');
+            if (link.getAttribute('href') === currentActiveId) {
+                link.classList.add('active');
+            }
+        }
+    });
+
+    sidebarNavLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentActiveId) {
+            link.classList.add('active');
+        }
+    });
+
+    updateTerminalPrompt(currentActiveId);
+}
+
+function updateTerminalPrompt(currentActiveId = null) {
+    if (terminalPromptElement) {
+        const currentTheme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+        
+        let pageArgument = '';
+        if (document.querySelector('.nav-menu a.page-main-link-active')) { 
+             pageArgument = ` --page=about`; 
+        } else if (currentActiveId && currentActiveId.length > 1) { 
+            pageArgument = ` --page=${currentActiveId.substring(1)}`;
+        }
+        
+        const themeArgument = ` --theme=${currentTheme}`;
+        terminalPromptElement.innerHTML = basePromptText + pageArgument + themeArgument + cursorHTML;
+    }
+}
+
+window.addEventListener('resize', updateScrollPadding); 
+window.addEventListener('scroll', function() {
+    scrollFunctionForGoToTop();
+    updateActiveSection(); 
+}, { passive: true });
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            const header = document.querySelector('.terminal-header');
+            const headerOffset = header ? header.offsetHeight : 70;
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                                
+            const navMenu = document.getElementById('navMenu'); 
+            if (navMenu && navMenu.classList.contains('active')) { 
+                 navMenu.classList.remove('active');
+            }
+        }
+    });
+});
+
+// Go to Top Button
+const goToTopButton = document.getElementById("goToTopBtn");
+
+function scrollFunctionForGoToTop() {
+  if (goToTopButton) { 
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      goToTopButton.style.display = "block";
+    } else {
+      goToTopButton.style.display = "none";
+    }
+  }
+}
+
+function scrollToTop() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// Command input event listeners
+if (commandInput) {
+    commandInput.addEventListener('input', updateCommandResults);
+}
+
+if (terminalInput) {
+    terminalInput.addEventListener('focus', () => {
+        terminalInput.placeholder = '';
+    });
+    
+    terminalInput.addEventListener('blur', () => {
+        terminalInput.placeholder = 'Try: help, skills, contact, surprise';
+    });
+}
+
+// Click outside to close modals
+document.addEventListener('click', function(e) {
+    if (e.target === commandPalette) {
+        hideCommandPalette();
+    }
+    
+    if (!document.getElementById('helpPanel').contains(e.target) && 
+        !e.target.classList.contains('help-toggle')) {
+        document.getElementById('helpPanel').classList.remove('active');
+    }
+});
+
+// Initialize on page load
+window.addEventListener('load', () => {
+    document.body.style.overflow = 'hidden'; // Prevent scrolling during loading
+    showLoadingScreen();
+});
+
+// Service Worker Registration (for offline support)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        // Note: In a real implementation, you would create a service worker file
+        // navigator.serviceWorker.register('/sw.js');
+    });
+}
+</script>
+</body>
+</html>
