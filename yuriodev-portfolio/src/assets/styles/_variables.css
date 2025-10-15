@@ -1,0 +1,150 @@
+:root {
+            /* Dark Mode (Default Theme) */
+            --bg-primary: #0a0f1c;
+            --bg-secondary: rgba(10, 15, 28, 0.95);
+            --bg-card: rgba(10, 15, 28, 0.9);
+            --bg-card-rgb-val: 10, 15, 28;
+
+            --text-primary: #00d4ff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #6b7280;
+            --text-on-accent-bg: #0a0f1c;
+            --text-on-light-bg: #1e293b;
+
+            --accent-primary: #00d4ff;
+            --accent-primary-rgb: 0, 212, 255;
+            --accent-secondary: #FFC107;
+            --accent-secondary-rgb: 255, 193, 7;
+            --accent-tertiary: #008080;
+            --accent-tertiary-rgb: 0, 128, 128;
+
+            --border-color: #00d4ff;
+            --border-color-muted: rgba(var(--accent-primary-rgb), 0.3);
+            --border-card: var(--accent-primary);
+
+            --success: #00ff88;
+            --success-rgb: 0, 255, 136;
+            --warning-color: var(--accent-secondary);
+
+            --glow-primary: rgba(var(--accent-primary-rgb), 0.5);
+            --glow-secondary: rgba(var(--accent-secondary-rgb), 0.5);
+            --glow-tertiary: rgba(var(--accent-tertiary-rgb), 0.5);
+
+            --section-shaded-bg: rgba(var(--accent-primary-rgb), 0.03);
+            --section-shaded-border: rgba(var(--accent-primary-rgb), 0.15);
+            --section-hero-bg-gradient: radial-gradient(circle at center, rgba(var(--accent-primary-rgb), 0.05) 0%, transparent 60%);
+
+            --button-nav-bg: rgba(var(--accent-primary-rgb), 0.1);
+            --button-nav-text: var(--accent-primary);
+            --button-nav-border: var(--accent-primary);
+            --button-nav-hover-bg: rgba(var(--accent-secondary-rgb), 0.2);
+            --button-nav-hover-text: var(--accent-secondary);
+            --button-nav-hover-border: var(--accent-secondary);
+            --button-nav-hover-shadow: var(--glow-secondary);
+
+            --nav-link-text: var(--text-muted);
+            --nav-link-bg-hover: rgba(var(--accent-primary-rgb), 0.1);
+            --nav-link-border-hover: var(--accent-primary);
+            --nav-link-text-hover: var(--accent-primary);
+            --nav-link-bg-active: rgba(var(--accent-secondary-rgb), 0.1);
+            --nav-link-border-active: var(--accent-secondary);
+            --nav-link-text-active: var(--accent-secondary);
+            --nav-link-shadow-active: var(--glow-secondary);
+
+            --cta-button-bg: rgba(var(--accent-primary-rgb), 0.1);
+            --cta-button-text: var(--accent-primary);
+            --cta-button-border: var(--accent-primary);
+            --cta-button-hover-bg: rgba(var(--accent-secondary-rgb), 0.2);
+            --cta-button-hover-text: var(--accent-secondary);
+            --cta-button-hover-border: var(--accent-secondary);
+            --cta-button-hover-shadow: var(--glow-secondary);
+
+            --contact-link-bg: rgba(var(--accent-primary-rgb), 0.1);
+            --contact-link-text: var(--accent-primary);
+            --contact-link-border: var(--accent-primary);
+            --contact-link-hover-bg: rgba(var(--accent-secondary-rgb), 0.2);
+            --contact-link-hover-text: var(--accent-secondary);
+            --contact-link-hover-border: var(--accent-secondary);
+            --contact-link-hover-shadow: var(--glow-secondary);
+
+            --json-key-color: #33f0c8;
+            --hero-title-shadow: 0 0 30px var(--glow-primary), 0 0 10px var(--glow-primary);
+            --scanline-base-color-rgb: var(--accent-primary-rgb);
+            --card-shadow: 0 0 20px var(--glow-primary);
+            --header-border-bottom-color: var(--accent-primary);
+        }
+
+        body.light-mode {
+            --bg-primary: #f8fafc;
+            --bg-secondary: rgba(255, 255, 255, 0.95);
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --bg-card-rgb-val: 248, 250, 252;
+
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --text-on-accent-bg: #ffffff;
+            --text-on-light-bg: #1e293b;
+
+            --accent-primary: #0059b3;
+            --accent-primary-rgb: 0, 89, 179;
+            --accent-secondary: #d97706;
+            --accent-secondary-rgb: 217, 119, 6;
+            --accent-tertiary: #0d9488;
+            --accent-tertiary-rgb: 13, 148, 136;
+
+            --border-color: #e2e8f0;
+            --border-color-muted: #e2e8f0;
+            --border-card: var(--border-color);
+
+            --success: #059669;
+            --success-rgb: 5, 150, 105;
+            --warning-color: var(--accent-secondary);
+
+            --glow-primary: rgba(var(--accent-primary-rgb), 0.25);
+            --glow-secondary: rgba(var(--accent-secondary-rgb), 0.25);
+            --glow-tertiary: rgba(var(--accent-tertiary-rgb), 0.25);
+
+            --section-shaded-bg: rgba(var(--accent-primary-rgb), 0.05);
+            --section-shaded-border: rgba(var(--accent-primary-rgb), 0.15);
+            --section-hero-bg-gradient: radial-gradient(circle at center, rgba(var(--accent-primary-rgb), 0.08) 0%, transparent 60%);
+
+            --button-nav-bg: rgba(var(--accent-primary-rgb), 0.06);
+            --button-nav-text: var(--accent-primary);
+            --button-nav-border: rgba(var(--accent-primary-rgb), 0.5);
+            --button-nav-hover-bg: rgba(var(--accent-secondary-rgb), 0.12);
+            --button-nav-hover-text: var(--accent-secondary);
+            --button-nav-hover-border: rgba(var(--accent-secondary-rgb), 0.6);
+            --button-nav-hover-shadow: rgba(var(--accent-secondary-rgb), 0.35);
+
+            --nav-link-text: #475569;
+            --nav-link-bg-hover: rgba(var(--accent-primary-rgb), 0.08);
+            --nav-link-border-hover: rgba(var(--accent-primary-rgb), 0.4);
+            --nav-link-text-hover: var(--accent-primary);
+            --nav-link-bg-active: rgba(var(--accent-secondary-rgb), 0.12);
+            --nav-link-border-active: rgba(var(--accent-secondary-rgb), 0.6);
+            --nav-link-text-active: var(--accent-secondary);
+            --nav-link-shadow-active: rgba(var(--accent-secondary-rgb), 0.35);
+
+            --cta-button-bg: rgba(var(--accent-primary-rgb), 0.08);
+            --cta-button-text: var(--accent-primary);
+            --cta-button-border: rgba(var(--accent-primary-rgb), 0.4);
+            --cta-button-hover-bg: rgba(var(--accent-secondary-rgb), 0.12);
+            --cta-button-hover-text: var(--accent-secondary);
+            --cta-button-hover-border: rgba(var(--accent-secondary-rgb), 0.6);
+            --cta-button-hover-shadow: rgba(var(--accent-secondary-rgb), 0.35);
+
+            --contact-link-bg: rgba(var(--accent-primary-rgb), 0.08);
+            --contact-link-text: var(--accent-primary);
+            --contact-link-border: rgba(var(--accent-primary-rgb), 0.4);
+            --contact-link-hover-bg: rgba(var(--accent-secondary-rgb), 0.12);
+            --contact-link-hover-text: var(--accent-secondary);
+            --contact-link-hover-border: rgba(var(--accent-secondary-rgb), 0.6);
+            --contact-link-hover-shadow: rgba(var(--accent-secondary-rgb), 0.35);
+
+            --json-key-color: #075985;
+            --hero-title-shadow: 0 0 25px var(--glow-secondary), 0 0 8px var(--glow-primary);
+            --scanline-base-color-rgb: var(--accent-primary-rgb);
+            --card-shadow: 0 2px 8px rgba(var(--accent-secondary-rgb), 0.15), 0 0 20px var(--glow-secondary);
+            --header-border-bottom-color: var(--accent-secondary);
+        }

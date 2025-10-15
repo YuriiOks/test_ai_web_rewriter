@@ -1,0 +1,101 @@
+.card {
+  position: relative;
+  background: rgba(var(--bg-card-rgb-val), 0.85);
+  border: 1px solid var(--accent-primary);
+  border-radius: 10px;
+  padding: 1.8rem;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bg-card);
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::after {
+  opacity: 0.95;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover {
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 40px var(--glow-secondary);
+  transform: translateY(-4px);
+}
+
+.title {
+  color: var(--accent-secondary);
+  font-size: 1.3rem;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.title::before {
+  content: './';
+  color: var(--accent-primary);
+  margin-right: 0.35rem;
+}
+
+.description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.techTag {
+  background: rgba(var(--accent-primary-rgb), 0.2);
+  border: 1px solid var(--accent-primary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  font-family: 'Fira Code', monospace;
+}
+
+.methodology {
+  background: rgba(var(--accent-tertiary-rgb), 0.2);
+  border-color: var(--accent-tertiary);
+  color: var(--accent-tertiary);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.link {
+  color: var(--accent-primary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent-primary);
+  border-radius: 4px;
+  background: rgba(var(--accent-primary-rgb), 0.05);
+  transition: all 0.3s ease;
+  font-family: 'Fira Code', monospace;
+}
+
+.link:hover {
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  box-shadow: 0 0 10px var(--glow-primary);
+}
