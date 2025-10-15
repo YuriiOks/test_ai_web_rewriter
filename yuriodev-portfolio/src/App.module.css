@@ -1,0 +1,22 @@
+.skipLink {
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  background: var(--accent-secondary);
+  color: var(--text-on-accent-bg);
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1001;
+  font-family: 'Fira Code', monospace;
+  transition: top 0.2s ease;
+}
+
+.skipLink:focus {
+  top: 8px;
+}
+
+.mainContent {
+  position: relative;
+  z-index: 1;
+}
