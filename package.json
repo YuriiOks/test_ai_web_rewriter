@@ -1,0 +1,26 @@
+{
+  "name": "test-ai-web-rewriter",
+  "version": "1.0.0",
+  "description": "A tool to convert a single HTML file into a proper project structure using AI",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "convert": "node src/converter.js"
+  },
+  "keywords": [
+    "html",
+    "ai",
+    "converter",
+    "web",
+    "rewriter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "openai": "^4.20.0",
+    "dotenv": "^16.3.1",
+    "jsdom": "^23.0.0",
+    "prettier": "^3.1.0"
+  }
+}
