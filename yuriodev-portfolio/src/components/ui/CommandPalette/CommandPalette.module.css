@@ -1,0 +1,77 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10vh;
+  z-index: 9999;
+}
+
+.container {
+  background: var(--bg-card);
+  border: 1px solid var(--accent-primary);
+  border-radius: 8px;
+  width: min(90%, 500px);
+  box-shadow: 0 0 50px var(--glow-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: 'Fira Code', monospace;
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.results {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.commandItem {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--border-color-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-primary);
+  font-family: 'Fira Code', monospace;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-align: left;
+}
+
+.commandItem:hover,
+.selected {
+  background: rgba(var(--accent-primary-rgb), 0.1);
+}
+
+.commandTitle {
+  font-size: 0.95rem;
+}
+
+.commandShortcut {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.emptyState {
+  padding: 1rem;
+  color: var(--text-muted);
+  text-align: center;
+}
