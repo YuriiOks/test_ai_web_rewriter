@@ -1,0 +1,174 @@
+.terminalHeader {
+    background: var(--bg-secondary);
+    border-bottom: 2px solid var(--header-border-bottom-color);
+    padding: 1rem 2rem;
+    font-family: 'Fira Code', monospace;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.terminalNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terminalPrompt {
+    color: var(--accent-primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px var(--glow-primary);
+}
+
+body.light-mode .terminalPrompt {
+    color: var(--accent-secondary);
+    text-shadow: 0 0 8px var(--glow-secondary);
+}
+
+.cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%,50% {opacity:1;}
+    51%,100% {opacity:0;}
+}
+
+.navControls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.themeToggle, .mobileMenuToggle, .helpToggle {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-family: 'Fira Code', monospace;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: var(--button-nav-bg);
+    border: 1px solid var(--button-nav-border);
+    color: var(--button-nav-text);
+    box-shadow: none;
+}
+
+.themeToggle:hover, .mobileMenuToggle:hover, .helpToggle:hover {
+    background: var(--button-nav-hover-bg);
+    border-color: var(--button-nav-hover-border);
+    color: var(--button-nav-hover-text);
+    box-shadow: var(--button-nav-hover-shadow);
+}
+
+.navMenu {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+}
+
+.navMenu a {
+    color: var(--nav-link-text);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-family: 'Fira Code', monospace;
+    position: relative;
+    opacity: 0.8;
+    display: inline-block;
+}
+
+.navMenu a.active:not(.page-main-link-active) {
+    color: var(--nav-link-text-active);
+    border-color: var(--nav-link-border-active);
+    background: var(--nav-link-bg-active);
+    box-shadow: var(--nav-link-shadow-active);
+    opacity: 1;
+}
+
+.navMenu a.page-main-link-active {
+    color: var(--nav-link-text-active);
+    background: var(--nav-link-bg-active);
+    border-color: var(--nav-link-border-active);
+    box-shadow: var(--nav-link-shadow-active);
+    opacity: 1;
+    font-weight: 600;
+}
+
+.navMenu a:hover:not(.active):not(.page-main-link-active) {
+    color: var(--nav-link-text-hover);
+    border-color: var(--nav-link-border-hover);
+    background: var(--nav-link-bg-hover);
+    box-shadow: 0 0 10px var(--glow-primary);
+    opacity: 1;
+}
+
+.navMenu a.page-main-link-active:hover {
+    filter: brightness(1.1);
+}
+
+.navMenu a.page-main-link-active::before {
+    content: '';
+    opacity: 0;
+}
+
+.navMenu a:not(.page-main-link-active)::before {
+    content:'> ';
+    opacity:0;
+    transition:opacity 0.3s ease;
+}
+
+.navMenu a.active:not(.page-main-link-active)::before,
+.navMenu a:hover:not(.page-main-link-active):not(.active)::before {
+    opacity:1;
+}
+
+.navSeparator {
+    color:var(--text-muted);
+    opacity:0.3;
+    padding:0 0.5rem;
+    align-self:center;
+}
+
+.mobileMenuToggle {
+    display:none;
+}
+
+@media (max-width: 992px) {
+    .mobileMenuToggle { display:block; }
+    .navMenu {
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background:var(--bg-secondary);
+        flex-direction:column;
+        gap:0;
+        border-top:1px solid var(--accent-primary);
+        box-shadow:0 5px 10px rgba(0,0,0,0.2);
+    }
+    .navMenu.active { display:flex; }
+    .navMenu .main-section-link-li { display: list-item !important; }
+    .navMenu .nav-separator.main-section-separator { display: block !important; }
+    .navMenu a {
+        padding:1rem 1.5rem;
+        border-bottom:1px solid var(--border-color-muted);
+        border-radius:0;
+        width: 100%;
+    }
+}
+
+@media (min-width: 993px) {
+    .terminal-header .navMenu .main-section-link-li {
+        display: none;
+    }
+    .terminal-header .navMenu .nav-separator.main-section-separator {
+         display: none;
+    }
+    .mobileMenuToggle { display:none; }
+}
