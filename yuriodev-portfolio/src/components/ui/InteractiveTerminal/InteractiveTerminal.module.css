@@ -1,0 +1,52 @@
+.interactiveTerminal {
+    background: var(--bg-card);
+    border: 1px solid var(--accent-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    font-family: 'Fira Code', monospace;
+    box-shadow: var(--card-shadow);
+}
+
+.terminalOutput {
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(var(--bg-card-rgb-val), 0.5);
+    border-radius: 4px;
+    border: 1px solid var(--border-color-muted);
+}
+
+.terminalInputLine {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.terminalPromptInteractive {
+    color: var(--accent-secondary);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.terminalInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    outline: none;
+}
+
+.terminalInput::placeholder {
+    color: var(--text-muted);
+}
+
+.terminalLine {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}

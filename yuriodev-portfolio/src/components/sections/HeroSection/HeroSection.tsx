@@ -1,12 +1,24 @@
 import React from 'react';
 import styles from './HeroSection.module.css';
+import useTypewriter from '../../../hooks/useTypewriter';
+
+const messages = [
+  "Building end-to-end AI/ML systems...",
+  "Researching Transformers & RAG architectures...",
+  "Creating interactive learning experiences...",
+  "Bridging theory and practical implementation...",
+  "Mentoring the next generation of AI engineers...",
+  "Democratizing AI education through code..."
+];
 
 const HeroSection: React.FC = () => {
+  const typedMessage = useTypewriter(messages);
+
   return (
     <section className={styles.heroSection} id="hero" role="banner">
       <h1 className={styles.heroTitle}>YURII OKSAMYTNYI</h1>
       <p className={styles.heroSubtitle}>AI/ML Engineer & Educational Platform Creator</p>
-      <div className={styles.typewriter} id="typewriter" aria-live="polite"></div>
+      <div className={styles.typewriter} id="typewriter" aria-live="polite">{typedMessage}</div>
       <div className={styles.codeBlock} role="region" aria-label="Profile information">
         <div className={styles.commandLine}>$ cat ./researcher_profile.json</div>
         <div className={styles.output}>{'{'}</div>
