@@ -1,0 +1,104 @@
+.skillTerminal {
+    background:var(--bg-card);
+    border:1px solid var(--border-card);
+    border-radius:8px;
+    padding:1.5rem;
+    font-family:'Fira Code',monospace;
+    font-size:0.9rem;
+    line-height:1.6;
+    box-shadow: var(--card-shadow);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.skillHeader {
+    color:var(--accent-secondary);
+    font-weight:600;
+    margin-bottom:1rem;
+    font-size:1.15rem;
+}
+
+.skillHeader::before {
+    content:'$ ';
+}
+
+.progressBar {
+    background:rgba(0,0,0,0.5);
+    height:8px;
+    border-radius:4px;
+    margin:1rem 0;
+    border:1px solid var(--text-on-light-bg);
+    overflow:hidden;
+    position:relative;
+}
+
+body.light-mode .progressBar {
+    background:rgba(0,0,0,0.1);
+    border:1px solid var(--border-color);
+}
+
+.progressFill {
+    height:100%;
+    background:linear-gradient(90deg,var(--accent-primary),var(--accent-secondary),var(--accent-tertiary));
+    border-radius:4px;
+    position:relative;
+    width: 0%;
+    transition: width 2s ease-out;
+}
+
+.progressFill.animate {
+    animation: progressLoad 2s ease-out forwards;
+}
+
+@keyframes progressLoad {
+    from { width: 0; }
+}
+
+.progressFill::after {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+    animation:shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0%{transform:translateX(-100%);}
+    100%{transform:translateX(100%);}
+}
+
+.skillLevel {
+    position:absolute;
+    top:1.5rem;
+    right:1.5rem;
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--accent-secondary);
+    text-transform:uppercase;
+}
+
+.skillDetails {
+    margin-top:0.75rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.5rem;
+}
+
+.skillTagDetail {
+    background:rgba(var(--accent-tertiary-rgb),0.2);
+    border:1px solid var(--accent-tertiary);
+    color:var(--accent-tertiary);
+    padding:0.2rem 0.6rem;
+    border-radius:4px;
+    font-size:0.75rem;
+}
+
+.skillTagDetail.highlightSkill {
+    background:rgba(var(--accent-secondary-rgb),0.2);
+    border-color:var(--accent-secondary);
+    color:var(--accent-secondary);
+    font-weight:600;
+}
