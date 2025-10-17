@@ -11,14 +11,15 @@
     margin-bottom: 1rem;
     text-shadow: var(--hero-title-shadow);
     animation: subtleGlow 4s ease-in-out infinite;
-}
-
-:root .heroTitle {
     color: var(--accent-primary);
 }
 
-body.light-mode .heroTitle {
-    color: var(--accent-secondary);
+[data-theme="light"] .heroTitle {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
 }
 
 @keyframes subtleGlow {

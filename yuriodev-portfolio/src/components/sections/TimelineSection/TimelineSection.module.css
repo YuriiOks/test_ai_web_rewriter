@@ -1,0 +1,164 @@
+/* TimelineSection.module.css */
+
+.sectionFullwidthBase {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--section-hero-bg-gradient);
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionContentWrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle::before {
+  content: '# ';
+  color: var(--accent-primary);
+}
+
+/* Light theme - Orange hash */
+[data-theme="light"] .sectionTitle::before {
+  color: #f97316;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-family: 'Fira Code', monospace;
+}
+
+/* Filter Buttons */
+.filterButtons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.filterButton {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  border: 1px solid var(--accent-primary);
+  border-radius: 4px;
+  color: var(--accent-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filterButton:hover {
+  background: rgba(var(--accent-primary-rgb), 0.2);
+  box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.3);
+}
+
+.filterButton.active {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  box-shadow: 0 0 15px rgba(var(--accent-primary-rgb), 0.5);
+}
+
+[data-theme="light"] .filterButton {
+  background: rgba(249, 115, 22, 0.08);
+  border-color: #f97316;
+  color: #ea580c;
+}
+
+[data-theme="light"] .filterButton.active {
+  background: #f97316;
+  color: white;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+}
+
+[data-theme="light"] .filterButton:hover {
+  background: rgba(249, 115, 22, 0.15);
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
+}
+
+/* Timeline Container */
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+/* Center Line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #06b6d4,
+    #22d3ee,
+    #a78bfa,
+    transparent
+  );
+  transform: translateX(-50%);
+  opacity: 0.8;
+}
+
+[data-theme="light"] .timeline::before {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #f97316,
+    #fb923c,
+    #fdba74,
+    transparent
+  );
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+  font-family: 'Fira Code', monospace;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .timeline::before {
+    left: 50%;  /* Center the line on mobile */
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionFullwidthBase {
+    padding: 3rem 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .filterButtons {
+    gap: 0.5rem;
+  }
+
+  .filterButton {
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+  }
+}

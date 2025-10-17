@@ -17,6 +17,8 @@
             --accent-secondary-rgb: 255, 193, 7;
             --accent-tertiary: #008080;
             --accent-tertiary-rgb: 0, 128, 128;
+            --accent-quaternary: #c084fc;
+            --accent-quaternary-rgb: 192, 132, 252;
 
             --border-color: #00d4ff;
             --border-color-muted: rgba(var(--accent-primary-rgb), 0.3);
@@ -74,42 +76,44 @@
             --header-border-bottom-color: var(--accent-primary);
         }
 
-        body.light-mode {
-            --bg-primary: #f8fafc;
-            --bg-secondary: rgba(255, 255, 255, 0.95);
-            --bg-card: rgba(255, 255, 255, 0.9);
-            --bg-card-rgb-val: 248, 250, 252;
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: rgba(255, 255, 255, 0.98);
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --bg-card-rgb-val: 255, 255, 255;
 
             --text-primary: #1e293b;
             --text-secondary: #475569;
-            --text-muted: #94a3b8;
+            --text-muted: #64748b;
             --text-on-accent-bg: #ffffff;
             --text-on-light-bg: #1e293b;
 
-            --accent-primary: #0059b3;
-            --accent-primary-rgb: 0, 89, 179;
-            --accent-secondary: #d97706;
-            --accent-secondary-rgb: 217, 119, 6;
-            --accent-tertiary: #0d9488;
-            --accent-tertiary-rgb: 13, 148, 136;
+            --accent-primary: #0284c7;
+            --accent-primary-rgb: 2, 132, 199;
+            --accent-secondary: #f59e0b;
+            --accent-secondary-rgb: 245, 158, 11;
+            --accent-tertiary: #0891b2;
+            --accent-tertiary-rgb: 8, 145, 178;
+            --accent-quaternary: #a855f7;
+            --accent-quaternary-rgb: 168, 85, 247;
 
             --border-color: #e2e8f0;
-            --border-color-muted: #e2e8f0;
-            --border-card: var(--border-color);
+            --border-color-muted: rgba(226, 232, 240, 0.6);
+            --border-card: #cbd5e1;
 
-            --success: #059669;
-            --success-rgb: 5, 150, 105;
+            --success: #10b981;
+            --success-rgb: 16, 185, 129;
             --warning-color: var(--accent-secondary);
 
-            --glow-primary: rgba(var(--accent-primary-rgb), 0.4);
-            --glow-secondary: rgba(var(--accent-secondary-rgb), 0.4);
-            --glow-tertiary: rgba(var(--accent-tertiary-rgb), 0.4);
+            --glow-primary: rgba(var(--accent-primary-rgb), 0.2);
+            --glow-secondary: rgba(var(--accent-secondary-rgb), 0.2);
+            --glow-tertiary: rgba(var(--accent-tertiary-rgb), 0.2);
 
-            --section-shaded-bg: rgba(var(--accent-primary-rgb), 0.03);
-            --section-shaded-border: rgba(var(--accent-primary-rgb), 0.15);
-            --section-hero-bg-gradient: radial-gradient(circle at center, rgba(var(--accent-primary-rgb), 0.04) 0%, transparent 60%);
+            --section-shaded-bg: rgba(var(--accent-primary-rgb), 0.02);
+            --section-shaded-border: rgba(var(--accent-primary-rgb), 0.1);
+            --section-hero-bg-gradient: radial-gradient(circle at center, rgba(var(--accent-primary-rgb), 0.03) 0%, transparent 60%);
 
-            --button-nav-bg: rgba(var(--accent-secondary-rgb), 0.1);
+            --button-nav-bg: #ffffff;
             --button-nav-text: var(--accent-secondary);
             --button-nav-border: var(--accent-secondary);
             --button-nav-hover-bg: var(--accent-secondary);
@@ -117,34 +121,34 @@
             --button-nav-hover-border: var(--accent-secondary);
             --button-nav-hover-shadow: var(--glow-secondary);
 
-            --nav-link-text: var(--text-muted);
-            --nav-link-bg-hover: rgba(var(--accent-primary-rgb), 0.1);
+            --nav-link-text: var(--text-secondary);
+            --nav-link-bg-hover: rgba(var(--accent-primary-rgb), 0.08);
             --nav-link-border-hover: var(--accent-primary);
             --nav-link-text-hover: var(--accent-primary);
             --nav-link-bg-active: rgba(var(--accent-secondary-rgb), 0.1);
             --nav-link-border-active: var(--accent-secondary);
             --nav-link-text-active: var(--accent-secondary);
-            --nav-link-shadow-active: var(--glow-secondary);
+            --nav-link-shadow-active: 0 2px 8px rgba(var(--accent-secondary-rgb), 0.2);
 
-            --cta-button-bg: #ffffff;
-            --cta-button-text: var(--accent-secondary);
+            --cta-button-bg: var(--accent-secondary);
+            --cta-button-text: #ffffff;
             --cta-button-border: var(--accent-secondary);
-            --cta-button-hover-bg: var(--accent-secondary);
-            --cta-button-hover-text: var(--text-on-accent-bg);
-            --cta-button-hover-border: var(--accent-secondary);
-            --cta-button-hover-shadow: var(--glow-secondary);
+            --cta-button-hover-bg: #d97706;
+            --cta-button-hover-text: #ffffff;
+            --cta-button-hover-border: #d97706;
+            --cta-button-hover-shadow: 0 8px 24px rgba(var(--accent-secondary-rgb), 0.4);
 
             --contact-link-bg: #ffffff;
-            --contact-link-text: var(--accent-secondary);
-            --contact-link-border: var(--accent-secondary);
-            --contact-link-hover-bg: var(--accent-secondary);
-            --contact-link-hover-text: var(--text-on-accent-bg);
-            --contact-link-hover-border: var(--accent-secondary);
-            --contact-link-hover-shadow: var(--glow-secondary);
+            --contact-link-text: var(--accent-primary);
+            --contact-link-border: var(--accent-primary);
+            --contact-link-hover-bg: var(--accent-primary);
+            --contact-link-hover-text: #ffffff;
+            --contact-link-hover-border: var(--accent-primary);
+            --contact-link-hover-shadow: 0 4px 16px rgba(var(--accent-primary-rgb), 0.3);
 
-            --json-key-color: #075985;
-            --hero-title-shadow: 0 0 25px var(--glow-secondary), 0 0 8px var(--glow-primary);
+            --json-key-color: #0369a1;
+            --hero-title-shadow: 0 2px 16px rgba(var(--accent-primary-rgb), 0.15);
             --scanline-base-color-rgb: var(--accent-primary-rgb);
-            --card-shadow: 0 2px 8px rgba(var(--accent-secondary-rgb),0.15), 0 0 20px var(--glow-secondary);
-            --header-border-bottom-color: var(--accent-secondary);
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --header-border-bottom-color: #e2e8f0;
         }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Skill } from '../../../services/skillsData';
+import type { Skill } from '../../../services/skillsData';
 import styles from './SkillTerminal.module.css';
 
 interface SkillTerminalProps {

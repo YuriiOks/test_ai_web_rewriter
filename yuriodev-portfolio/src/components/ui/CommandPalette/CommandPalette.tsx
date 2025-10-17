@@ -1,29 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../../../context/ThemeContext';
 import styles from './CommandPalette.module.css';
-
-const commands = [
-    { title: 'Go to About', action: () => scrollToSection('#about'), shortcut: 'about' },
-    { title: 'Go to Projects', action: () => scrollToSection('#projects'), shortcut: 'projects' },
-    { title: 'Go to Skills', action: () => scrollToSection('#skills'), shortcut: 'skills' },
-    { title: 'Go to Terminal', action: () => scrollToSection('#terminal'), shortcut: 'terminal' },
-    { title: 'Go to Contact', action: () => scrollToSection('#connect'), shortcut: 'contact' },
-    { title: 'Toggle Theme', action: () => {/**/}, shortcut: 'theme' },
-    { title: 'Show Help', action: () => {/**/}, shortcut: 'help' },
-    { title: 'Send Email', action: () => window.location.href = 'mailto:contact@yuriodev.co.uk', shortcut: 'email' }
-];
 
 function scrollToSection(selector:string) {
     const element = document.querySelector(selector);
     if (element) {
-        const header = document.querySelector('.terminal-header');
+        const header = document.querySelector('.terminal-header') as HTMLElement;
         const headerOffset = header ? header.offsetHeight : 70;
         const elementPosition = (element as HTMLElement).offsetTop - headerOffset;
         window.scrollTo({ top: elementPosition, behavior: 'smooth' });
     }
 }
 
-
 const CommandPalette: React.FC = () => {
+    const { toggleTheme } = useTheme();
+    
+    const commands = [
+        { title: 'Go to Hero', action: () => scrollToSection('#hero'), shortcut: 'hero' },
+        { title: 'Go to About', action: () => scrollToSection('#about'), shortcut: 'about' },
+        { title: 'Go to Platform', action: () => scrollToSection('#platform'), shortcut: 'platform' },
+        { title: 'Go to Projects', action: () => scrollToSection('#projects'), shortcut: 'projects' },
+        { title: 'Go to Timeline', action: () => scrollToSection('#timeline'), shortcut: 'timeline' },
+        { title: 'Go to Skills', action: () => scrollToSection('#skills'), shortcut: 'skills' },
+        { title: 'Go to Connect', action: () => scrollToSection('#connect'), shortcut: 'connect' },
+        { title: 'Go to Terminal', action: () => scrollToSection('#terminal'), shortcut: 'terminal' },
+        { title: 'Toggle Theme', action: () => toggleTheme(), shortcut: 'theme' },
+        { title: 'Show Help', action: () => {/**/}, shortcut: 'help' },
+        { title: 'Send Email', action: () => window.location.href = 'mailto:yurii.oksamytnyi@yuriodev.co.uk', shortcut: 'email' },
+        { title: 'View LinkedIn', action: () => window.open('https://www.linkedin.com/in/yurii-oksamytnyi/', '_blank'), shortcut: 'linkedin' },
+        { title: 'View GitHub', action: () => window.open('https://github.com/YuriiOks', '_blank'), shortcut: 'github' }
+    ];
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [filteredCommands, setFilteredCommands] = useState(commands);

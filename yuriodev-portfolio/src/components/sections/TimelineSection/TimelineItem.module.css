@@ -1,0 +1,697 @@
+/* TimelineItem.module.css */
+
+.timelineItem {
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.timelineItem.left {
+  justify-content: flex-end;
+}
+
+.timelineItem.right {
+  justify-content: flex-start;
+}
+
+/* Timeline Dot - Now inside card header */
+.timelineDot {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;  /* Prevent shrinking */
+  border-radius: 50%;
+  border: 3px solid var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px var(--bg-primary), 0 0 20px rgba(var(--accent-primary-rgb), 0.4);
+  transition: all 0.3s ease;
+  margin: 0;  /* Equal margins - controlled by gap */
+}
+
+/* Dark theme - Cyan glow */
+.timelineDot {
+  box-shadow: 0 0 0 4px var(--bg-primary), 0 0 20px rgba(var(--accent-primary-rgb), 0.5);
+}
+
+/* Light theme - Orange glow */
+[data-theme="light"] .timelineDot {
+  box-shadow: 0 0 0 4px var(--bg-primary), 0 0 20px rgba(249, 115, 22, 0.4);
+}
+
+.timelineDot .typeIcon {
+  font-size: 1.2rem;
+}
+
+/* Remove old positioning styles - dot is now in header */
+/* Icon in Card Header - deprecated, using timelineDot instead */
+.cardHeader .typeIcon {
+  font-size: 1.2rem;
+}
+
+/* Timeline Card */
+.timelineCard {
+  width: calc(50% - 60px);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: slideIn 0.5s ease-out;
+  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(6, 182, 212, 0.4);  /* Cyan border for dark theme */
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.1);  /* Cyan glow for dark theme */
+}
+
+/* Light theme - Enhanced card with orange accent */
+[data-theme="light"] .timelineCard {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(249, 115, 22, 0.4);  /* Orange border - more visible */
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.12);
+}
+
+.timelineItem.left .timelineCard {
+  margin-right: 60px;
+}
+
+.timelineItem.right .timelineCard {
+  margin-left: 60px;
+}
+
+/* Dark theme hover - Cyan glow */
+.timelineCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.3);
+  border-color: #22d3ee;  /* Brighter cyan */
+}
+
+/* Light theme hover - Orange glow */
+[data-theme="light"] .timelineCard:hover {
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3) !important;
+  border-color: #f97316 !important;
+  transform: translateY(-4px);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card Header */
+.cardHeader {
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  border-bottom: 1px solid var(--border-card);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+}
+
+/* Dark theme - Cyan overlay */
+.cardHeader {
+  background: rgba(6, 182, 212, 0.08);  /* Cyan overlay */
+  border-bottom-color: rgba(6, 182, 212, 0.3);  /* Cyan border */
+}
+
+/* Light theme - Orange overlay */
+[data-theme="light"] .cardHeader {
+  background: rgba(249, 115, 22, 0.06);
+  border-bottom-color: rgba(249, 115, 22, 0.2);
+}
+
+/* Header content wrapper (for date + badges grouping) */
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: center;  /* Center content by default */
+  min-width: 0;  /* Allow shrinking */
+}
+
+/* Left cards: Dot → Date → Type */
+.timelineItem.left .cardHeader {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.timelineItem.left .headerContent {
+  justify-content: center;  /* Center the content */
+  flex: 1;
+}
+
+.timelineItem.left .typeLabel {
+  margin-left: 0;
+}
+
+/* Right cards: Type → Date → Dot */
+.timelineItem.right .cardHeader {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.timelineItem.right .headerContent {
+  justify-content: center;  /* Center the content */
+  flex: 1;
+  order: 2;
+}
+
+.timelineItem.right .typeLabel {
+  order: 1;
+  margin-right: 0;
+}
+
+.timelineItem.right .timelineDot {
+  order: 3;
+}
+
+.dateRange {
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* Center when wrapping */
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  width: 100%;  /* Take full width to center properly */
+}
+
+.date {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* Light theme - Orange dates */
+[data-theme="light"] .date {
+  color: #ea580c;
+}
+
+.dateSeparator {
+  color: var(--text-muted);
+}
+
+/* Light theme - Orange separator */
+[data-theme="light"] .dateSeparator {
+  color: #94a3b8;
+}
+
+.ongoingBadge {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  background: var(--accent-secondary);
+  color: var(--bg-primary);
+  border-radius: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Light theme - Orange ongoing badge */
+[data-theme="light"] .ongoingBadge {
+  background: #f97316;
+  color: white;
+}
+
+.typeLabel {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  background: rgba(var(--accent-tertiary-rgb), 0.2);
+  border: 1px solid var(--accent-tertiary);
+  border-radius: 4px;
+  color: var(--accent-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Light theme - Orange type label */
+[data-theme="light"] .typeLabel {
+  background: rgba(249, 115, 22, 0.1);
+  border-color: #f97316;
+  color: #ea580c;
+}
+
+/* Card Content */
+.cardContent {
+  padding: 1.5rem;
+}
+
+.title {
+  font-size: 1.3rem;
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.company {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.companyName {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.separator {
+  color: var(--text-muted);
+}
+
+.location {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.description {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* Highlights Section */
+.highlightsSection {
+  margin: 1.5rem 0;
+}
+
+.expandButton {
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: left;
+}
+
+/* Dark theme hover */
+.expandButton:hover {
+  background: rgba(var(--accent-primary-rgb), 0.2);
+  box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.4);
+}
+
+/* Light theme - Orange styling */
+[data-theme="light"] .expandButton {
+  background: rgba(249, 115, 22, 0.08);
+  border-color: #f97316;
+  color: #ea580c;
+}
+
+[data-theme="light"] .expandButton:hover {
+  background: #f97316;
+  color: white;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.highlightsList {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.highlightBullet {
+  color: var(--accent-primary);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* Light theme - Orange bullets */
+[data-theme="light"] .highlightBullet {
+  color: #f97316;
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  border: 1px solid var(--accent-primary);
+  border-radius: 4px;
+  color: var(--accent-primary);
+  font-family: 'Fira Code', monospace;
+  transition: all 0.3s ease;
+}
+
+/* Tag Categories - Color Coding */
+
+/* AI/ML Technologies - Purple */
+.tag-ai {
+  background: rgba(138, 43, 226, 0.15);
+  border-color: #8A2BE2;
+  color: #BB86FC;
+}
+
+.tag-ai:hover {
+  background: rgba(138, 43, 226, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+}
+
+/* Cloud & Infrastructure - Blue */
+.tag-cloud {
+  background: rgba(30, 144, 255, 0.15);
+  border-color: #1E90FF;
+  color: #4FC3F7;
+}
+
+.tag-cloud:hover {
+  background: rgba(30, 144, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3);
+}
+
+/* Programming Languages - Green */
+.tag-language {
+  background: rgba(0, 200, 83, 0.15);
+  border-color: #00C853;
+  color: #69F0AE;
+}
+
+.tag-language:hover {
+  background: rgba(0, 200, 83, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
+}
+
+/* Domain/Industry - Orange */
+.tag-domain {
+  background: rgba(255, 152, 0, 0.15);
+  border-color: #FF9800;
+  color: #FFB74D;
+}
+
+.tag-domain:hover {
+  background: rgba(255, 152, 0, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+/* Development & Tools - Cyan */
+.tag-tools {
+  background: rgba(0, 188, 212, 0.15);
+  border-color: #00BCD4;
+  color: #4DD0E1;
+}
+
+.tag-tools:hover {
+  background: rgba(0, 188, 212, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+}
+
+/* Education & Soft Skills - Pink */
+.tag-education {
+  background: rgba(255, 64, 129, 0.15);
+  border-color: #FF4081;
+  color: #FF80AB;
+}
+
+.tag-education:hover {
+  background: rgba(255, 64, 129, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 64, 129, 0.3);
+}
+
+/* Default - Original accent color */
+.tag-default {
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.tag-default:hover {
+  background: rgba(var(--accent-primary-rgb), 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--accent-primary-rgb), 0.3);
+}
+
+/* Event Link */
+.eventLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  color: var(--accent-secondary);
+  text-decoration: none;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent-secondary);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  background: rgba(var(--accent-secondary-rgb), 0.05);
+}
+
+.eventLink:hover {
+  background: rgba(var(--accent-secondary-rgb), 0.1);
+  box-shadow: 0 0 10px rgba(var(--accent-secondary-rgb), 0.3);
+  transform: translateX(4px);
+}
+
+/* Light theme - Orange link styling */
+[data-theme="light"] .eventLink {
+  color: #ea580c;
+  border-color: #f97316;
+  background: rgba(249, 115, 22, 0.06);
+}
+
+[data-theme="light"] .eventLink:hover {
+  background: #f97316;
+  color: white;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+/* Discord Link Styling */
+.discordLink {
+  color: #5865F2;
+  border-color: #5865F2;
+  background: rgba(88, 101, 242, 0.1);
+}
+
+.discordLink:hover {
+  background: #5865F2;
+  color: white;
+  box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+  transform: translateX(4px) translateY(-2px);
+}
+
+[data-theme="light"] .discordLink {
+  color: #5865F2;
+  border-color: #5865F2;
+  background: rgba(88, 101, 242, 0.08);
+}
+
+[data-theme="light"] .discordLink:hover {
+  background: #5865F2;
+  color: white;
+}
+
+.linkIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+
+/* Desktop - Dot is in header (always visible) */
+@media (min-width: 969px) {
+  .timelineDot {
+    display: flex;
+  }
+}
+
+/* Mobile/Tablet - Still show dot in header */
+@media (max-width: 968px) {
+  .timelineItem {
+    justify-content: center !important;  /* Center items on mobile */
+  }
+  
+  .timelineDot {
+    display: flex;
+  }
+
+  .timelineCard {
+    width: 100%;
+    max-width: 600px;  /* Limit width for better readability */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* Mobile card styling - same colors as desktop */
+  .timelineCard {
+    background: rgba(15, 23, 42, 0.98) !important;
+    border: 1px solid rgba(6, 182, 212, 0.5) !important;  /* Brighter cyan border */
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.15) !important;
+  }
+  
+  [data-theme="light"] .timelineCard {
+    background: rgba(255, 255, 255, 0.99) !important;
+    border: 1px solid rgba(249, 115, 22, 0.5) !important;  /* Brighter orange border */
+    box-shadow: 0 4px 16px rgba(249, 115, 22, 0.18) !important;
+  }
+  
+  /* Mobile hover effects */
+  .timelineCard:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 24px rgba(6, 182, 212, 0.3) !important;
+    border-color: #22d3ee !important;
+  }
+  
+  [data-theme="light"] .timelineCard:hover {
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.35) !important;
+    border-color: #f97316 !important;
+  }
+  
+  /* Mobile: Consistent left-to-right layout for ALL cards */
+  .cardHeader {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* Same layout for both left and right cards on mobile */
+  .timelineItem.left .cardHeader,
+  .timelineItem.right .cardHeader {
+    flex-direction: row !important;
+  }
+  
+  /* Mobile header content: centered */
+  .headerContent {
+    justify-content: center !important;
+    align-items: center !important;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  /* Override left/right specific rules on mobile */
+  .timelineItem.left .headerContent,
+  .timelineItem.right .headerContent {
+    order: 2;
+    flex: 1;
+    justify-content: center !important;
+  }
+  
+  /* Dot always on the left on mobile for BOTH card types */
+  .timelineItem.left .timelineDot,
+  .timelineItem.right .timelineDot {
+    order: 1 !important;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+  
+  /* Type label always on the right on mobile for BOTH card types */
+  .timelineItem.left .typeLabel,
+  .timelineItem.right .typeLabel {
+    order: 3 !important;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  
+  /* Center the date range on mobile */
+  .dateRange {
+    justify-content: center !important;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+  }
+  
+  /* Smaller ongoing badge on mobile */
+  .ongoingBadge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardContent {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .cardHeader {
+    padding: 0.5rem 0.75rem !important;
+    flex-wrap: nowrap !important;
+    gap: 0.5rem !important;
+  }
+  
+  .timelineDot {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+  }
+  
+  .timelineDot .typeIcon {
+    font-size: 0.9rem;
+  }
+  
+  .typeLabel {
+    font-size: 0.65rem !important;
+    padding: 0.25rem 0.6rem !important;
+  }
+  
+  .date {
+    font-size: 0.8rem !important;
+  }
+  
+  .ongoingBadge {
+    font-size: 0.6rem !important;
+    padding: 0.1rem 0.4rem !important;
+  }
+}

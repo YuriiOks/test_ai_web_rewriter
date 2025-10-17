@@ -1,0 +1,728 @@
+/* AboutSection.module.css */
+
+.sectionFullwidthShaded {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--section-shaded-bg);
+  border-top: 1px solid var(--section-shaded-border);
+  border-bottom: 1px solid var(--section-shaded-border);
+  padding: 4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionContentWrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle::before {
+  content: '# ';
+  color: var(--accent-primary);
+}
+
+.headline {
+  font-size: 1.2rem;
+  color: var(--accent-tertiary);
+  font-family: 'Fira Code', monospace;
+  font-style: italic;
+}
+
+/* Grid Layout */
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Card Styles */
+.summaryCard,
+.missionCard,
+.focusCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.summaryCard:hover,
+.missionCard:hover,
+.focusCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(var(--accent-primary-rgb), 0.2);
+}
+
+.cardHeader {
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  border-bottom: 1px solid var(--border-card);
+  padding: 0.75rem 1.5rem;
+}
+
+.terminalPrompt {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: var(--accent-primary);
+}
+
+.cardContent {
+  padding: 2rem 1.5rem;
+}
+
+/* Experience Badge */
+.experienceBadge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(var(--accent-secondary-rgb), 0.1);
+  border: 2px solid var(--accent-secondary);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.yearsNumber {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+  line-height: 1;
+}
+
+.yearsLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+}
+
+.summaryText {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+/* Mission Card */
+.missionTitle {
+  font-size: 1.2rem;
+  color: var(--accent-tertiary);
+  margin-bottom: 1rem;
+  font-family: 'Fira Code', monospace;
+}
+
+.missionText {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+/* Focus Card */
+.focusTitle {
+  font-size: 1.2rem;
+  color: var(--accent-tertiary);
+  margin-bottom: 1rem;
+  font-family: 'Fira Code', monospace;
+}
+
+.focusList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.focusItem {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.bullet {
+  color: var(--accent-primary);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* Achievements Section */
+.achievementsSection {
+  margin-bottom: 3rem;
+}
+
+.achievementsTitle {
+  font-size: 1.3rem;
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.achievementsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.achievementCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.achievementCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.achievementCard:hover::before {
+  transform: scaleX(1);
+}
+
+.achievementCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(var(--accent-secondary-rgb), 0.2);
+  border-color: var(--accent-secondary);
+}
+
+.achievementMetric {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.achievementLabel {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.achievementDescription {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
+
+/* Contact Links */
+.contactLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: rgba(var(--accent-primary-rgb), 0.05);
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+}
+
+.contactLink {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  color: var(--accent-primary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent-primary);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  background: rgba(var(--accent-primary-rgb), 0.05);
+}
+
+.contactLink:hover {
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.3);
+  transform: translateY(-2px);
+}
+
+[data-theme="light"] .contactLink:hover {
+  background: var(--accent-primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sectionFullwidthShaded {
+    padding: 3rem 1.5rem;
+  }
+
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .achievementsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .headline {
+    font-size: 1rem;
+  }
+
+  .contactLinks {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contactLink {
+    width: 100%;
+    text-align: center;
+  }
+
+  .storyButton {
+    font-size: 0.95rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .expandedBio {
+    padding: 1.5rem;
+  }
+
+  .paragraph p {
+    font-size: 1rem;
+  }
+
+  .introText {
+    font-size: 1.1rem;
+  }
+
+  .subheading {
+    font-size: 1.25rem;
+  }
+
+  .achievementsList li {
+    font-size: 1rem;
+  }
+
+  .closingStatement {
+    font-size: 1.05rem;
+  }
+
+  .cta {
+    font-size: 1.1rem;
+  }
+
+  .codeContent {
+    font-size: 0.85rem;
+    padding: 1rem;
+  }
+
+  .timelineItems {
+    padding-left: 1.5rem;
+  }
+
+  .timelineItems::before {
+    left: -3px;
+  }
+
+  .timelineItem {
+    padding-left: 1rem;
+  }
+
+  .timelineItem::before {
+    left: -2.3rem;
+  }
+
+  .timelineContent h4 {
+    font-size: 1rem;
+  }
+
+  .timelineContent p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===========================
+   Full Story / Biography Section
+   =========================== */
+
+.fullStorySection {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.storyButton {
+  width: 100%;
+  padding: 1.25rem 2rem;
+  background: var(--bg-card);
+  border: 2px solid var(--accent-primary);
+  border-radius: 8px;
+  color: var(--accent-primary);
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.storyButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(var(--accent-primary-rgb), 0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.storyButton:hover::before {
+  left: 100%;
+}
+
+.storyButton:hover {
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+  box-shadow: 0 0 15px var(--glow-primary);
+  transform: translateY(-2px);
+}
+
+.storyButton:active {
+  transform: translateY(0);
+}
+
+.expandedBio {
+  margin-top: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  padding: 2.5rem;
+  animation: slideDown 0.4s ease-out;
+  box-shadow: var(--card-shadow);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bioContent {
+  max-width: 100%;
+  width: 100%;
+}
+
+.paragraph {
+  margin-bottom: 2.5rem;
+}
+
+.paragraph p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.introText {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.subheading {
+  font-size: 1.5rem;
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 1.25rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+/* Text Highlights - Color only, no background */
+.highlight {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.highlightSecondary {
+  color: var(--accent-secondary);
+  font-weight: 600;
+}
+
+.highlightTertiary {
+  color: var(--accent-tertiary);
+  font-weight: 600;
+}
+
+.highlightQuaternary {
+  color: var(--accent-quaternary);
+  font-weight: 600;
+}
+
+/* Lists */
+.achievementsList {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+.achievementsList li {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.achievementsList li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+  font-size: 1.2rem;
+}
+
+/* Special Text Styles */
+.closingStatement {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-top: 1.5rem;
+}
+
+.cta {
+  font-size: 1.15rem;
+  color: var(--accent-secondary);
+  text-align: center;
+  margin: 2rem 0;
+}
+
+/* Code Block */
+.codeBlock {
+  background: rgba(var(--accent-primary-rgb), 0.05);
+  border: 1px solid var(--accent-primary);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2rem 0;
+  font-family: 'Fira Code', monospace;
+}
+
+.codeHeader {
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--accent-primary);
+}
+
+.codeLanguage {
+  color: var(--accent-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.codeTitle {
+  color: var(--accent-primary);
+  font-size: 0.9rem;
+}
+
+.codeContent {
+  padding: 1.5rem;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+/* Python Syntax Highlighting */
+.codeContent .keyword {
+  color: var(--accent-quaternary);
+  font-weight: 600;
+}
+
+.codeContent .function {
+  color: var(--accent-primary);
+}
+
+.codeContent .string {
+  color: var(--success);
+}
+
+.codeContent .comment {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.codeContent .operator {
+  color: var(--accent-secondary);
+}
+
+.codeContent .builtin {
+  color: var(--accent-tertiary);
+}
+
+/* Timeline */
+.timeline {
+  margin: 3rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-card);
+}
+
+.timelineTitle {
+  font-size: 1.5rem;
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.timelineItems {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timelineItems::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-tertiary)
+  );
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 1.5rem;
+}
+
+.timelineItem::before {
+  content: '';
+  position: absolute;
+  left: -2.65rem;
+  top: 0.0rem;
+  width: 12px;
+  height: 12px;
+  background: var(--accent-secondary);
+  border: 2px solid var(--bg-card);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--glow-secondary);
+  z-index: 1;
+}
+
+.timelineYear {
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.timelineContent h4 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Light mode timeline adjustments */
+[data-theme="light"] .timelineItems::before {
+  background: linear-gradient(
+    to bottom,
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-tertiary)
+  );
+}
+
+[data-theme="light"] .timelineItem::before {
+  background: var(--accent-secondary);
+  box-shadow: 0 0 10px var(--glow-secondary);
+}
+
+[data-theme="light"] .timelineYear {
+  color: var(--accent-secondary);
+}
+
+[data-theme="light"] .timelineContent h4 {
+  color: var(--text-primary);
+}
+
+.timelineContent p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* Footer */
+.bioFooter {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-card);
+  text-align: center;
+}
+
+.bioFooter p {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+
+
+@media (max-width: 480px) {
+  .achievementsGrid {
+    grid-template-columns: 1fr;
+  }
+}
