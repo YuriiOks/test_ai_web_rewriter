@@ -14,6 +14,32 @@
     align-items: flex-start;
     justify-content: center;
     gap: 22px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Hide sidebar when content overlays it completely */
+.leftSidebarNav.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-50%) translateX(-20px);
+}
+
+/* Hide text when partially overlaid, show on hover */
+.leftSidebarNav.textHidden:not(:hover) .linkText {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(0) !important;
+}
+
+/* Show text on hover when in textHidden mode */
+.leftSidebarNav.textHidden:hover .linkText {
+    opacity: 0.6;
+    pointer-events: auto;
+}
+
+.leftSidebarNav.textHidden:hover .sidebarNavLink.active .linkText,
+.leftSidebarNav.textHidden:hover .sidebarNavLink:hover .linkText {
+    opacity: 1;
 }
 .leftSidebarNav::before {
     content: "";

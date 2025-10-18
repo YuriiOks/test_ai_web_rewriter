@@ -395,22 +395,6 @@ const AboutSection: React.FC = () => {
             </div>
           )}
         </div>
-
-        {/* Contact Links */}
-        <div className={styles.contactLinks}>
-          <a href={`mailto:${aboutData.contact.email}`} className={styles.contactLink}>
-            📧 {aboutData.contact.email}
-          </a>
-          <a href={aboutData.contact.linkedin} target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
-            🔗 LinkedIn
-          </a>
-          <a href={aboutData.contact.github} target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
-            💻 GitHub
-          </a>
-          <span className={styles.contactLink}>
-            📍 {aboutData.contact.location}
-          </span>
-        </div>
       </div>
     </section>
   );

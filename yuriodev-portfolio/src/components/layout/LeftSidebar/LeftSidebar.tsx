@@ -1,11 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './LeftSidebar.module.css';
+
+interface SectionInfo {
+  id: string;
+  label: string;
+}
 
 const LeftSidebar: React.FC = () => {
   const [activeSection, setActiveSection] = useState('hero');
+  const [sections, setSections] = useState<SectionInfo[]>([]);
+  const [overlayState, setOverlayState] = useState<'none' | 'text' | 'full'>('none'); // Default to visible
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const [isReady, setIsReady] = useState(false);
 
+  // Dynamically discover all sections on the page
   useEffect(() => {
-    const sections = document.querySelectorAll('section[id]');
+    const discoverSections = () => {
+      const sectionElements = document.querySelectorAll('main section[id]');
+      const discoveredSections: SectionInfo[] = [];
+
+      sectionElements.forEach((section) => {
+        const id = section.id;
+        if (id) {
+          // Convert id to readable label (e.g., "hero" -> "Hero", "about" -> "About")
+          const label = id.charAt(0).toUpperCase() + id.slice(1);
+          discoveredSections.push({ id, label });
+        }
+      });
+
+      setSections(discoveredSections);
+    };
+
+    // Discover sections after a short delay to ensure DOM is ready
+    const timer = setTimeout(discoverSections, 100);
+
+    // Re-discover if DOM changes (for dynamic content)
+    const observer = new MutationObserver(discoverSections);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
+
+  // Track active section based on scroll position
+  useEffect(() => {
+    if (sections.length === 0) return;
+
+    const sectionElements = sections
+      .map(({ id }) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
     
     const observerOptions = {
       root: null,
@@ -23,25 +68,96 @@ const LeftSidebar: React.FC = () => {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     
-    sections.forEach(section => observer.observe(section));
+    sectionElements.forEach(section => observer.observe(section));
 
     return () => {
-      sections.forEach(section => observer.unobserve(section));
+      sectionElements.forEach(section => observer.unobserve(section));
+    };
+  }, [sections]);
+
+  // Mark as ready after initial render
+  useEffect(() => {
+    const timer = setTimeout(() => setIsReady(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Detect zoom level and adjust sidebar visibility
+  useEffect(() => {
+    const checkZoomLevel = () => {
+      // Calculate zoom level based on window.devicePixelRatio and window.innerWidth
+      const zoomLevel = Math.round((window.outerWidth / window.innerWidth) * 100);
+      
+      // Rule 1: If zoom > 165%, hide entire sidebar
+      if (zoomLevel > 165) {
+        setOverlayState('full');
+      }
+      // Rule 2: If zoom > 150%, hide text only
+      else if (zoomLevel > 150) {
+        setOverlayState('text');
+      }
+      // Rule 3: Normal zoom, show everything
+      else {
+        setOverlayState('none');
+      }
+    };
+
+    // Check on resize (which includes zoom changes)
+    const handleResize = () => checkZoomLevel();
+    
+    window.addEventListener('resize', handleResize, { passive: true });
+    
+    // Initial check
+    setTimeout(checkZoomLevel, 500);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
+  // Detect overlay state - DISABLED FOR NOW
+  // Can be re-enabled later with content-based detection
+  /*
+  useEffect(() => {
+    if (!isReady) return;
+    // Overlay detection logic here
+  }, [isReady]);
+  */
+
   const isActive = (sectionId: string) => activeSection === sectionId;
 
+  // Handle click navigation - smooth scroll to section
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActiveSection(sectionId);
+    }
+  };
+
   return (
-    <div className={styles.leftSidebarNav} id="leftSidebarNav" role="navigation" aria-label="Section navigation">
-      <a href="#hero" className={`${styles.sidebarNavLink} ${isActive('hero') ? styles.active : ''}`} aria-label="Go to hero section"><span className={styles.diamond}></span><span className={styles.linkText}>Hero</span></a>
-      <a href="#about" className={`${styles.sidebarNavLink} ${isActive('about') ? styles.active : ''}`} aria-label="Go to about section"><span className={styles.diamond}></span><span className={styles.linkText}>About</span></a>
-      <a href="#platform" className={`${styles.sidebarNavLink} ${isActive('platform') ? styles.active : ''}`} aria-label="Go to platform section"><span className={styles.diamond}></span><span className={styles.linkText}>Platform</span></a>
-      <a href="#projects" className={`${styles.sidebarNavLink} ${isActive('projects') ? styles.active : ''}`} aria-label="Go to projects section"><span className={styles.diamond}></span><span className={styles.linkText}>Projects</span></a>
-      <a href="#timeline" className={`${styles.sidebarNavLink} ${isActive('timeline') ? styles.active : ''}`} aria-label="Go to timeline section"><span className={styles.diamond}></span><span className={styles.linkText}>Timeline</span></a>
-      <a href="#skills" className={`${styles.sidebarNavLink} ${isActive('skills') ? styles.active : ''}`} aria-label="Go to skills section"><span className={styles.diamond}></span><span className={styles.linkText}>Skills</span></a>
-      <a href="#terminal" className={`${styles.sidebarNavLink} ${isActive('terminal') ? styles.active : ''}`} aria-label="Go to terminal section"><span className={styles.diamond}></span><span className={styles.linkText}>Terminal</span></a>
-      <a href="#connect" className={`${styles.sidebarNavLink} ${isActive('connect') ? styles.active : ''}`} aria-label="Go to connect section"><span className={styles.diamond}></span><span className={styles.linkText}>Connect</span></a>
+    <div 
+      ref={sidebarRef}
+      className={`${styles.leftSidebarNav} ${
+        overlayState === 'full' ? styles.hidden : 
+        overlayState === 'text' ? styles.textHidden : ''
+      }`}
+      id="leftSidebarNav" 
+      role="navigation" 
+      aria-label="Section navigation"
+    >
+      {sections.map(({ id, label }) => (
+        <a
+          key={id}
+          href={`#${id}`}
+          onClick={(e) => handleNavClick(e, id)}
+          className={`${styles.sidebarNavLink} ${isActive(id) ? styles.active : ''}`}
+          aria-label={`Go to ${label.toLowerCase()} section`}
+        >
+          <span className={styles.diamond}></span>
+          <span className={styles.linkText}>{label}</span>
+        </a>
+      ))}
     </div>
   );
 };
