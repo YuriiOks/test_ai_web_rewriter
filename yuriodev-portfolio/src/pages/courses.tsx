@@ -1,18 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import PlaceholderPage from '../components/sections/PlaceholderPage/PlaceholderPage';
-import { ThemeProvider } from '../context/ThemeContext';
-import CanvasBackground from '../components/ui/CanvasBackground/CanvasBackground';
-import '../index.css';
+import ComingSoonSection from '../components/sections/ComingSoonSection/ComingSoonSection';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <CanvasBackground />
-      <PlaceholderPage 
-        pageName="courses" 
-        description="Interactive AI and programming courses platform with hands-on projects and real-world applications."
-      />
-    </ThemeProvider>
-  </React.StrictMode>,
-);
+const Courses = () => {
+  return (
+    <ComingSoonSection 
+      pageName="courses"
+      title="Courses"
+      description="Comprehensive Python and AI/ML courses designed for both beginners and advanced practitioners."
+      features={[
+        'Comprehensive Python and AI/ML curriculum',
+        'Interactive coding exercises with instant feedback',
+        'Real-world projects and case studies',
+        'Video tutorials and documentation',
+        'Progress tracking and certifications',
+        'Code quality assessment and best practices',
+        'Integration with GitHub for project submissions'
+      ]}
+    />
+  );
+};
+
+export default Courses;

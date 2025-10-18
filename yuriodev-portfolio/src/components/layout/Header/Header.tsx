@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../../../context/ThemeContext';
 import styles from './Header.module.css';
 
 interface HeaderProps {
   onHelpToggle?: () => void;
+  currentPath?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ onHelpToggle }) => {
+const Header: React.FC<HeaderProps> = ({ onHelpToggle, currentPath = '/' }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const { theme, toggleTheme } = useTheme();
+
+  // Determine current page name from path
+  const getCurrentPage = () => {
+    if (currentPath === '/') return 'portfolio';
+    return currentPath.substring(1); // Remove leading slash
+  };
 
   // Track active section based on scroll
   useEffect(() => {
@@ -33,12 +41,16 @@ const Header: React.FC<HeaderProps> = ({ onHelpToggle }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Generate dynamic terminal prompt based on active section
+  // Generate dynamic terminal prompt based on current page and section
   const getTerminalPrompt = () => {
-    const pageArgument = ` --page=${activeSection}`;
+    const currentPage = getCurrentPage();
+    // Always show the page name (portfolio, community, courses, dashboard)
+    const pageArgument = ` --page=${currentPage}`;
     const themeArgument = ` --theme=${theme}`;
     return `yurii@yuriodev:~$ ./run --module=AI_Education${pageArgument}${themeArgument}`;
   };
+
+  const isPageActive = (pageName: string) => getCurrentPage() === pageName;
 
   const isActive = (section: string) => activeSection === section;
 
@@ -86,16 +98,16 @@ const Header: React.FC<HeaderProps> = ({ onHelpToggle }) => {
             
             {/* Page links - visible on desktop */}
             <li role="none">
-              <a href="/" className={`${styles.navLink} ${styles.pageActive}`} role="menuitem">--portfolio</a>
+              <Link to="/" className={`${styles.navLink} ${isPageActive('portfolio') ? styles.pageActive : ''}`} role="menuitem">--portfolio</Link>
             </li>
             <li role="none">
-              <a href="/courses.html" className={styles.navLink} role="menuitem">--courses</a>
+              <Link to="/courses" className={`${styles.navLink} ${isPageActive('courses') ? styles.pageActive : ''}`} role="menuitem">--courses</Link>
             </li>
             <li role="none">
-              <a href="/dashboard.html" className={styles.navLink} role="menuitem">--dashboard</a>
+              <Link to="/dashboard" className={`${styles.navLink} ${isPageActive('dashboard') ? styles.pageActive : ''}`} role="menuitem">--dashboard</Link>
             </li>
             <li role="none">
-              <a href="/community.html" className={styles.navLink} role="menuitem">--community</a>
+              <Link to="/community" className={`${styles.navLink} ${isPageActive('community') ? styles.pageActive : ''}`} role="menuitem">--community</Link>
             </li>
           </ul>
         </div>

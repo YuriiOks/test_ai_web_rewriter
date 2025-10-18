@@ -1,18 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import PlaceholderPage from '../components/sections/PlaceholderPage/PlaceholderPage';
-import { ThemeProvider } from '../context/ThemeContext';
-import CanvasBackground from '../components/ui/CanvasBackground/CanvasBackground';
-import '../index.css';
+import ComingSoonSection from '../components/sections/ComingSoonSection/ComingSoonSection';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <CanvasBackground />
-      <PlaceholderPage 
-        pageName="dashboard" 
-        description="Personalized learning dashboard to track your progress, manage courses, and access exclusive content."
-      />
-    </ThemeProvider>
-  </React.StrictMode>,
-);
+const Dashboard = () => {
+  return (
+    <ComingSoonSection 
+      pageName="dashboard"
+      title="Dashboard"
+      description="Your personalized learning dashboard to track progress, manage courses, and monitor your development journey."
+      features={[
+        'Personal progress tracking and analytics',
+        'Course enrollment and management',
+        'Assignment submissions and grading',
+        'Learning path recommendations',
+        'Achievement badges and certificates',
+        'Code snippet library and bookmarks',
+        'Community activity feed',
+        'Direct messaging with instructors'
+      ]}
+    />
+  );
+};
+
+export default Dashboard;
