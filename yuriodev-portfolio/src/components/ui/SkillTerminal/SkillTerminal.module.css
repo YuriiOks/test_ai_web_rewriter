@@ -102,3 +102,45 @@
     color:var(--accent-secondary);
     font-weight:600;
 }
+
+@media (max-width: 768px) {
+    .skillTerminal {
+        padding: 1.25rem;
+    }
+
+    .skillHeader {
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .skillLevel {
+        position: static;
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .progressBar {
+        height: 6px;
+        margin: 0.75rem 0;
+    }
+
+    .skillDetails {
+        gap: 0.4rem;
+    }
+
+    .skillTagDetail {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skillTerminal {
+        padding: 1rem;
+    }
+
+    .skillHeader {
+        font-size: 0.9rem;
+    }
+}

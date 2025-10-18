@@ -7,4 +7,29 @@
 
 main {
   flex: 1;
+  transition: margin-left 0.3s ease;
+}
+
+/* Add left margin when sidebar is visible on very large screens */
+@media (min-width: 1800px) {
+  main {
+    margin-left: 160px; /* Space for sidebar: diamond (30px) + text (~100px) + padding (30px) */
+    padding-left: 20px; /* Additional breathing room */
+  }
+}
+
+/* Smaller margin when only diamonds are visible (medium screens) */
+@media (min-width: 1475px) and (max-width: 1799px) {
+  main {
+    margin-left: 60px; /* Space for diamonds only */
+    padding-left: 20px;
+  }
+}
+
+/* Remove margin when sidebar is hidden on smaller screens */
+@media (max-width: 1474px) {
+  main {
+    margin-left: 0;
+    padding-left: 0;
+  }
 }

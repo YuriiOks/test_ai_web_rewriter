@@ -50,3 +50,51 @@
     margin-bottom: 0.5rem;
     line-height: 1.4;
 }
+
+@media (max-width: 768px) {
+    .interactiveTerminal {
+        padding: 1rem;
+        margin: 1.5rem 1rem;
+    }
+
+    .terminalOutput {
+        min-height: 150px;
+        max-height: 300px;
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .terminalInput {
+        font-size: 0.9rem;
+    }
+
+    .terminalPromptInteractive {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .interactiveTerminal {
+        padding: 0.75rem;
+        margin: 1rem 0.5rem;
+    }
+
+    .terminalOutput {
+        min-height: 120px;
+        max-height: 250px;
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .terminalInput {
+        font-size: 0.85rem;
+    }
+
+    .terminalPromptInteractive {
+        font-size: 0.85rem;
+    }
+
+    .terminalInputLine {
+        flex-wrap: wrap;
+    }
+}

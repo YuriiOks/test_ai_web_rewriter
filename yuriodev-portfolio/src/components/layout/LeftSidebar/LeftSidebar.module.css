@@ -13,8 +13,8 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 22px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    gap: 28px;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.3s ease, padding 0.3s ease, width 0.3s ease;
 }
 
 /* Hide sidebar when content overlays it completely */
@@ -87,13 +87,13 @@
     display: inline-block;
     color: var(--text-muted);
     font-size: 0.9rem;
-    transition: all 0.2s ease-out;
+    transition: all 0.3s ease-out;
     white-space: nowrap;
     font-weight: 400;
     opacity: 0.6;
     transform: translateX(10px);
     margin-left: 15px;
-    padding: 2px 8px;
+    padding: 4px 10px;
     border-radius: 4px;
     background-color: transparent;
 }
@@ -122,14 +122,94 @@
 }
 
 /* Responsive Design */
-@media (max-width: 968px) {
-    .leftSidebarNav {
-        display: none; /* Hide sidebar on tablets and mobile */
+/* Hide sidebar text labels on medium screens (show only diamonds) */
+@media (max-width: 1799px) and (min-width: 1475px) {
+    .leftSidebarNav .linkText {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+    
+    /* Show text on hover with beautiful background */
+    .leftSidebarNav:hover .linkText {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.92), rgba(20, 20, 30, 0.88)) !important;
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        padding: 6px 14px !important;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6),
+                    0 2px 4px rgba(0, 0, 0, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    /* Add polished background to sidebar on hover */
+    .leftSidebarNav:hover {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 30, 0.35));
+        backdrop-filter: blur(8px) saturate(150%);
+        -webkit-backdrop-filter: blur(8px) saturate(150%);
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        width: auto;
+        min-width: 200px;
     }
 }
 
-@media (min-width: 969px) {
+/* Hide sidebar completely on smaller screens, tablets, and mobile */
+@media (max-width: 1474px) {
     .leftSidebarNav {
-        display: flex; /* Show sidebar only on desktop */
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: translateY(-50%) translateX(-200px) !important;
+        z-index: -1 !important;
+    }
+
+    /* Hide the vertical line pseudo-element */
+    .leftSidebarNav::before {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+
+    /* Hide all child elements including diamonds, text, and links */
+    .leftSidebarNav *,
+    .leftSidebarNav .sidebarNavLink,
+    .leftSidebarNav .diamond,
+    .leftSidebarNav .linkText {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+}
+
+/* Show full sidebar only on very large desktop screens */
+@media (min-width: 1800px) {
+    .leftSidebarNav {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(-50%);
+        z-index: 999;
+    }
+}
+
+/* Medium screens: show diamonds only, full sidebar on hover */
+@media (min-width: 1475px) and (max-width: 1799px) {
+    .leftSidebarNav {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(-50%);
+        z-index: 999;
     }
 }

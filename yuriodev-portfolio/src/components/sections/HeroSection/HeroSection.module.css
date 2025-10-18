@@ -120,3 +120,67 @@
 .ctaButton::before {
     content:'> ';
 }
+
+@media (max-width: 768px) {
+    .heroSection {
+        padding: 3rem 1.5rem;
+    }
+
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+
+    .heroSubtitle {
+        font-size: 1.1rem;
+    }
+
+    .typewriter {
+        font-size: 1rem;
+    }
+
+    .codeBlock {
+        padding: 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    .output {
+        margin-left: 1rem;
+    }
+
+    .ctaButtons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .ctaButton {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroSection {
+        padding: 2rem 1rem;
+    }
+
+    .heroTitle {
+        font-size: 1.8rem;
+    }
+
+    .heroSubtitle {
+        font-size: 0.95rem;
+    }
+
+    .typewriter {
+        font-size: 0.9rem;
+    }
+
+    .codeBlock {
+        padding: 1rem;
+        font-size: 0.75rem;
+    }
+
+    .output {
+        margin-left: 0.5rem;
+    }
+}

@@ -11,7 +11,19 @@ const LeftSidebar: React.FC = () => {
   const [sections, setSections] = useState<SectionInfo[]>([]);
   const [overlayState, setOverlayState] = useState<'none' | 'text' | 'full'>('none'); // Default to visible
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const [isReady, setIsReady] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Track if sidebar should be visible based on screen size
+
+  // Check if sidebar should be visible based on screen size
+  useEffect(() => {
+    const checkVisibility = () => {
+      setIsVisible(window.innerWidth >= 1475);
+    };
+
+    checkVisibility();
+    window.addEventListener('resize', checkVisibility);
+
+    return () => window.removeEventListener('resize', checkVisibility);
+  }, []);
 
   // Dynamically discover all sections on the page
   useEffect(() => {
@@ -46,7 +58,7 @@ const LeftSidebar: React.FC = () => {
 
   // Track active section based on scroll position
   useEffect(() => {
-    if (sections.length === 0) return;
+    if (sections.length === 0 || !isVisible) return;
 
     const sectionElements = sections
       .map(({ id }) => document.getElementById(id))
@@ -73,13 +85,7 @@ const LeftSidebar: React.FC = () => {
     return () => {
       sectionElements.forEach(section => observer.unobserve(section));
     };
-  }, [sections]);
-
-  // Mark as ready after initial render
-  useEffect(() => {
-    const timer = setTimeout(() => setIsReady(true), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+  }, [sections, isVisible]);
 
   // Detect zoom level and adjust sidebar visibility
   useEffect(() => {
@@ -134,6 +140,9 @@ const LeftSidebar: React.FC = () => {
       setActiveSection(sectionId);
     }
   };
+
+  // Don't render sidebar if screen is too small (extra safety layer)
+  if (!isVisible) return null;
 
   return (
     <div 

@@ -63,3 +63,57 @@
     color: var(--text-muted);
     font-size: 0.8rem;
 }
+
+@media (max-width: 768px) {
+    .commandPaletteContent {
+        width: 95%;
+        max-width: none;
+    }
+
+    .commandInput {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .commandItem {
+        padding: 0.7rem 0.8rem;
+    }
+
+    .commandTitle {
+        font-size: 0.9rem;
+    }
+
+    .commandShortcut {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .commandPaletteContent {
+        width: 98%;
+    }
+
+    .commandInput {
+        padding: 0.7rem;
+        font-size: 0.95rem;
+    }
+
+    .commandItem {
+        padding: 0.6rem 0.7rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+
+    .commandTitle {
+        font-size: 0.85rem;
+    }
+
+    .commandShortcut {
+        font-size: 0.7rem;
+    }
+
+    .commandResults {
+        max-height: 250px;
+    }
+}

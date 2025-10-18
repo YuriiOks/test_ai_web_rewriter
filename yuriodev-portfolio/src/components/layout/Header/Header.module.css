@@ -274,4 +274,32 @@
         font-size: 0.75rem;
         max-width: 50vw;
     }
+    
+    .terminalHeader {
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .navControls {
+        gap: 0.25rem;
+    }
+    
+    .themeToggle, .helpToggle, .mobileMenuToggle {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .terminalPrompt {
+        display: none;
+    }
+    
+    .terminalHeader {
+        padding: 0.5rem;
+    }
+    
+    .themeToggle, .helpToggle, .mobileMenuToggle {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
 }

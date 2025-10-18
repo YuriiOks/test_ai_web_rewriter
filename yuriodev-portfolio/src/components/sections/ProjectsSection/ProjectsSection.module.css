@@ -41,8 +41,33 @@
 
 .projectsShowcase {
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:2rem;
     margin-top:3rem;
     align-items:start;
+}
+
+@media (max-width: 768px) {
+    .projectsShowcase {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .sectionContentWrapper {
+        padding: 2rem 1rem;
+    }
+
+    .sectionTitle {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sectionTitle {
+        font-size: 1.5rem;
+    }
+
+    .sectionContentWrapper {
+        padding: 1.5rem 0.75rem;
+    }
 }
