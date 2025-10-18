@@ -15,8 +15,9 @@ const Header: React.FC<HeaderProps> = ({ onHelpToggle, currentPath = '/' }) => {
 
   // Determine current page name from path
   const getCurrentPage = () => {
-    if (currentPath === '/') return 'portfolio';
-    return currentPath.substring(1); // Remove leading slash
+    const page = currentPath === '/' ? 'portfolio' : currentPath.substring(1);
+    console.log('📍 Header - Current Path:', currentPath, '→ Page:', page);
+    return page;
   };
 
   // Track active section based on scroll

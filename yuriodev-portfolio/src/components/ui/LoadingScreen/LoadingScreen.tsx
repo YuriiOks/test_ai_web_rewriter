@@ -83,11 +83,20 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           <div className={styles.progressText}>{progress}%</div>
         </div>
 
-        {/* Loading Animation */}
-        <div className={styles.loadingDots}>
-          <span className={styles.dot}></span>
-          <span className={styles.dot}></span>
-          <span className={styles.dot}></span>
+        {/* Loading Animation - Rotating ASCII Squares */}
+        <div className={styles.loadingAnimation}>
+          <div className={styles.spinnerContainer}>
+            <div className={styles.square}>▪</div>
+            <div className={styles.square}>▪</div>
+            <div className={styles.square}>▪</div>
+            <div className={styles.square}>▪</div>
+            <div className={styles.square}>▪</div>
+            <div className={styles.square}>▪</div>
+            <div className={styles.square}>▪</div>
+            <div className={styles.square}>▪</div>
+            <div className={styles.square}>▪</div>
+            <div className={styles.square}>▪</div>
+          </div>
         </div>
       </div>
     </div>
