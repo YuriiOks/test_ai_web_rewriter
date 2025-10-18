@@ -105,7 +105,19 @@ const AboutSection: React.FC = () => {
           </button>
 
           {isStoryExpanded && (
-            <div className={styles.expandedBio}>
+            <div 
+              className={styles.expandedBio}
+              onClick={toggleStory}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  toggleStory();
+                }
+              }}
+              aria-label="Click anywhere to collapse story"
+              style={{ cursor: 'pointer' }}
+            >
               <div className={styles.bioContent}>
                 {/* Introduction */}
                 <div className={styles.paragraph}>
