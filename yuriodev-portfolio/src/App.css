@@ -8,6 +8,14 @@
 main {
   flex: 1;
   transition: margin-left 0.3s ease;
+  padding-bottom: 2rem;
+}
+
+/* Constrain all sections to 75% width */
+main section {
+  max-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Add left margin when sidebar is visible on very large screens */
@@ -15,6 +23,7 @@ main {
   main {
     margin-left: 160px; /* Space for sidebar: diamond (30px) + text (~100px) + padding (30px) */
     padding-left: 20px; /* Additional breathing room */
+    padding-bottom: 2rem;
   }
 }
 
@@ -23,6 +32,7 @@ main {
   main {
     margin-left: 60px; /* Space for diamonds only */
     padding-left: 20px;
+    padding-bottom: 2rem;
   }
 }
 
@@ -31,5 +41,6 @@ main {
   main {
     margin-left: 0;
     padding-left: 0;
+    padding-bottom: 2rem;
   }
 }

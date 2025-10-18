@@ -4,6 +4,7 @@ import CanvasBackground from './components/ui/CanvasBackground/CanvasBackground'
 import CommandPalette from './components/ui/CommandPalette/CommandPalette';
 import HelpPanel from './components/ui/HelpPanel/HelpPanel';
 import LoadingScreen from './components/ui/LoadingScreen/LoadingScreen';
+import ScrollToTop from './components/ui/ScrollToTop/ScrollToTop';
 import Header from './components/layout/Header/Header';
 import Footer from './components/layout/Footer/Footer';
 import LeftSidebar from './components/layout/LeftSidebar/LeftSidebar';
@@ -154,6 +155,7 @@ function App() {
           <CanvasBackground />
           <CommandPalette />
           <HelpPanel isOpen={isHelpPanelOpen} onClose={() => setIsHelpPanelOpen(false)} />
+          <ScrollToTop />
           <Header onHelpToggle={() => setIsHelpPanelOpen(true)} />
           <LeftSidebar />
           <main>

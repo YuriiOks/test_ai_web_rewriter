@@ -6,6 +6,10 @@
     margin-top: auto;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .footerContent {
@@ -20,10 +24,11 @@
 .footerMain {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border-color-muted);
+    min-height: 60px;
 }
 
 /* Left: Contact */
@@ -31,6 +36,9 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
 }
 
 .emailLink {
@@ -62,13 +70,15 @@
 /* Center: Social Icons */
 .socialIcons {
     display: flex;
-    gap: 1.25rem;
+    gap: 1rem;
     align-items: center;
+    justify-content: center;
     padding: 0.5rem 1rem;
     background: rgba(var(--accent-primary-rgb), 0.05);
     border: 1px solid rgba(var(--accent-primary-rgb), 0.15);
     border-radius: 50px;
     backdrop-filter: blur(5px);
+    flex-shrink: 0;
 }
 
 [data-theme="light"] .socialIcons {
@@ -111,6 +121,10 @@
     flex-direction: column;
     gap: 0.35rem;
     align-items: flex-end;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+    text-align: right;
 }
 
 .copyright {
