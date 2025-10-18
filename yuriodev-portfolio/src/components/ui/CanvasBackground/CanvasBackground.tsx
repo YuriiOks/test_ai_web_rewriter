@@ -58,7 +58,7 @@ const CanvasBackground: React.FC = () => {
     }
 
     const animate = () => {
-      const isDarkMode = !document.body.classList.contains('light-mode');
+      const isDarkMode = document.documentElement.getAttribute('data-theme') !== 'light';
       const bgOpacity = isDarkMode ? 0.15 : 0.05;
 
       ctx.fillStyle = isDarkMode ? `rgba(10, 15, 28, ${bgOpacity})` : `rgba(248, 250, 252, ${bgOpacity})`;

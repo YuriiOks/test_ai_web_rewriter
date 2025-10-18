@@ -15,11 +15,8 @@
 }
 
 [data-theme="light"] .heroTitle {
-    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: none;
+    color: var(--accent-secondary);
+    text-shadow: 0 0 25px var(--glow-secondary), 0 0 8px var(--glow-primary);
 }
 
 @keyframes subtleGlow {
@@ -66,8 +63,13 @@
     position: relative;
 }
 
+[data-theme="dark"] .codeBlock {
+    background: rgba(10, 15, 28, 0.7);
+    backdrop-filter: blur(10px);
+}
+
 [data-theme="light"] .codeBlock {
-    border-color: #f59e0b;
+    border-color: var(--accent-secondary);
 }
 
 .jsonGrid {
@@ -99,8 +101,8 @@
     background: linear-gradient(
         to bottom,
         transparent 0%,
-        #f59e0b 10%,
-        #f59e0b 90%,
+        var(--accent-secondary) 10%,
+        var(--accent-secondary) 90%,
         transparent 100%
     );
 }
@@ -126,7 +128,7 @@
 }
 
 [data-theme="light"] .commandLine {
-    color: #ea580c;
+    color: var(--accent-secondary);
 }
 
 .output {
@@ -238,8 +240,8 @@
 
 [data-theme="light"] .ctaButton {
     background: #ffffff;
-    border: 1px solid #f59e0b;
-    color: #f59e0b;
+    border: 1px solid var(--accent-secondary);
+    color: var(--accent-secondary);
 }
 
 .ctaButton:hover {
@@ -251,10 +253,10 @@
 }
 
 [data-theme="light"] .ctaButton:hover {
-    background: #f59e0b;
-    border-color: #f59e0b;
+    background: var(--accent-secondary);
+    border-color: var(--accent-secondary);
     color: #ffffff;
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+    box-shadow: 0 0 20px var(--glow-secondary);
 }
 
 .ctaButton::before {

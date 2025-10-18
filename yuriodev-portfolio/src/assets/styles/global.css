@@ -38,6 +38,17 @@ main > section:nth-child(odd) {
     background: transparent;
 }
 
+/* Light theme alternating sections */
+[data-theme="light"] main > section:nth-child(even) {
+    background: rgba(var(--accent-secondary-rgb), 0.03);
+    border-top: 1px solid rgba(var(--accent-secondary-rgb), 0.1);
+    border-bottom: 1px solid rgba(var(--accent-secondary-rgb), 0.1);
+}
+
+[data-theme="light"] main > section:nth-child(odd) {
+    background: transparent;
+}
+
 /* Ensure all images and media are responsive */
 img, video, canvas {
     max-width: 100%;
@@ -56,21 +67,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 [data-theme="light"] body {
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
-    background-attachment: fixed;
-}
-
-[data-theme="light"] body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 30%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.06) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
+    background: #ffffff;
 }
 
 /* Force hide sidebar on small screens - global safety override */

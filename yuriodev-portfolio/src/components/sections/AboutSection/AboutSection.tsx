@@ -106,7 +106,7 @@ const AboutSection: React.FC = () => {
 
                 {/* Origin Story */}
                 <div className={styles.paragraph}>
-                  <h3 className={styles.subheading}>🚀 The Origin Story: From Basketball Courts to Binary Trees</h3>
+                  <h3 className={styles.subheading}>🏀 The Origin Story: From Basketball Courts to Binary Trees</h3>
                   <p>
                     My journey began in the vibrant corridors of Ukrainian schools, where I was that kid who'd solve differential equations 
                     during basketball practice breaks. Yes, I was crushing it on the court — playing at a professional level until 13 and 

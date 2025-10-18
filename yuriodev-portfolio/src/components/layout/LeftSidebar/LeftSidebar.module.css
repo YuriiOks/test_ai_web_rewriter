@@ -54,7 +54,40 @@
 }
 
 [data-theme="light"] .leftSidebarNav::before {
-     background-color: rgba(var(--accent-primary-rgb), 0.3);
+     background-color: rgba(var(--accent-secondary-rgb), 0.25);
+}
+
+/* Light theme sidebar styles */
+[data-theme="light"] .sidebarNavLink .diamond {
+    background-color: rgba(var(--accent-secondary-rgb), 0.4);
+    opacity: 0.7;
+}
+
+[data-theme="light"] .sidebarNavLink .linkText {
+    color: var(--text-primary);
+    opacity: 0.7;
+}
+
+[data-theme="light"] .sidebarNavLink.active .diamond {
+    background-color: var(--accent-secondary);
+    opacity: 1;
+}
+
+[data-theme="light"] .sidebarNavLink.active .linkText {
+    color: var(--accent-secondary);
+    background-color: rgba(var(--accent-secondary-rgb), 0.1);
+    opacity: 1;
+}
+
+[data-theme="light"] .sidebarNavLink:hover:not(.active) .diamond {
+    background-color: var(--accent-primary);
+    opacity: 1;
+}
+
+[data-theme="light"] .sidebarNavLink:hover .linkText {
+    color: var(--accent-primary);
+    background-color: rgba(var(--accent-primary-rgb), 0.08);
+    opacity: 1;
 }
 
 .sidebarNavLink {
@@ -146,6 +179,15 @@
         border: 1px solid rgba(255, 255, 255, 0.08);
     }
     
+    /* Light theme hover background */
+    [data-theme="light"] .leftSidebarNav:hover .linkText {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95)) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+                    0 2px 4px rgba(0, 0, 0, 0.06),
+                    inset 0 1px 0 rgba(255, 255, 255, 1);
+        border: 1px solid rgba(var(--accent-secondary-rgb), 0.2);
+    }
+    
     /* Add polished background to sidebar on hover */
     .leftSidebarNav:hover {
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 30, 0.35));
@@ -158,6 +200,17 @@
         border: 1px solid rgba(255, 255, 255, 0.06);
         width: auto;
         min-width: 200px;
+    }
+    
+    /* Light theme sidebar hover background */
+    [data-theme="light"] .leftSidebarNav:hover {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(248, 250, 252, 0.8));
+        backdrop-filter: blur(10px) saturate(150%);
+        -webkit-backdrop-filter: blur(10px) saturate(150%);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+                    0 2px 8px rgba(0, 0, 0, 0.04),
+                    inset 0 1px 0 rgba(255, 255, 255, 1);
+        border: 1px solid rgba(var(--accent-secondary-rgb), 0.15);
     }
 }
 
