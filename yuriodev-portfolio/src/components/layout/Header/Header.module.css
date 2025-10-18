@@ -20,6 +20,9 @@
     align-items: center;
     gap: 1rem;
     flex-wrap: nowrap;
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin: 0 auto;
 }
 
 .terminalPrompt {
@@ -212,7 +215,7 @@
 }
 
 /* Mobile: Show main sections, hide page links and separator */
-@media (max-width: 992px) {
+@media (max-width: 1300px) {
     .mobileMenuToggle { 
         display: inline-flex !important; 
     }

@@ -4,7 +4,8 @@
     border: 1px solid var(--border-card);
     border-radius: 12px;
     margin: 2rem auto;
-    max-width: 900px;
+    max-width: 100%;
+    width: 100%;
     font-family: 'Fira Code', monospace;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -393,7 +394,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .terminalWrapper {
-        margin: 1.5rem 1rem;
+        margin: 1.5rem 0;
         border-radius: 10px;
     }
 
@@ -436,7 +437,7 @@
 
 @media (max-width: 480px) {
     .terminalWrapper {
-        margin: 1rem 0.5rem;
+        margin: 1rem 0;
         border-radius: 8px;
     }
 

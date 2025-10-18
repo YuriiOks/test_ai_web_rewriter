@@ -13,7 +13,8 @@
 }
 
 .footerContent {
-    max-width: 1400px;
+    max-width: var(--content-max-width);
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -39,6 +40,7 @@
     justify-content: center;
     flex: 1;
     min-width: 0;
+    order: 1;
 }
 
 .emailLink {
@@ -79,6 +81,7 @@
     border-radius: 50px;
     backdrop-filter: blur(5px);
     flex-shrink: 0;
+    order: 2;
 }
 
 [data-theme="light"] .socialIcons {
@@ -125,6 +128,7 @@
     flex: 1;
     min-width: 0;
     text-align: right;
+    order: 3;
 }
 
 .copyright {
@@ -197,21 +201,38 @@
 }
 
 /* Responsive Design */
-@media (max-width: 992px) {
+/* Stack footer when content would overflow 75% constraint
+   Calculation: If viewport < ~1200px, the 3 footer sections won't fit in 75% width
+   Formula: 75% of screen needs to fit: ~250px (left) + ~300px (center) + ~250px (right) + gaps
+   Total needed: ~850px / 0.75 = ~1133px minimum viewport
+*/
+@media (max-width: 1200px) {
     .footerMain {
         flex-direction: column;
         gap: 1.5rem;
         text-align: center;
-    }
-
-    .footerLeft,
-    .footerRight {
         align-items: center;
     }
 
+    /* Stack order: Social Icons -> Email/Location -> Copyright/Tech */
     .socialIcons {
+        order: 1;
         flex-wrap: wrap;
         justify-content: center;
+        width: 100%;
+    }
+
+    .footerLeft {
+        order: 2;
+        align-items: center;
+        width: 100%;
+    }
+
+    .footerRight {
+        order: 3;
+        align-items: center;
+        text-align: center;
+        width: 100%;
     }
 }
 

@@ -17,7 +17,69 @@
 
 [data-theme="light"] .heroTitle {
     color: var(--accent-secondary);
-    text-shadow: 0 0 25px var(--glow-secondary), 0 0 8px var(--glow-primary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12),
+                 0 0 12px rgba(217, 119, 6, 0.08);
+    animation: none;
+}
+
+/* Option 1: Subtle Warm Glow */
+.heroTitleOption1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .heroTitleOption1 {
+    color: var(--accent-secondary);
+    text-shadow: 0 2px 8px rgba(217, 119, 6, 0.15),
+                 0 1px 2px rgba(0, 0, 0, 0.1);
+    animation: none;
+}
+
+/* Option 2: Layered Depth */
+.heroTitleOption2 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .heroTitleOption2 {
+    color: var(--accent-secondary);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
+                 0 4px 8px rgba(217, 119, 6, 0.08),
+                 0 8px 16px rgba(217, 119, 6, 0.05);
+    animation: none;
+}
+
+/* Option 3: Crisp + Accent */
+.heroTitleOption3 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .heroTitleOption3 {
+    color: var(--accent-secondary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12),
+                 0 0 12px rgba(217, 119, 6, 0.08);
+    animation: none;
+}
+
+/* Option 4: Enhanced Simple */
+.heroTitleOption4 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .heroTitleOption4 {
+    color: var(--accent-secondary);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    animation: none;
 }
 
 @keyframes subtleGlow {
@@ -223,8 +285,10 @@
     display:flex;
     justify-content:center;
     gap:1rem;
-    margin-top:2rem;
+    margin:2rem auto 0;
     flex-wrap:wrap;
+    max-width: var(--content-max-width);
+    width: 100%;
 }
 
 .ctaButton {

@@ -9,20 +9,43 @@ interface SectionInfo {
 const LeftSidebar: React.FC = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [sections, setSections] = useState<SectionInfo[]>([]);
-  const [overlayState, setOverlayState] = useState<'none' | 'text' | 'full'>('none'); // Default to visible
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(true); // Track if sidebar should be visible based on screen size
+  const [isVisible, setIsVisible] = useState(true); // Track if sidebar should be visible based on conditions
 
-  // Check if sidebar should be visible based on screen size
+  // Check if sidebar should be visible based on dynamic conditions
   useEffect(() => {
     const checkVisibility = () => {
-      setIsVisible(window.innerWidth >= 1075);
+      if (!sidebarRef.current) {
+        setIsVisible(true);
+        return;
+      }
+
+      // Condition 1: Check if mobile menu breakpoint (992px from Header.module.css)
+      const isMobileBreakpoint = window.innerWidth <= 992;
+
+      // Condition 2: Check if sidebar takes more than 10% of viewport width
+      const sidebarWidth = sidebarRef.current.offsetWidth;
+      const viewportWidth = window.innerWidth;
+      const sidebarPercentage = (sidebarWidth / viewportWidth) * 100;
+
+      // Hide sidebar if:
+      // - Mobile menu is active (≤992px), OR
+      // - Sidebar takes >5% of viewport width
+      const shouldHide = isMobileBreakpoint || sidebarPercentage > 5;
+
+      setIsVisible(!shouldHide);
     };
 
-    checkVisibility();
+    // Initial check after a short delay to ensure DOM is ready
+    const initialTimer = setTimeout(checkVisibility, 100);
+
+    // Check on resize and zoom
     window.addEventListener('resize', checkVisibility);
 
-    return () => window.removeEventListener('resize', checkVisibility);
+    return () => {
+      clearTimeout(initialTimer);
+      window.removeEventListener('resize', checkVisibility);
+    };
   }, []);
 
   // Dynamically discover all sections on the page
@@ -87,38 +110,8 @@ const LeftSidebar: React.FC = () => {
     };
   }, [sections, isVisible]);
 
-  // Detect zoom level and adjust sidebar visibility
-  useEffect(() => {
-    const checkZoomLevel = () => {
-      // Calculate zoom level based on window.devicePixelRatio and window.innerWidth
-      const zoomLevel = Math.round((window.outerWidth / window.innerWidth) * 100);
-      
-      // Rule 1: If zoom > 165%, hide entire sidebar
-      if (zoomLevel > 165) {
-        setOverlayState('full');
-      }
-      // Rule 2: If zoom > 150%, hide text only
-      else if (zoomLevel > 150) {
-        setOverlayState('text');
-      }
-      // Rule 3: Normal zoom, show everything
-      else {
-        setOverlayState('none');
-      }
-    };
-
-    // Check on resize (which includes zoom changes)
-    const handleResize = () => checkZoomLevel();
-    
-    window.addEventListener('resize', handleResize, { passive: true });
-    
-    // Initial check
-    setTimeout(checkZoomLevel, 500);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  // Note: Zoom detection replaced with dynamic 10% viewport width check above
+  // overlayState is kept for potential future use but currently not used
 
   // Detect overlay state - DISABLED FOR NOW
   // Can be re-enabled later with content-based detection
@@ -145,14 +138,11 @@ const LeftSidebar: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div 
+    <div
       ref={sidebarRef}
-      className={`${styles.leftSidebarNav} ${
-        overlayState === 'full' ? styles.hidden : 
-        overlayState === 'text' ? styles.textHidden : ''
-      }`}
-      id="leftSidebarNav" 
-      role="navigation" 
+      className={styles.leftSidebarNav}
+      id="leftSidebarNav"
+      role="navigation"
       aria-label="Section navigation"
     >
       {sections.map(({ id, label }) => (

@@ -4,7 +4,7 @@
 
 .sectionFullwidthShaded {
   width: 100%;
-  padding: 8rem 2rem 6rem;
+  padding: 3rem 2rem 3rem;
   position: relative;
   z-index: 1;
 }
@@ -434,6 +434,9 @@
 }
 
 .ctaButtons {
+  max-width: var(--content-max-width);
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   gap: 1rem;
   justify-content: center;

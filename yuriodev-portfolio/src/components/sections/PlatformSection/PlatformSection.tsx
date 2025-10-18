@@ -54,7 +54,7 @@ const PlatformSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Features */}
+        {/* Features
         <div className={styles.featuresSection}>
           <h3 className={styles.featuresTitle}>Features & Tools</h3>
           <div className={styles.featuresGrid}>
@@ -83,10 +83,10 @@ const PlatformSection: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Stats */}
-        <div className={styles.statsSection}>
+        {/* <div className={styles.statsSection}>
           <div className={styles.statsGrid}>
             {platformData.stats.map((stat, index) => (
               <div key={index} className={styles.statCard}>
@@ -95,10 +95,10 @@ const PlatformSection: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* CTA */}
-        <div className={styles.ctaSection}>
+        {/* <div className={styles.ctaSection}>
           <h3 className={styles.ctaTitle}>Join the Journey</h3>
           <p className={styles.ctaDescription}>
             Be part of democratizing AI/ML education. Early access and beta testing opportunities available.
@@ -119,7 +119,7 @@ const PlatformSection: React.FC = () => {
               Request Early Access
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

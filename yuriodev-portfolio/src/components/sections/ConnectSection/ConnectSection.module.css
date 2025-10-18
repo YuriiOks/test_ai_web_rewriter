@@ -4,7 +4,7 @@
 
 .section {
   width: 100%;
-  padding: 8rem 2rem 6rem;
+  padding: 3rem 2rem 6rem;
   background: var(--section-hero-bg-gradient);
   position: relative;
   z-index: 1;
@@ -65,7 +65,8 @@
 
 /* Terminal Container */
 .terminalContainer {
-  max-width: 1000px;
+  max-width: var(--content-max-width);
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -76,7 +77,8 @@
   }
 
   .terminalContainer {
-    margin: 0 1rem;
+    margin: 0 auto;
+    padding: 0 1rem;
   }
 }
 
@@ -94,6 +96,7 @@
   }
 
   .terminalContainer {
-    margin: 0;
+    margin: 0 auto;
+    padding: 0;
   }
 }

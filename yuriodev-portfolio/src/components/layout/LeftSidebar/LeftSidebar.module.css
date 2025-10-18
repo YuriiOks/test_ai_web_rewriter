@@ -1,6 +1,8 @@
 .leftSidebarNav {
     position: fixed;
-    left: 0px;
+    /* Position at left edge of 75% content area */
+    /* Formula: (100% - 75%) / 2 = 12.5% from left edge */
+    left: calc((100vw - (var(--content-max-width) * 1vw)) / 2 - 60px);
     top: 50%;
     transform: translateY(-50%);
     height: auto;
@@ -8,20 +10,20 @@
     z-index: 999;
     background: transparent;
     border: none;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 28px;
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.3s ease, padding 0.3s ease, width 0.3s ease;
+    gap: 18px;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.3s ease, padding 0.3s ease, width 0.3s ease, left 0.3s ease;
 }
 
 /* Hide sidebar when content overlays it completely */
 .leftSidebarNav.hidden {
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-50%) translateX(-20px);
+    transform: translateY(-50%) translateX(-40px);
 }
 
 /* Hide text when partially overlaid, show on hover */
@@ -44,9 +46,9 @@
 .leftSidebarNav::before {
     content: "";
     position: absolute;
-    left: 25px;
-    top: 20px;
-    bottom: 20px;
+    left: 24px;
+    top: 15px;
+    bottom: 15px;
     width: 1.5px;
     background-color: rgba(var(--accent-primary-rgb), 0.4);
     z-index: 1;
@@ -96,15 +98,15 @@
     position: relative;
     text-decoration: none;
     z-index: 2;
-    height: 12px;
-    padding-left: 25px;
+    height: 10px;
+    padding-left: 22px;
     cursor: pointer;
     width: auto;
-    min-width: 40px;
+    min-width: 35px;
 }
 .sidebarNavLink .diamond {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background-color: var(--text-muted);
     opacity: 0.6;
     transform: rotate(45deg);
@@ -119,14 +121,14 @@
 .sidebarNavLink .linkText {
     display: inline-block;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     transition: all 0.3s ease-out;
     white-space: nowrap;
     font-weight: 400;
     opacity: 0.6;
-    transform: translateX(10px);
-    margin-left: 15px;
-    padding: 4px 10px;
+    transform: translateX(8px);
+    margin-left: 12px;
+    padding: 3px 8px;
     border-radius: 4px;
     background-color: transparent;
 }
@@ -155,114 +157,53 @@
 }
 
 /* Responsive Design */
-/* Hide sidebar text labels on medium screens (show only diamonds) */
-@media (max-width: 1799px) and (min-width: 1475px) {
-    .leftSidebarNav .linkText {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-    }
-    
-    /* Show text on hover with beautiful background */
-    .leftSidebarNav:hover .linkText {
-        display: inline-block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.92), rgba(20, 20, 30, 0.88)) !important;
-        backdrop-filter: blur(12px) saturate(180%);
-        -webkit-backdrop-filter: blur(12px) saturate(180%);
-        padding: 6px 14px !important;
-        border-radius: 8px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6),
-                    0 2px 4px rgba(0, 0, 0, 0.4),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    
-    /* Light theme hover background */
-    [data-theme="light"] .leftSidebarNav:hover .linkText {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95)) !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
-                    0 2px 4px rgba(0, 0, 0, 0.06),
-                    inset 0 1px 0 rgba(255, 255, 255, 1);
-        border: 1px solid rgba(var(--accent-secondary-rgb), 0.2);
-    }
-    
-    /* Add polished background to sidebar on hover */
-    .leftSidebarNav:hover {
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 30, 0.35));
-        backdrop-filter: blur(8px) saturate(150%);
-        -webkit-backdrop-filter: blur(8px) saturate(150%);
-        padding: 1.5rem 1rem;
-        border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        width: auto;
-        min-width: 200px;
-    }
-    
-    /* Light theme sidebar hover background */
-    [data-theme="light"] .leftSidebarNav:hover {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(248, 250, 252, 0.8));
-        backdrop-filter: blur(10px) saturate(150%);
-        -webkit-backdrop-filter: blur(10px) saturate(150%);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
-                    0 2px 8px rgba(0, 0, 0, 0.04),
-                    inset 0 1px 0 rgba(255, 255, 255, 1);
-        border: 1px solid rgba(var(--accent-secondary-rgb), 0.15);
-    }
+/* Always show sidebar with panel style (visibility controlled by React component) */
+
+/* Always show text labels with beautiful background */
+.leftSidebarNav .linkText {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    padding: 4px 10px !important;
+    border-radius: 6px;
+    font-size: 0.8rem !important;
 }
 
-/* Hide sidebar completely on smaller screens, tablets, and mobile */
-@media (max-width: 1474px) {
-    .leftSidebarNav {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        transform: translateY(-50%) translateX(-200px) !important;
-        z-index: -1 !important;
-    }
-
-    /* Hide the vertical line pseudo-element */
-    .leftSidebarNav::before {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-    }
-
-    /* Hide all child elements including diamonds, text, and links */
-    .leftSidebarNav *,
-    .leftSidebarNav .sidebarNavLink,
-    .leftSidebarNav .diamond,
-    .leftSidebarNav .linkText {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-    }
+/* Permanent polished background to sidebar */
+.leftSidebarNav {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 30, 0.35));
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+    padding: 1rem 0.75rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    width: auto;
+    min-width: 150px;
 }
 
-/* Show full sidebar only on very large desktop screens */
-@media (min-width: 1800px) {
-    .leftSidebarNav {
-        display: flex;
-        visibility: visible;
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(-50%);
-        z-index: 999;
-    }
+/* Light theme sidebar background */
+[data-theme="light"] .leftSidebarNav {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(248, 250, 252, 0.8));
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+    border: 1px solid rgba(var(--accent-secondary-rgb), 0.15);
 }
 
-/* Medium screens: show diamonds only, full sidebar on hover */
-@media (min-width: 1475px) and (max-width: 1799px) {
-    .leftSidebarNav {
-        display: flex;
-        visibility: visible;
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(-50%);
-        z-index: 999;
-    }
+/* Enhance on hover */
+.leftSidebarNav:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .leftSidebarNav:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12),
+                0 3px 10px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+    border: 1px solid rgba(var(--accent-secondary-rgb), 0.2);
 }

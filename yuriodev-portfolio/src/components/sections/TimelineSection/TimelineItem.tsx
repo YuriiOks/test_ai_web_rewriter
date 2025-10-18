@@ -40,6 +40,75 @@ const getTypeColor = (type: string): string => {
 const TimelineItem: React.FC<TimelineItemProps> = ({ event, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  // Parse LinkedIn links and make them clickable
+  const renderLinkedInLinks = (text: string) => {
+    // Pattern: Name (LinkedIn: URL) - more precise matching
+    const linkedInPattern = /(\w+\s+\w+)\s*\(LinkedIn:\s*(https:\/\/[^\)]+)\)/g;
+    const parts: (string | React.ReactElement)[] = [];
+    let lastIndex = 0;
+    let match;
+    let matchCount = 0;
+
+    while ((match = linkedInPattern.exec(text)) !== null) {
+      // Add text before the match
+      if (match.index > lastIndex) {
+        parts.push(text.substring(lastIndex, match.index));
+      }
+
+      const name = match[1].trim();
+      const url = match[2].trim();
+
+      // Add LinkedIn icon + clickable name
+      parts.push(
+        <a 
+          key={`linkedin-${matchCount++}`}
+          href={url} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{
+            color: 'var(--accent-primary)',
+            textDecoration: 'none',
+            display: 'inline',
+            whiteSpace: 'nowrap',
+            transition: 'all 0.2s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = 'var(--accent-secondary)';
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = 'var(--accent-primary)';
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          <svg 
+            width="14" 
+            height="14" 
+            viewBox="0 0 24 24" 
+            fill="currentColor"
+            style={{ 
+              display: 'inline-block',
+              verticalAlign: 'middle',
+              marginRight: '0.25rem',
+            }}
+          >
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          {name}
+        </a>
+      );
+
+      lastIndex = linkedInPattern.lastIndex;
+    }
+
+    // Add remaining text
+    if (lastIndex < text.length) {
+      parts.push(text.substring(lastIndex));
+    }
+
+    return parts.length > 0 ? parts : text;
+  };
+
   // Get tag category for color coding
   const getTagCategory = (tag: string): string => {
     const tagLower = tag.toLowerCase();
@@ -135,7 +204,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, index }) => {
             )}
           </div>
 
-          <p className={styles.description}>{event.description}</p>
+          <p className={styles.description}>{renderLinkedInLinks(event.description)}</p>
 
           {/* Highlights */}
           {event.highlights && event.highlights.length > 0 && (
@@ -153,7 +222,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ event, index }) => {
                   {event.highlights.map((highlight, idx) => (
                     <li key={idx} className={styles.highlightItem}>
                       <span className={styles.highlightBullet}>▹</span>
-                      {highlight}
+                      <span>{renderLinkedInLinks(highlight)}</span>
                     </li>
                   ))}
                 </ul>

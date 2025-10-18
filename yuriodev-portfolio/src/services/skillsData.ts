@@ -222,12 +222,163 @@ export const skillsCategories: SkillCategory[] = [
   },
 ];
 
+// Skill tag types for color coding
+export type SkillTagType = 
+  | 'framework'      // Agentic frameworks, orchestration tools
+  | 'database'       // Databases, vector stores
+  | 'model'          // LLMs, ML models
+  | 'language'       // Programming languages
+  | 'cloud'          // Cloud platforms, infrastructure
+  | 'tool'           // Development tools, libraries
+  | 'concept'        // Patterns, architectures
+  | 'metric';        // Performance metrics, achievements
+
+export interface SkillDetail {
+  name: string;
+  type: SkillTagType;
+}
+
+export interface SkillWithTypes {
+  id: number;
+  title: string;
+  progress: number;
+  details: SkillDetail[];
+  highlight: { text: string; type: SkillTagType };
+}
+
+// New structured format with type information
+export const skillsDataTyped: SkillWithTypes[] = [
+  {
+    id: 1,
+    title: "agentic_systems.py",
+    progress: 95,
+    details: [
+      { name: "LangGraph", type: "framework" },
+      { name: "LangChain", type: "framework" },
+      { name: "MCP", type: "framework" },
+      { name: "Multi-Agent", type: "concept" },
+      { name: "ReAct", type: "concept" },
+    ],
+    highlight: { text: "Agentic Architect", type: "metric" },
+  },
+  {
+    id: 2,
+    title: "rag_pipelines.py",
+    progress: 95,
+    details: [
+      { name: "ChromaDB", type: "database" },
+      { name: "LlamaIndex", type: "framework" },
+      { name: "Hybrid Search", type: "concept" },
+      { name: "Chunking", type: "concept" },
+    ],
+    highlight: { text: "95% Precision", type: "metric" },
+  },
+  {
+    id: 3,
+    title: "llm_engineering.py",
+    progress: 90,
+    details: [
+      { name: "Gemini API", type: "model" },
+      { name: "GPT-4", type: "model" },
+      { name: "Prompt Engineering", type: "concept" },
+      { name: "Fine-tuning", type: "concept" },
+    ],
+    highlight: { text: "Production LLMs", type: "metric" },
+  },
+  {
+    id: 4,
+    title: "pytorch_deep_learning.py",
+    progress: 88,
+    details: [
+      { name: "PyTorch", type: "framework" },
+      { name: "Transformers", type: "model" },
+      { name: "Custom Architectures", type: "concept" },
+    ],
+    highlight: { text: ">90% F1", type: "metric" },
+  },
+  {
+    id: 5,
+    title: "fastapi_microservices.py",
+    progress: 92,
+    details: [
+      { name: "FastAPI", type: "framework" },
+      { name: "PostgreSQL", type: "database" },
+      { name: "Redis", type: "database" },
+      { name: "Event-Driven", type: "concept" },
+      { name: "Microservices", type: "concept" },
+    ],
+    highlight: { text: "High-Throughput APIs", type: "metric" },
+  },
+  {
+    id: 6,
+    title: "cloud_native_gcp.sh",
+    progress: 90,
+    details: [
+      { name: "GCP", type: "cloud" },
+      { name: "BigQuery", type: "database" },
+      { name: "Cloud Functions", type: "cloud" },
+      { name: "Docker", type: "tool" },
+      { name: "Kubernetes", type: "tool" },
+    ],
+    highlight: { text: "×50 Faster", type: "metric" },
+  },
+  {
+    id: 7,
+    title: "mlops_cicd.yaml",
+    progress: 82,
+    details: [
+      { name: "CI/CD", type: "concept" },
+      { name: "GitHub Actions", type: "tool" },
+      { name: "Model Monitoring", type: "concept" },
+      { name: "LangSmith", type: "tool" },
+    ],
+    highlight: { text: "Production MLOps", type: "metric" },
+  },
+  {
+    id: 8,
+    title: "data_engineering.py",
+    progress: 88,
+    details: [
+      { name: "Pandas", type: "tool" },
+      { name: "ETL", type: "concept" },
+      { name: "BigQuery", type: "database" },
+      { name: "Data Modeling", type: "concept" },
+      { name: "Geospatial", type: "concept" },
+    ],
+    highlight: { text: "100M+ Records", type: "metric" },
+  },
+  {
+    id: 9,
+    title: "full_stack_dev.tsx",
+    progress: 78,
+    details: [
+      { name: "React", type: "framework" },
+      { name: "TypeScript", type: "language" },
+      { name: "Next.js", type: "framework" },
+      { name: "Tailwind CSS", type: "tool" },
+    ],
+    highlight: { text: "Modern Web Apps", type: "metric" },
+  },
+  {
+    id: 10,
+    title: "leadership_mentoring.md",
+    progress: 95,
+    details: [
+      { name: "Technical Mentoring", type: "concept" },
+      { name: "Code Review", type: "concept" },
+      { name: "Team Leadership", type: "concept" },
+      { name: "Teaching", type: "concept" },
+    ],
+    highlight: { text: "1000+ Students", type: "metric" },
+  },
+];
+
 // Legacy format for backward compatibility with existing components
 export const skillsData: Skill[] = [
   {
     id: 1,
     title: "agentic_systems.py",
-    level: "Expert",
+    level: "EXPERT",
     progress: 95,
     details: ["LangGraph", "LangChain", "MCP", "Multi-Agent", "ReAct"],
     highlight: "Agentic Architect",
@@ -235,71 +386,71 @@ export const skillsData: Skill[] = [
   {
     id: 2,
     title: "rag_pipelines.py",
-    level: "Expert",
+    level: "EXPERT",
     progress: 95,
-    details: ["ChromaDB", "LlamaIndex", "Hybrid Search", "Chunking", "Embeddings"],
+    details: ["ChromaDB", "LlamaIndex", "Hybrid Search", "Chunking"],
     highlight: "95% Precision",
   },
   {
     id: 3,
     title: "llm_engineering.py",
-    level: "Expert",
-    progress: 92,
+    level: "EXPERT",
+    progress: 90,
     details: ["Gemini API", "GPT-4", "Prompt Engineering", "Fine-tuning"],
     highlight: "Production LLMs",
   },
   {
     id: 4,
     title: "pytorch_deep_learning.py",
-    level: "Expert",
-    progress: 92,
-    details: ["PyTorch", "Transformers", "Custom Architectures", "GPU Optimization"],
+    level: "EXPERT",
+    progress: 88,
+    details: ["PyTorch", "Transformers", "Custom Architectures"],
     highlight: ">90% F1",
   },
   {
     id: 5,
     title: "fastapi_microservices.py",
-    level: "Expert",
-    progress: 90,
+    level: "EXPERT",
+    progress: 92,
     details: ["FastAPI", "PostgreSQL", "Redis", "Event-Driven", "Microservices"],
     highlight: "High-Throughput APIs",
   },
   {
     id: 6,
     title: "cloud_native_gcp.sh",
-    level: "Expert",
-    progress: 88,
+    level: "EXPERT",
+    progress: 90,
     details: ["GCP", "BigQuery", "Cloud Functions", "Docker", "Kubernetes"],
     highlight: "×50 Faster",
   },
   {
     id: 7,
     title: "mlops_cicd.yaml",
-    level: "Advanced",
-    progress: 85,
+    level: "ADVANCED",
+    progress: 82,
     details: ["CI/CD", "GitHub Actions", "Model Monitoring", "LangSmith"],
     highlight: "Production MLOps",
   },
   {
     id: 8,
     title: "data_engineering.py",
-    level: "Expert",
-    progress: 90,
+    level: "EXPERT",
+    progress: 88,
     details: ["Pandas", "ETL", "BigQuery", "Data Modeling", "Geospatial"],
     highlight: "100M+ Records",
   },
   {
     id: 9,
     title: "full_stack_dev.tsx",
-    level: "Advanced",
-    progress: 82,
+    level: "ADVANCED",
+    progress: 78,
     details: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
     highlight: "Modern Web Apps",
   },
   {
     id: 10,
     title: "leadership_mentoring.md",
-    level: "Expert",
+    level: "EXPERT",
     progress: 95,
     details: ["Technical Mentoring", "Code Review", "Team Leadership", "Teaching"],
     highlight: "1000+ Students",
