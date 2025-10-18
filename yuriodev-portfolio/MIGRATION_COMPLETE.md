@@ -296,12 +296,472 @@ Each page (community, courses, dashboard) includes:
 
 ## 🚀 Next Steps
 
-1. **Fix routing issue** - Investigate why page reloads show blank screen
-2. **Test all routes** - Verify `/`, `/community`, `/courses`, `/dashboard`
-3. **Mobile testing** - Confirm responsive design on actual devices
-4. **Clean up old files** - Remove `community.html`, `courses.html`, `dashboard.html`
-5. **Production build** - Test `npm run build` and preview
-6. **Deploy configuration** - Set up proper SPA fallback for hosting
+### Phase 1: Agent Page Implementation (IMMEDIATE)
+
+Based on `TERMINAL_AGENT_PAGE_DESIGN.md` and `agent_page_view.md`, we will implement a Banking Assistant Terminal Interface:
+
+#### 1.1 Frontend Terminal UI
+- [ ] **Create `/assistant` route** in App.tsx
+- [ ] **Build terminal components:**
+  - `TerminalContainer.tsx` - Main terminal wrapper with glassmorphic design
+  - `TerminalHeader.tsx` - Header with "Banking Assistant Terminal v1.0" title
+  - `TerminalFeed.tsx` - Scrollable message feed with auto-scroll
+  - `TerminalMessage.tsx` - Individual message with type-based styling (SYSTEM, USER, ASSISTANT, PROCESSING, ERROR, LOG)
+  - `TerminalInput.tsx` - Command input with validation and history (↑/↓ navigation)
+- [ ] **Implement animations:**
+  - Typewriter effect for assistant responses
+  - Cursor pulse effect with gradient (cyan → gold)
+  - Message fade-in animations
+  - Loading spinner during API calls
+- [ ] **Add command system:**
+  - `query --id <id> "<question>"` - Query customer banking info
+  - `help` - Display available commands
+  - `info --products` - List product types
+  - `clear` - Clear terminal history
+  - `exit` - End session
+- [ ] **Theme integration:**
+  - Dark theme: Cyan (#06b6d4) → Purple (#8b5cf6) → Gold (#fbbf24)
+  - Light theme: Orange (#d97706) → Amber (#f59e0b) → Gold (#fbbf24)
+  - Match existing loading screen gradient aesthetic
+- [ ] **Keyboard shortcuts:**
+  - `↑/↓` - Navigate command history
+  - `Ctrl+L` - Clear terminal
+  - `Ctrl+C` - Cancel processing
+  - `Tab` - Autocomplete (future enhancement)
+
+#### 1.2 Backend API Integration
+- [ ] **Create `agentService.ts`:**
+  - API endpoint: `POST https://api.yuriodev.co.uk/api/agent/query`
+  - Request: `{ customer_id: number, query: string, session_id?: string }`
+  - Response: `{ status: "success|error", data: { message, metadata? }, error? }`
+- [ ] **Frontend validation:**
+  - Validate customer ID format before API call
+  - Check query is non-empty
+  - Prevent out-of-domain queries (frontend-side warnings)
+- [ ] **Error handling:**
+  - Network timeouts (show ERROR message)
+  - Invalid customer ID (show ERROR with retry option)
+  - Out-of-domain queries (show refusal message)
+  - Backend unavailable (show SYSTEM message)
+
+#### 1.3 Terminal Page Features
+- [ ] Session management with localStorage
+- [ ] Command history persistence
+- [ ] Export conversation transcript
+- [ ] Optional model selection (`--model gpt4|claude|gemini`)
+- [ ] Optional reasoning display (`--explain` flag)
+- [ ] Developer console toggle (raw JSON payloads)
+- [ ] Performance metrics display (latency, token usage)
+- [ ] Timestamp display for each message
+
+**Expected Outcome:** Fully functional terminal interface at `https://yuriodev.co.uk/assistant` for demo purposes, communicating with backend API.
+
+---
+
+### Phase 2: Production Deployment & Infrastructure (HIGH PRIORITY)
+
+#### 2.1 Frontend Deployment (yuriodev.co.uk)
+- [ ] **Fix SPA routing issue:**
+  - Investigate blank screen on page reload/direct navigation
+  - Test `npm run build` production bundle
+  - Verify all routes work with preview server
+  - Clear browser cache and test again
+- [ ] **Server configuration:**
+  - Upload `dist/` folder to server: `scp -r dist/* yurii@135.181.146.97:/var/www/yuriodev.co.uk/html/`
+  - Configure NGINX for SPA fallback:
+    ```nginx
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    ```
+  - Test all routes work on production
+  - Verify theme persistence across navigation
+- [ ] **Mobile testing:**
+  - Confirm responsive design on iOS/Android devices
+  - Test sidebar visibility at different breakpoints
+  - Verify touch interactions work properly
+- [ ] **Clean up old files:**
+  - Remove `community.html`, `courses.html`, `dashboard.html` from server
+  - Remove unused multi-page HTML files from repository
+  - Update `.gitignore` if needed
+
+#### 2.2 Backend API Deployment (api.yuriodev.co.uk)
+
+**Architecture:** Split deployment model - frontend and backend run independently.
+
+```
+┌──────────────────────────────────────┐
+│      yuriodev.co.uk (Main Site)      │
+│   React SPA (Vite) - Portfolio + UI │
+└──────────────┬───────────────────────┘
+               │
+               │ HTTPS/CORS
+               ↓
+┌──────────────────────────────────────┐
+│    api.yuriodev.co.uk (Backend)      │
+│    NGINX Reverse Proxy (Port 443)   │
+├──────────────────────────────────────┤
+│  ┌────────────────────────────────┐  │
+│  │  FastAPI Backend (Port 8000)   │  │
+│  │  - /api/agent/query            │  │
+│  │  - /docs (Swagger UI)          │  │
+│  │  - /redoc (ReDoc)              │  │
+│  └────────────────────────────────┘  │
+│  ┌────────────────────────────────┐  │
+│  │  AI Engine (Port 8500)         │  │
+│  │  - GPT/Claude/Gemini API calls │  │
+│  │  - System prompt management    │  │
+│  │  - Response validation         │  │
+│  └────────────────────────────────┘  │
+│  ┌────────────────────────────────┐  │
+│  │  Database/JSON Files           │  │
+│  │  - customers.json              │  │
+│  │  - products/*.md files         │  │
+│  │  - logs/requests.jsonl         │  │
+│  └────────────────────────────────┘  │
+└──────────────────────────────────────┘
+```
+
+#### 2.3 Docker Containerization
+
+**File Structure:**
+```
+backend/
+├── docker-compose.yml
+├── Dockerfile.fastapi
+├── Dockerfile.ai-engine
+├── nginx/
+│   └── nginx.conf
+├── app/
+│   ├── main.py (FastAPI endpoints)
+│   ├── models.py (Pydantic schemas)
+│   ├── auth.py (Basic auth for Swagger)
+│   └── routes/
+│       └── agent.py
+├── ai_engine/
+│   ├── engine.py (LLM orchestration)
+│   ├── prompts.py (System prompts)
+│   └── providers/
+│       ├── openai_provider.py
+│       ├── claude_provider.py
+│       └── gemini_provider.py
+├── data/
+│   ├── customers.json
+│   └── products/
+│       ├── isa.md
+│       ├── savings.md
+│       └── bonds.md
+└── logs/
+    └── requests.jsonl
+```
+
+**Steps:**
+- [ ] **Create `docker-compose.yml`:**
+  ```yaml
+  version: '3.8'
+  services:
+    nginx:
+      image: nginx:alpine
+      ports:
+        - "80:80"
+        - "443:443"
+      volumes:
+        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+        - ./ssl:/etc/nginx/ssl
+      depends_on:
+        - backend
+        - ai-engine
+    
+    backend:
+      build:
+        context: .
+        dockerfile: Dockerfile.fastapi
+      ports:
+        - "8000:8000"
+      environment:
+        - AI_ENGINE_URL=http://ai-engine:8500
+        - LOG_LEVEL=INFO
+      volumes:
+        - ./data:/app/data
+        - ./logs:/app/logs
+    
+    ai-engine:
+      build:
+        context: .
+        dockerfile: Dockerfile.ai-engine
+      ports:
+        - "8500:8500"
+      environment:
+        - OPENAI_API_KEY=${OPENAI_API_KEY}
+        - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+        - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      volumes:
+        - ./data:/app/data
+  ```
+
+- [ ] **Create `Dockerfile.fastapi`:**
+  ```dockerfile
+  FROM python:3.11-slim
+  WORKDIR /app
+  COPY requirements.txt .
+  RUN pip install --no-cache-dir -r requirements.txt
+  COPY app/ ./app/
+  EXPOSE 8000
+  CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+  ```
+
+- [ ] **Create `Dockerfile.ai-engine`:**
+  ```dockerfile
+  FROM python:3.11-slim
+  WORKDIR /app
+  COPY requirements-ai.txt .
+  RUN pip install --no-cache-dir -r requirements-ai.txt
+  COPY ai_engine/ ./ai_engine/
+  EXPOSE 8500
+  CMD ["uvicorn", "ai_engine.engine:app", "--host", "0.0.0.0", "--port", "8500"]
+  ```
+
+- [ ] **Create `nginx/nginx.conf`:**
+  ```nginx
+  upstream backend {
+      server backend:8000;
+  }
+  
+  server {
+      listen 80;
+      server_name api.yuriodev.co.uk;
+      return 301 https://$server_name$request_uri;
+  }
+  
+  server {
+      listen 443 ssl;
+      server_name api.yuriodev.co.uk;
+      
+      ssl_certificate /etc/nginx/ssl/cert.pem;
+      ssl_certificate_key /etc/nginx/ssl/key.pem;
+      
+      location /api/ {
+          proxy_pass http://backend;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          
+          # CORS headers
+          add_header Access-Control-Allow-Origin "https://yuriodev.co.uk" always;
+          add_header Access-Control-Allow-Methods "GET, POST, OPTIONS" always;
+          add_header Access-Control-Allow-Headers "Content-Type, Authorization" always;
+          
+          if ($request_method = OPTIONS) {
+              return 204;
+          }
+      }
+      
+      location /docs {
+          proxy_pass http://backend/docs;
+          auth_basic "Restricted Access";
+          auth_basic_user_file /etc/nginx/.htpasswd;
+      }
+      
+      location /redoc {
+          proxy_pass http://backend/redoc;
+          auth_basic "Restricted Access";
+          auth_basic_user_file /etc/nginx/.htpasswd;
+      }
+  }
+  ```
+
+#### 2.4 Swagger UI Security
+- [ ] **Implement HTTP Basic Auth:**
+  - Create `.htpasswd` file: `htpasswd -c .htpasswd jamie`
+  - Mount to NGINX container
+  - Test protected access at `https://api.yuriodev.co.uk/docs`
+- [ ] **Alternative: FastAPI middleware auth:**
+  ```python
+  from fastapi import Depends, HTTPException, status
+  from fastapi.security import HTTPBasic, HTTPBasicCredentials
+  
+  security = HTTPBasic()
+  
+  def authenticate(credentials: HTTPBasicCredentials = Depends(security)):
+      if credentials.username != "jamie" or credentials.password != "secure_pass":
+          raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+  
+  @app.get("/docs", dependencies=[Depends(authenticate)])
+  async def custom_docs():
+      return get_swagger_ui_html(...)
+  ```
+
+#### 2.5 Server Deployment Steps
+- [ ] **Hetzner server setup:**
+  - SSH into server: `ssh yurii@135.181.146.97`
+  - Install Docker & Docker Compose
+  - Clone backend repository
+  - Set environment variables in `.env` file
+- [ ] **SSL certificates:**
+  - Use Let's Encrypt: `certbot certonly --standalone -d api.yuriodev.co.uk`
+  - Copy certificates to `ssl/` directory
+  - Configure NGINX to use certificates
+- [ ] **DNS configuration:**
+  - Add A record: `api.yuriodev.co.uk` → `135.181.146.97`
+  - Verify DNS propagation: `nslookup api.yuriodev.co.uk`
+- [ ] **Deploy containers:**
+  ```bash
+  docker-compose up -d
+  docker-compose logs -f
+  ```
+- [ ] **Test endpoints:**
+  - `https://api.yuriodev.co.uk/api/agent/query` (POST with test payload)
+  - `https://api.yuriodev.co.uk/docs` (Swagger UI - password protected)
+  - `https://api.yuriodev.co.uk/redoc` (ReDoc documentation)
+
+#### 2.6 Monitoring & Logging
+- [ ] Set up logging aggregation (e.g., Loki, ELK stack)
+- [ ] Configure metrics collection (Prometheus + Grafana)
+- [ ] Set up health check endpoints (`/health`, `/ready`)
+- [ ] Configure alerting for errors/downtime
+- [ ] Monitor API response times and error rates
+
+---
+
+### Phase 3: Testing & Validation
+
+#### 3.1 Frontend Testing
+- [ ] Test all routes: `/`, `/community`, `/courses`, `/dashboard`, `/assistant`
+- [ ] Verify page reloads work correctly
+- [ ] Test theme switching persistence
+- [ ] Test keyboard shortcuts on all pages
+- [ ] Test responsive design (mobile, tablet, desktop)
+- [ ] Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- [ ] Accessibility audit (ARIA labels, keyboard navigation)
+- [ ] Performance testing (Lighthouse scores)
+
+#### 3.2 Backend Testing
+- [ ] Test API endpoints with various payloads
+- [ ] Test authentication and authorization
+- [ ] Test error handling and edge cases
+- [ ] Test CORS configuration with frontend
+- [ ] Load testing (simulate multiple concurrent requests)
+- [ ] Test LLM fallback when primary model unavailable
+- [ ] Test logging system writes correctly
+
+#### 3.3 Integration Testing
+- [ ] Test frontend → backend communication
+- [ ] Test terminal UI with real API responses
+- [ ] Test error message display in terminal
+- [ ] Test command history and session persistence
+- [ ] Test theme consistency across all pages
+- [ ] Verify SSL certificates work correctly
+- [ ] Test both HTTP and HTTPS endpoints
+
+---
+
+### Phase 4: Documentation & Handoff
+
+#### 4.1 Technical Documentation
+- [ ] **Update README.md:**
+  - Architecture diagram (frontend + backend separation)
+  - Setup instructions for local development
+  - Deployment guide
+  - API documentation
+  - Environment variables reference
+- [ ] **Create DEPLOYMENT_GUIDE.md:**
+  - Docker deployment instructions
+  - NGINX configuration details
+  - SSL certificate setup
+  - Environment variable configuration
+  - Troubleshooting common issues
+- [ ] **Create API_DOCUMENTATION.md:**
+  - Endpoint specifications
+  - Request/response examples
+  - Authentication details
+  - Error codes and messages
+  - Rate limiting information
+
+#### 4.2 Demo Preparation
+- [ ] **Create demo script:**
+  - Example queries to showcase assistant capabilities
+  - Error handling demonstrations
+  - Multi-model comparison (GPT vs Claude vs Gemini)
+  - Performance metrics display
+- [ ] **Prepare presentation materials:**
+  - Architecture diagram for Jamie/reviewers
+  - Screenshots of terminal UI in action
+  - Video recording of demo session
+  - Talking points document
+
+#### 4.3 Access Instructions for Reviewers
+- [ ] **Provide two testing modes:**
+  1. **Swagger UI Access:**
+     - URL: `https://api.yuriodev.co.uk/docs`
+     - Username: `jamie`
+     - Password: `[secure_password]`
+     - Purpose: Test API directly, see request/response structure
+  
+  2. **Terminal UI Access:**
+     - URL: `https://yuriodev.co.uk/assistant`
+     - No authentication required (public demo)
+     - Purpose: Experience user-facing interface
+
+- [ ] **Example test queries:**
+  ```bash
+  > query --id 102 "When does my ISA mature?"
+  > query --id 102 "Can I withdraw funds early?"
+  > query --id 102 "What's my current balance?"
+  > query --id 102 "Write me a Python script"  # Shows refusal
+  ```
+
+---
+
+### Phase 5: Future Enhancements
+
+#### 5.1 Terminal Page Improvements
+- [ ] Voice input (speech-to-text)
+- [ ] Rich media responses (charts, tables)
+- [ ] Multi-language support
+- [ ] Collaborative sessions (share with team)
+- [ ] Export conversation as PDF
+- [ ] Command autocomplete with Tab key
+- [ ] Syntax highlighting for code snippets
+- [ ] Markdown rendering in responses
+
+#### 5.2 Backend Improvements
+- [ ] Add more banking product types
+- [ ] Implement rate limiting per IP/session
+- [ ] Add API key authentication (alternative to Basic Auth)
+- [ ] Implement request caching (Redis)
+- [ ] Add webhooks for real-time updates
+- [ ] Implement streaming responses (SSE)
+- [ ] Add A/B testing framework for prompts
+
+#### 5.3 Monitoring Enhancements
+- [ ] Real-time dashboard for API metrics
+- [ ] User behavior analytics
+- [ ] Error tracking and alerts (Sentry)
+- [ ] Cost tracking for LLM API calls
+- [ ] Performance profiling and optimization
+
+---
+
+### Summary of Deliverables
+
+| Deliverable | Description | Status |
+|-------------|-------------|--------|
+| **Frontend (yuriodev.co.uk)** | Portfolio + Terminal UI | ⏳ In Progress |
+| **Backend (api.yuriodev.co.uk)** | FastAPI + AI Engine | 🟢 Planned |
+| **Docker Stack** | NGINX + Backend + AI Engine | 🟢 Planned |
+| **Swagger UI** | Password-protected API docs | 🟢 Planned |
+| **Logging System** | Structured JSONL logging | 🟢 Planned |
+| **Documentation** | README + Deployment Guide | 🟢 Planned |
+| **Demo Materials** | Script + Presentation | 🟢 Planned |
+
+---
+
+### Timeline Estimate
+
+- **Phase 1 (Agent Page):** 2-3 days
+- **Phase 2 (Deployment):** 2-3 days
+- **Phase 3 (Testing):** 1-2 days
+- **Phase 4 (Documentation):** 1 day
+- **Total:** 6-9 days for complete implementation
 
 ---
 
