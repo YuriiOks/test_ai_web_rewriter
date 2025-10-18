@@ -39,11 +39,35 @@
 .sectionTitle {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
   margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.sectionTitle::before {
+  content: '# ';
+  color: var(--accent-secondary);
+}
+
+/* Dark theme - cyan # prefix and golden/yellow title */
+[data-theme="dark"] .sectionTitle {
+  color: var(--accent-secondary);
+}
+
+[data-theme="dark"] .sectionTitle::before {
+  color: var(--accent-primary);
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-secondary), transparent);
 }
 
 .tagline {

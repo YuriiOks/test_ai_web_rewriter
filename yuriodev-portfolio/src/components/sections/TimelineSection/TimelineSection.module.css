@@ -22,19 +22,36 @@
 
 .sectionTitle {
   font-size: 2.5rem;
-  color: var(--accent-secondary);
+  color: var(--text-primary);
   font-family: 'Fira Code', monospace;
   margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 20px;
 }
 
 .sectionTitle::before {
   content: '# ';
+  color: var(--accent-secondary);
+}
+
+/* Dark theme - cyan # prefix and golden/yellow title */
+[data-theme="dark"] .sectionTitle {
+  color: var(--accent-secondary);
+}
+
+[data-theme="dark"] .sectionTitle::before {
   color: var(--accent-primary);
 }
 
-/* Light theme - Orange hash */
-[data-theme="light"] .sectionTitle::before {
-  color: #f97316;
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-secondary), transparent);
 }
 
 .sectionSubtitle {

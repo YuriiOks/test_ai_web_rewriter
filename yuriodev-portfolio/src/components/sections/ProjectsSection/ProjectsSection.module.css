@@ -14,9 +14,9 @@
 .sectionTitle {
     font-size:2.5rem;
     color:var(--text-primary);
-    text-shadow: var(--hero-title-shadow);
     margin-bottom:1rem;
     position:relative;
+    padding-bottom: 20px;
 }
 
 .sectionTitle::before {
@@ -24,13 +24,22 @@
     color:var(--accent-secondary);
 }
 
+/* Dark theme - cyan # prefix and golden/yellow title */
+[data-theme="dark"] .sectionTitle {
+    color: var(--accent-secondary);
+}
+
+[data-theme="dark"] .sectionTitle::before {
+    color: var(--accent-primary);
+}
+
 .sectionTitle::after {
     content:'';
     position:absolute;
-    bottom:-10px;
+    bottom: 0px;
     left:50%;
     transform:translateX(-50%);
-    width:120px;
+    width: 80px;
     height:2px;
     background:linear-gradient(90deg,transparent,var(--accent-primary),var(--accent-secondary),transparent);
 }
