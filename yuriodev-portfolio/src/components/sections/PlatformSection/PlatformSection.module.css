@@ -87,12 +87,32 @@
 
 /* Current Phase Card */
 .currentPhaseCard {
-  background: var(--background-primary);
-  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.1);
+  border-radius: 12px;
   padding: 2rem;
   margin-bottom: 4rem;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.currentPhaseCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(var(--accent-secondary-rgb), 0.2);
+  border-color: var(--accent-secondary);
+}
+
+/* Light theme card */
+[data-theme="light"] .currentPhaseCard {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(217, 119, 6, 0.4);
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.12);
+}
+
+[data-theme="light"] .currentPhaseCard:hover {
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.3);
+  border-color: var(--accent-secondary);
 }
 
 .phaseHeader {
@@ -108,23 +128,34 @@
   font-size: 1.5rem;
   color: var(--text-primary);
   font-weight: 600;
+  font-family: 'Fira Code', monospace;
 }
 
 .progressPercentage {
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+}
+
+/* Light theme percentage */
+[data-theme="light"] .progressPercentage {
+  color: var(--accent-secondary);
 }
 
 .progressBar {
   height: 12px;
-  background: var(--background-secondary);
+  background: rgba(var(--accent-primary-rgb), 0.1);
   border-radius: 6px;
   overflow: hidden;
   position: relative;
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.2);
+}
+
+/* Light theme progress bar */
+[data-theme="light"] .progressBar {
+  background: rgba(217, 119, 6, 0.08);
+  border-color: rgba(217, 119, 6, 0.2);
 }
 
 .progressFill {
@@ -134,6 +165,11 @@
   transition: width 1s ease-out;
   position: relative;
   overflow: hidden;
+}
+
+/* Light theme progress fill */
+[data-theme="light"] .progressFill {
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
 }
 
 .progressFill::after {
@@ -180,13 +216,22 @@
 }
 
 .roadmapCard {
-  background: var(--background-primary);
+  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.1);
   border-radius: 12px;
   padding: 2rem;
-  border: 2px solid var(--border-color);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+}
+
+/* Light theme roadmap card */
+[data-theme="light"] .roadmapCard {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(217, 119, 6, 0.4);
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.12);
 }
 
 .roadmapCard::before {
@@ -195,8 +240,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: var(--border-color);
+  height: 3px;
+  background: var(--accent-primary);
   transition: all 0.3s ease;
 }
 
@@ -205,70 +250,106 @@
 }
 
 .roadmapCard.active::before {
-  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  background: var(--accent-secondary);
+}
+
+/* Light theme active before */
+[data-theme="light"] .roadmapCard.active::before {
+  background: var(--accent-secondary);
 }
 
 .roadmapCard.planned::before {
-  background: var(--text-tertiary);
+  background: var(--text-muted);
 }
 
 .roadmapCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  border-color: var(--accent-primary);
+  box-shadow: 0 8px 24px rgba(var(--accent-secondary-rgb), 0.2);
+  border-color: var(--accent-secondary);
+}
+
+/* Light theme hover */
+[data-theme="light"] .roadmapCard:hover {
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.3);
+  border-color: var(--accent-secondary);
 }
 
 .phaseNumber {
   font-size: 0.875rem;
-  color: var(--text-tertiary);
+  color: var(--accent-primary);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Light theme phase number */
+[data-theme="light"] .phaseNumber {
+  color: var(--accent-secondary);
 }
 
 .phaseCardTitle {
   font-size: 1.25rem;
-  color: var(--text-primary);
+  color: var(--accent-secondary);
   font-weight: 600;
   margin-bottom: 1rem;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Light theme phase card title - accent-secondary already correct */
+[data-theme="light"] .phaseCardTitle {
+  color: var(--accent-secondary);
 }
 
 .phaseDescription {
   font-size: 0.938rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 1.5rem;
 }
 
 .statusBadge {
   display: inline-block;
   padding: 0.5rem 1rem;
-  border-radius: 20px;
+  border-radius: 6px;
   font-size: 0.813rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
+  font-family: 'Fira Code', monospace;
+  border: 1px solid;
 }
 
 .roadmapCard.completed .statusBadge {
   background: rgba(16, 185, 129, 0.1);
   color: #10b981;
+  border-color: #10b981;
 }
 
 .roadmapCard.active .statusBadge {
-  background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
-  color: var(--accent-primary);
+  background: rgba(var(--accent-secondary-rgb), 0.1);
+  color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+
+/* Light theme active badge */
+[data-theme="light"] .roadmapCard.active .statusBadge {
+  background: rgba(217, 119, 6, 0.1);
+  color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
 }
 
 .roadmapCard.planned .statusBadge {
-  background: rgba(107, 114, 128, 0.1);
-  color: var(--text-tertiary);
+  background: rgba(var(--text-muted-rgb), 0.1);
+  color: var(--text-muted);
+  border-color: var(--text-muted);
 }
 
 .completionDate {
   font-size: 0.813rem;
-  color: var(--text-tertiary);
+  color: var(--text-muted);
   font-style: italic;
+  font-family: 'Fira Code', monospace;
 }
 
 /* Features Section */

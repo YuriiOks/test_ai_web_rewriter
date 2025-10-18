@@ -102,8 +102,8 @@ h2::after {
     background: #ffffff;
 }
 
-/* Force hide sidebar on small screens - global safety override */
-@media (max-width: 1474px) {
+/* Hide sidebar on mobile screens - matches React component logic (992px) */
+@media (max-width: 1010px) {
   aside[role="navigation"],
   nav[aria-label="Section navigation"],
   #leftSidebarNav,

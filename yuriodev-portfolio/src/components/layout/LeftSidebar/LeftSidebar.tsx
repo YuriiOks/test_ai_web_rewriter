@@ -15,23 +15,55 @@ const LeftSidebar: React.FC = () => {
   // Check if sidebar should be visible based on dynamic conditions
   useEffect(() => {
     const checkVisibility = () => {
-      if (!sidebarRef.current) {
-        setIsVisible(true);
+      // Get viewport measurements first
+      const viewportWidth = window.innerWidth;
+      const isMobileView = viewportWidth <= 992;
+
+      // If we don't have a ref yet, or if we're in mobile view, handle that first
+      if (!sidebarRef.current || isMobileView) {
+        if (!sidebarRef.current) {
+          console.log('⚠️ Sidebar ref not ready, keeping visible');
+          setIsVisible(true);
+        } else if (isMobileView) {
+          console.log('📱 Mobile view detected (≤1010px), hiding sidebar:', {
+            viewportWidth: `${viewportWidth}px`,
+            threshold: '1010x'
+          });
+          setIsVisible(false);
+        }
         return;
       }
 
-      // Condition 1: Check if mobile menu breakpoint (992px from Header.module.css)
-      const isMobileBreakpoint = window.innerWidth <= 992;
-
-      // Condition 2: Check if sidebar takes more than 10% of viewport width
+      // Now we can safely measure sidebar dimensions
       const sidebarWidth = sidebarRef.current.offsetWidth;
-      const viewportWidth = window.innerWidth;
+      
+      // If sidebar width is 0, it might be hidden by CSS or transitioning
+      // In this case, keep it visible and let CSS handle display
+      if (sidebarWidth === 0) {
+        console.log('⚠️ Sidebar width is 0px - element may be hidden by CSS or transitioning');
+        return;
+      }
+      
       const sidebarPercentage = (sidebarWidth / viewportWidth) * 100;
 
-      // Hide sidebar if:
-      // - Mobile menu is active (≤992px), OR
-      // - Sidebar takes >5% of viewport width
-      const shouldHide = isMobileBreakpoint || sidebarPercentage > 5;
+      // Hide sidebar if it takes >35% of viewport width
+      const shouldHide = sidebarPercentage > 35;
+
+      // Always log measurements for debugging
+      console.log('🔍 Sidebar Visibility Check:', {
+        action: shouldHide ? '❌ HIDING' : '✅ SHOWING',
+        measurements: {
+          viewportWidth: `${viewportWidth}px`,
+          sidebarWidth: `${sidebarWidth}px`,
+          sidebarPercentage: `${sidebarPercentage.toFixed(2)}%`,
+          threshold: '35%'
+        },
+        conditions: {
+          isMobileView: `${isMobileView} (breakpoint: ≤992px)`,
+          exceedsPercentageThreshold: `${sidebarPercentage > 35} (threshold: >35%)`,
+          finalDecision: shouldHide ? 'HIDE' : 'SHOW'
+        }
+      });
 
       setIsVisible(!shouldHide);
     };
@@ -39,7 +71,7 @@ const LeftSidebar: React.FC = () => {
     // Initial check after a short delay to ensure DOM is ready
     const initialTimer = setTimeout(checkVisibility, 100);
 
-    // Check on resize and zoom
+    // Check on resize
     window.addEventListener('resize', checkVisibility);
 
     return () => {
@@ -109,18 +141,6 @@ const LeftSidebar: React.FC = () => {
       sectionElements.forEach(section => observer.unobserve(section));
     };
   }, [sections, isVisible]);
-
-  // Note: Zoom detection replaced with dynamic 10% viewport width check above
-  // overlayState is kept for potential future use but currently not used
-
-  // Detect overlay state - DISABLED FOR NOW
-  // Can be re-enabled later with content-based detection
-  /*
-  useEffect(() => {
-    if (!isReady) return;
-    // Overlay detection logic here
-  }, [isReady]);
-  */
 
   const isActive = (sectionId: string) => activeSection === sectionId;
 

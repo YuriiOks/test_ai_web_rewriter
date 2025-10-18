@@ -19,30 +19,6 @@
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.3s ease, padding 0.3s ease, width 0.3s ease, left 0.3s ease;
 }
 
-/* Hide sidebar when content overlays it completely */
-.leftSidebarNav.hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-50%) translateX(-40px);
-}
-
-/* Hide text when partially overlaid, show on hover */
-.leftSidebarNav.textHidden:not(:hover) .linkText {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateX(0) !important;
-}
-
-/* Show text on hover when in textHidden mode */
-.leftSidebarNav.textHidden:hover .linkText {
-    opacity: 0.6;
-    pointer-events: auto;
-}
-
-.leftSidebarNav.textHidden:hover .sidebarNavLink.active .linkText,
-.leftSidebarNav.textHidden:hover .sidebarNavLink:hover .linkText {
-    opacity: 1;
-}
 .leftSidebarNav::before {
     content: "";
     position: absolute;
@@ -156,10 +132,7 @@
     transform: translateX(15px);
 }
 
-/* Responsive Design */
-/* Always show sidebar with panel style (visibility controlled by React component) */
-
-/* Always show text labels with beautiful background */
+/* Text labels with background */
 .leftSidebarNav .linkText {
     display: inline-block !important;
     visibility: visible !important;
@@ -169,7 +142,7 @@
     font-size: 0.8rem !important;
 }
 
-/* Permanent polished background to sidebar */
+/* Polished background panel for sidebar */
 .leftSidebarNav {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 30, 0.35));
     backdrop-filter: blur(8px) saturate(150%);
