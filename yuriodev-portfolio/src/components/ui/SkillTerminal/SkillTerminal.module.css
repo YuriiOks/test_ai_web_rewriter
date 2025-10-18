@@ -11,6 +11,10 @@
     position: relative;
 }
 
+[data-theme="light"] .skillTerminal {
+    border-color: rgba(249, 115, 22, 0.4);
+}
+
 .skillHeader {
     color:var(--accent-secondary);
     font-weight:600;

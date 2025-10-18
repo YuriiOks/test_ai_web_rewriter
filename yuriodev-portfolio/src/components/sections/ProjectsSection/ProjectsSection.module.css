@@ -1,9 +1,10 @@
 /* Background now controlled by global.css nth-child rules */
 
 .sectionContentWrapper {
-    max-width:1200px;
-    margin:0 auto;
-    padding:4rem 2rem;
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: 4rem 2rem;
 }
 
 .sectionHeader {

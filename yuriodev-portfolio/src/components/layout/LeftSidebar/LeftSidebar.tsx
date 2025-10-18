@@ -16,7 +16,7 @@ const LeftSidebar: React.FC = () => {
   // Check if sidebar should be visible based on screen size
   useEffect(() => {
     const checkVisibility = () => {
-      setIsVisible(window.innerWidth >= 1475);
+      setIsVisible(window.innerWidth >= 1075);
     };
 
     checkVisibility();

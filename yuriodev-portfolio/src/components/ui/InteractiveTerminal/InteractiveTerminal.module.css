@@ -12,8 +12,8 @@
 }
 
 [data-theme="light"] .terminalWrapper {
-    border: 1px solid #B8860B; /* Golden border for light theme */
-    box-shadow: 0 4px 16px rgba(184, 134, 11, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.4); /* Orange border for light theme */
+    box-shadow: 0 4px 16px rgba(249, 115, 22, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .terminalWrapper:hover {

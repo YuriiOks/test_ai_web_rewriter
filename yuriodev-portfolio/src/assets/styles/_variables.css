@@ -1,4 +1,7 @@
 :root {
+            /* Layout */
+            --content-max-width: 75%;
+            
             /* Dark Mode (Default Theme) */
             --bg-primary: #0a0f1c;
             --bg-secondary: rgba(10, 15, 28, 0.95);
