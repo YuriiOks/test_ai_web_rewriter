@@ -14,7 +14,9 @@ export interface AboutData {
   yearsExperience: string;
   summary: string;
   mission: string;
-  currentFocus: string[];
+  currentlyBuilding: string[];
+  nextSteps: string[];
+  vision: string[];
   achievements: Achievement[];
   contact: {
     email: string;
@@ -28,16 +30,29 @@ export interface AboutData {
 export const aboutData: AboutData = {
   headline: "AI/ML Systems Engineer | Agentic Architect",
   yearsExperience: "8+",
-  summary: `With 8+ years of experience designing, deploying, and scaling production-grade intelligent systems. Expert in agentic architectures (MCP, multi-agent workflows), RAG pipelines, and cloud-native ML platforms. Proven track record of improving retrieval precision from 30% to 95%, reducing data latency ×50, and delivering models with >90% F1. Strong collaborator, mentor, and end-to-end problem owner.`,
+  summary: `Specialized in building production-grade AI/ML systems with focus on agentic architectures, RAG pipelines, and cloud-native platforms. Currently architecting intelligent agents and democratizing ML education through hands-on learning.`,
   
-  mission: `Democratizing AI/ML education through hands-on learning platforms and production-grade open-source resources. Bridging the gap between theoretical knowledge and practical implementation to empower the next generation of ML engineers.`,
+  mission: `Building the next generation of AI education — moving beyond theory to production-ready skills. Creating open-source resources and learning platforms that bridge the gap between knowing and doing.`,
   
-  currentFocus: [
-    "Building YuriODev educational platform",
-    "Architecting agentic workflows (LangGraph, MCP)",
-    "Production RAG pipeline optimization",
-    "Multi-agent system design patterns",
-    "Open-source ML education resources",
+  currentlyBuilding: [
+    "YuriODev Platform",
+    "MCP Server Architecture",
+    "Multi-Agent Workflows",
+    "RAG Pipeline Systems",
+  ],
+  
+  nextSteps: [
+    "Advanced Agentic Patterns Course",
+    "Open-Source MCP Templates",
+    "Production ML Playbooks",
+    "Community Workshops & Mentoring",
+  ],
+  
+  vision: [
+    "Democratize AI/ML education",
+    "Production-first learning",
+    "Global developer community",
+    "Open knowledge sharing",
   ],
   
   achievements: [

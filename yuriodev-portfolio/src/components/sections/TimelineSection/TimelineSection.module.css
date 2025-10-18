@@ -2,7 +2,6 @@
 
 .sectionFullwidthBase {
   width: 100%;
-  min-height: 100vh;
   background: var(--section-hero-bg-gradient);
   padding: 4rem 2rem;
   position: relative;

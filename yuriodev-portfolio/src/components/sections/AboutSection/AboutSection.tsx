@@ -14,44 +14,55 @@ const AboutSection: React.FC = () => {
       <div className={styles.sectionContentWrapper}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>About</h2>
-          <p className={styles.headline}>{aboutData.headline}</p>
+          {/* <p>Now → Next → Vision</p> */}
         </div>
 
         <div className={styles.aboutGrid}>
-          {/* Main Summary */}
+          {/* Currently Building */}
           <div className={styles.summaryCard}>
             <div className={styles.cardHeader}>
-              <span className={styles.terminalPrompt}>$ cat ./profile.txt</span>
+              <span className={styles.terminalPrompt}>$ cat ./currently_building.md</span>
             </div>
             <div className={styles.cardContent}>
-              <div className={styles.experienceBadge}>
-                <span className={styles.yearsNumber}>{aboutData.yearsExperience}</span>
-                <span className={styles.yearsLabel}>Years Experience</span>
-              </div>
-              <p className={styles.summaryText}>{aboutData.summary}</p>
+              <h3 className={styles.focusTitle}>In Progress</h3>
+              <ul className={styles.focusList}>
+                {aboutData.currentlyBuilding.map((item, index) => (
+                  <li key={index} className={styles.focusItem}>
+                    <span className={styles.bullet}>▹</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          {/* Mission Statement */}
+          {/* Next Steps */}
           <div className={styles.missionCard}>
             <div className={styles.cardHeader}>
-              <span className={styles.terminalPrompt}>$ cat ./mission.md</span>
+              <span className={styles.terminalPrompt}>$ ls ./next_steps/</span>
             </div>
             <div className={styles.cardContent}>
-              <h3 className={styles.missionTitle}>Mission</h3>
-              <p className={styles.missionText}>{aboutData.mission}</p>
+              <h3 className={styles.missionTitle}>Next Steps</h3>
+              <ul className={styles.focusList}>
+                {aboutData.nextSteps.map((item, index) => (
+                  <li key={index} className={styles.focusItem}>
+                    <span className={styles.bullet}>▹</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          {/* Current Focus */}
+          {/* Long-term Vision */}
           <div className={styles.focusCard}>
             <div className={styles.cardHeader}>
-              <span className={styles.terminalPrompt}>$ ls ./current_focus/</span>
+              <span className={styles.terminalPrompt}>$ cat ./vision.txt</span>
             </div>
             <div className={styles.cardContent}>
-              <h3 className={styles.focusTitle}>Current Focus</h3>
+              <h3 className={styles.focusTitle}>Long-term Vision</h3>
               <ul className={styles.focusList}>
-                {aboutData.currentFocus.map((item, index) => (
+                {aboutData.vision.map((item, index) => (
                   <li key={index} className={styles.focusItem}>
                     <span className={styles.bullet}>▹</span>
                     {item}

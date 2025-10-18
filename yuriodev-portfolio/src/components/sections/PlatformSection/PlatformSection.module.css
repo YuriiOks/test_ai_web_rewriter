@@ -4,7 +4,6 @@
 
 .sectionFullwidthShaded {
   width: 100%;
-  min-height: 100vh;
   padding: 8rem 2rem 6rem;
   position: relative;
   z-index: 1;
