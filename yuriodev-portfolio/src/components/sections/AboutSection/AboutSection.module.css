@@ -3,9 +3,6 @@
 .sectionFullwidthShaded {
   width: 100%;
   min-height: 100vh;
-  background: var(--section-shaded-bg);
-  border-top: 1px solid var(--section-shaded-border);
-  border-bottom: 1px solid var(--section-shaded-border);
   padding: 4rem 2rem;
   display: flex;
   align-items: center;

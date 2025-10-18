@@ -14,7 +14,6 @@ import ProjectsSection from './components/sections/ProjectsSection/ProjectsSecti
 import TimelineSection from './components/sections/TimelineSection/TimelineSection';
 import ConnectSection from './components/sections/ConnectSection/ConnectSection';
 import SkillsSection from './components/sections/SkillsSection/SkillsSection';
-import InteractiveTerminal from './components/ui/InteractiveTerminal/InteractiveTerminal';
 
 function App() {
   const { toggleTheme } = useTheme();
@@ -95,32 +94,19 @@ function App() {
     return () => document.removeEventListener('keydown', handleKeyPress);
   }, [toggleTheme]);
 
-  // Section navigation helper
+  // Section navigation helper - dynamically discovers sections
   const navigateSection = (direction: 'next' | 'previous') => {
-    const sections = [
-      'hero',
-      'about',
-      'platform',
-      'projects',
-      'timeline',
-      'skills',
-      'terminal',
-      'connect'
-    ];
+    // Dynamically discover all sections in the DOM order
+    const allSections = Array.from(document.querySelectorAll('main section[id]')) as HTMLElement[];
 
-    // Get all section elements
-    const sectionElements = sections
-      .map(id => document.getElementById(id))
-      .filter(el => el !== null) as HTMLElement[];
-
-    if (sectionElements.length === 0) return;
+    if (allSections.length === 0) return;
 
     // Find current section based on scroll position
     const scrollPosition = window.scrollY + window.innerHeight / 2;
     let currentIndex = 0;
 
-    for (let i = 0; i < sectionElements.length; i++) {
-      const section = sectionElements[i];
+    for (let i = 0; i < allSections.length; i++) {
+      const section = allSections[i];
       const sectionTop = section.offsetTop;
       const sectionBottom = sectionTop + section.offsetHeight;
 
@@ -133,13 +119,13 @@ function App() {
     // Calculate target index
     let targetIndex = currentIndex;
     if (direction === 'next') {
-      targetIndex = Math.min(currentIndex + 1, sectionElements.length - 1);
+      targetIndex = Math.min(currentIndex + 1, allSections.length - 1);
     } else {
       targetIndex = Math.max(currentIndex - 1, 0);
     }
 
     // Scroll to target section
-    const targetSection = sectionElements[targetIndex];
+    const targetSection = allSections[targetIndex];
     if (targetSection) {
       targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -177,16 +163,6 @@ function App() {
             <SkillsSection />
             <ProjectsSection />
             <PlatformSection />
-            <section id="terminal" style={{
-              background: 'var(--section-shaded-bg)',
-              borderTop: '1px solid var(--section-shaded-border)',
-              borderBottom: '1px solid var(--section-shaded-border)',
-              padding: '4rem 2rem',
-              position: 'relative',
-              zIndex: 1
-            }}>
-              <InteractiveTerminal />
-            </section>
             <ConnectSection />
           </main>
           <Footer />

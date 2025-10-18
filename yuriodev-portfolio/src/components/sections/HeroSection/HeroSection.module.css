@@ -35,11 +35,19 @@
     font-weight:500;
 }
 
+[data-theme="light"] .heroSubtitle {
+    color: #f59e0b;
+}
+
 .typewriter {
     font-size:1.2rem;
     margin-bottom:2rem;
     min-height:2rem;
     color:var(--accent-tertiary);
+}
+
+[data-theme="light"] .typewriter {
+    color: #0891b2;
 }
 
 .codeBlock {
@@ -48,7 +56,7 @@
     border-radius:8px;
     padding:2rem;
     margin:2rem auto;
-    max-width:1000px;
+    max-width:1200px;
     text-align:left;
     font-family:'Fira Code',monospace;
     font-size:0.9rem;
@@ -58,9 +66,67 @@
     position: relative;
 }
 
+[data-theme="light"] .codeBlock {
+    border-color: #f59e0b;
+}
+
+.jsonGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.jsonGrid::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--border-card) 10%,
+        var(--border-card) 90%,
+        transparent 100%
+    );
+    transform: translateX(-50%);
+}
+
+[data-theme="light"] .jsonGrid::before {
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        #f59e0b 10%,
+        #f59e0b 90%,
+        transparent 100%
+    );
+}
+
+.jsonColumn {
+    min-width: 0;
+    padding: 0 1rem;
+}
+
+.deploymentSection {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-card);
+}
+
+[data-theme="light"] .deploymentSection {
+    border-top-color: #f59e0b;
+}
+
 .commandLine {
     color:var(--accent-secondary);
     margin-bottom:0.5rem;
+}
+
+[data-theme="light"] .commandLine {
+    color: #ea580c;
 }
 
 .output {
@@ -68,16 +134,73 @@
     margin-left:2rem;
 }
 
+[data-theme="light"] .output {
+    color: #1e293b;
+}
+
+.outputNested {
+    color:var(--text-primary);
+    margin-left:4rem;
+}
+
+.outputRoot {
+    color:var(--text-primary);
+    margin-left:0;
+}
+
 .jsonKey {
     color:var(--json-key-color);
+}
+
+[data-theme="light"] .jsonKey {
+    color: #0e7490;
 }
 
 .jsonString {
     color:var(--accent-primary);
 }
 
+[data-theme="light"] .jsonString {
+    color: #0369a1;
+}
+
 .jsonBoolean, .jsonNumber {
     color:var(--accent-secondary);
+}
+
+[data-theme="light"] .jsonBoolean, 
+[data-theme="light"] .jsonNumber {
+    color: #f59e0b;
+}
+
+.jsonBrace {
+    color: #00FF41;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+[data-theme="light"] .jsonBrace {
+    color: #1e40af;
+    opacity: 1;
+}
+
+.jsonBraceOuter {
+    color: var(--accent-secondary);
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+[data-theme="light"] .jsonBraceOuter {
+    color: #ea580c;
+}
+
+.jsonBracket {
+    color: #00d4ff;
+    font-weight: 600;
+}
+
+[data-theme="light"] .jsonBracket {
+    color: #1e40af;
 }
 
 .codeBlock .output .success {
@@ -86,6 +209,10 @@
 
 .success {
     color:var(--success);
+}
+
+[data-theme="light"] .success {
+    color: #10b981;
 }
 
 .ctaButtons {
@@ -109,12 +236,25 @@
     color: var(--cta-button-text);
 }
 
+[data-theme="light"] .ctaButton {
+    background: #ffffff;
+    border: 1px solid #f59e0b;
+    color: #f59e0b;
+}
+
 .ctaButton:hover {
     background: var(--cta-button-hover-bg);
     border-color: var(--cta-button-hover-border);
     color: var(--cta-button-hover-text);
     box-shadow: 0 0 20px var(--cta-button-hover-shadow);
     transform: translateY(-2px);
+}
+
+[data-theme="light"] .ctaButton:hover {
+    background: #f59e0b;
+    border-color: #f59e0b;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
 }
 
 .ctaButton::before {
@@ -141,6 +281,19 @@
     .codeBlock {
         padding: 1.5rem;
         font-size: 0.8rem;
+    }
+
+    .jsonGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .jsonGrid::before {
+        display: none;
+    }
+
+    .jsonColumn {
+        padding: 0;
     }
 
     .output {

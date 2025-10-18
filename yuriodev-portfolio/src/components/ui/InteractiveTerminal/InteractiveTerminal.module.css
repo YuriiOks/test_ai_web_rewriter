@@ -1,65 +1,422 @@
-.interactiveTerminal {
+/* Mac-style Terminal Window Wrapper */
+.terminalWrapper {
     background: var(--bg-card);
-    border: 1px solid var(--accent-primary);
-    border-radius: 8px;
-    padding: 1.5rem;
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
     margin: 2rem auto;
-    max-width: 800px;
+    max-width: 900px;
     font-family: 'Fira Code', monospace;
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="light"] .terminalWrapper {
+    border: 1px solid #B8860B; /* Golden border for light theme */
+    box-shadow: 0 4px 16px rgba(184, 134, 11, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.terminalWrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .terminalWrapper:hover {
+    box-shadow: 0 8px 32px rgba(184, 134, 11, 0.25), 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Mac-style Terminal Header */
+.terminalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(180deg, rgba(var(--bg-card-rgb-val, 20, 24, 36), 0.95), rgba(var(--bg-card-rgb-val, 20, 24, 36), 0.98));
+    border-bottom: 1px solid var(--border-color-muted);
+    backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .terminalHeader {
+    background: linear-gradient(180deg, rgba(240, 242, 245, 0.95), rgba(240, 242, 245, 0.98));
+}
+
+/* Traffic Lights (Mac window buttons) */
+.trafficLights {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.trafficLight {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: opacity 0.2s ease;
+}
+
+.trafficLight.red {
+    background: #ff5f57;
+    box-shadow: 0 0 3px rgba(255, 95, 87, 0.5);
+}
+
+.trafficLight.yellow {
+    background: #ffbd2e;
+    box-shadow: 0 0 3px rgba(255, 189, 46, 0.5);
+}
+
+.trafficLight.green {
+    background: #28c840;
+    box-shadow: 0 0 3px rgba(40, 200, 64, 0.5);
+}
+
+.terminalWrapper:hover .trafficLight {
+    opacity: 1;
+}
+
+.terminalTitle {
+    flex: 1;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.terminalActions {
+    width: 80px; /* Balance the traffic lights */
+}
+
+/* Terminal Body */
+.interactiveTerminal {
+    background: rgba(var(--bg-card-rgb-val, 20, 24, 36), 0.5);
+    padding: 1.5rem;
+    cursor: text;
+}
+
+[data-theme="light"] .interactiveTerminal {
+    background: rgba(248, 249, 250, 0.5);
 }
 
 .terminalOutput {
-    min-height: 200px;
-    max-height: 400px;
+    min-height: 250px;
+    max-height: 450px;
     overflow-y: auto;
     margin-bottom: 1rem;
     padding: 1rem;
-    background: rgba(var(--bg-card-rgb-val), 0.5);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    border: 1px solid rgba(var(--accent-primary-rgb), 0.1);
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) transparent;
+    position: relative;
+}
+
+.terminalOutput::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 65, 0.03) 0px,
+        rgba(0, 255, 65, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 6px;
+}
+
+[data-theme="light"] .terminalOutput {
+    background: rgba(240, 240, 240, 0.6);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .terminalOutput::before {
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.02) 0px,
+        rgba(0, 0, 0, 0.02) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+}
+
+.terminalOutput > * {
+    position: relative;
+    z-index: 2;
+}
+
+[data-theme="light"] .terminalOutput {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.terminalOutput::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminalOutput::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminalOutput::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
     border-radius: 4px;
-    border: 1px solid var(--border-color-muted);
+}
+
+.terminalOutput::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
 }
 
 .terminalInputLine {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: rgba(var(--accent-primary-rgb), 0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(var(--accent-primary-rgb), 0.15);
 }
 
 .terminalPromptInteractive {
-    color: var(--accent-secondary);
-    font-weight: 600;
+    color: #FFD700;
+    font-weight: 700;
     white-space: nowrap;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.3);
+    animation: promptGlow 2s ease-in-out infinite;
+}
+
+[data-theme="light"] .terminalPromptInteractive {
+    color: #B8860B; /* Dark goldenrod */
+    text-shadow: none;
+    animation: none;
+}
+
+@keyframes promptGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.3); }
+    50% { text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5); }
 }
 
 .terminalInput {
     flex: 1;
     background: transparent;
     border: none;
-    color: var(--text-primary);
+    color: #00FF41;
     font-family: 'Fira Code', monospace;
     font-size: 1rem;
     outline: none;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+    caret-color: #00FF41;
+}
+
+[data-theme="light"] .terminalInput {
+    color: #2F4F2F; /* Dark slate gray/green */
+    text-shadow: none;
+    caret-color: #2F4F2F;
 }
 
 .terminalInput::placeholder {
-    color: var(--text-muted);
+    color: #00AA55;
+    font-weight: 400;
+    opacity: 0.6;
 }
 
+[data-theme="light"] .terminalInput::placeholder {
+    color: #696969; /* Dim gray */
+    opacity: 0.5;
+}
+
+.terminalInput::selection {
+    background: rgba(0, 255, 65, 0.3);
+    color: #FFFFFF;
+}
+
+[data-theme="light"] .terminalInput::selection {
+    background: rgba(47, 79, 47, 0.2);
+    color: #000000;
+}
+
+/* Terminal Line Types with Enhanced Color Coding */
 .terminalLine {
     margin-bottom: 0.5rem;
-    line-height: 1.4;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
 }
 
+/* Light Theme - Remove shadows and use darker colors */
+[data-theme="light"] .terminalLine {
+    text-shadow: none;
+}
+
+/* Command line (user input) - Bright Yellow/Gold */
+.terminalLine.command {
+    color: #FFD700;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.3);
+    margin-top: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+[data-theme="light"] .terminalLine.command {
+    color: #B8860B; /* Dark goldenrod */
+    text-shadow: none;
+}
+
+/* Success messages - Bright Cyan */
+.terminalLine.success {
+    color: #00FFFF;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+[data-theme="light"] .terminalLine.success {
+    color: #008B8B; /* Dark cyan */
+    text-shadow: none;
+}
+
+.terminalLine.success::before {
+    content: '✓ ';
+    font-weight: 700;
+    color: #00FF41;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+}
+
+[data-theme="light"] .terminalLine.success::before {
+    color: #228B22; /* Forest green */
+    text-shadow: none;
+}
+
+/* Error messages - Bright Red */
+.terminalLine.error {
+    color: #FF3366;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
+    animation: errorPulse 1.5s ease-in-out;
+}
+
+[data-theme="light"] .terminalLine.error {
+    color: #DC143C; /* Crimson */
+    text-shadow: none;
+}
+
+.terminalLine.error::before {
+    content: '✗ ';
+    font-weight: 700;
+    color: #FF0044;
+    text-shadow: 0 0 10px rgba(255, 0, 68, 0.8);
+}
+
+[data-theme="light"] .terminalLine.error::before {
+    color: #8B0000; /* Dark red */
+    text-shadow: none;
+}
+
+@keyframes errorPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Warning messages - Orange/Amber */
+.terminalLine.warning {
+    color: #FFA500;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 165, 0, 0.5);
+}
+
+[data-theme="light"] .terminalLine.warning {
+    color: #FF8C00; /* Dark orange */
+    text-shadow: none;
+}
+
+.terminalLine.warning::before {
+    content: '⚠ ';
+    font-weight: 700;
+    color: #FFB84D;
+    text-shadow: 0 0 10px rgba(255, 184, 77, 0.7);
+}
+
+[data-theme="light"] .terminalLine.warning::before {
+    color: #CC7000; /* Darker orange */
+    text-shadow: none;
+}
+
+/* Info messages - Magenta/Pink */
+.terminalLine.info {
+    color: #FF00FF;
+    font-weight: 500;
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.4);
+}
+
+[data-theme="light"] .terminalLine.info {
+    color: #8B008B; /* Dark magenta */
+    text-shadow: none;
+}
+
+/* Comments - Dim Green */
+.terminalLine.comment {
+    color: #00AA55;
+    font-style: italic;
+    opacity: 0.8;
+    font-weight: 400;
+    text-shadow: 0 0 5px rgba(0, 170, 85, 0.3);
+}
+
+[data-theme="light"] .terminalLine.comment {
+    color: #556B2F; /* Dark olive green */
+    text-shadow: none;
+    opacity: 0.7;
+}
+
+/* Regular output - MATRIX GREEN */
+.terminalLine.output {
+    color: #00FF41;
+    font-weight: 500;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+    letter-spacing: 0.3px;
+}
+
+[data-theme="light"] .terminalLine.output {
+    color: #2F4F2F; /* Dark slate gray/green */
+    text-shadow: none;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+    .terminalWrapper {
+        margin: 1.5rem 1rem;
+        border-radius: 10px;
+    }
+
+    .terminalHeader {
+        padding: 0.6rem 0.85rem;
+    }
+
+    .trafficLight {
+        width: 10px;
+        height: 10px;
+    }
+
+    .terminalTitle {
+        font-size: 0.75rem;
+    }
+
     .interactiveTerminal {
         padding: 1rem;
-        margin: 1.5rem 1rem;
     }
 
     .terminalOutput {
-        min-height: 150px;
-        max-height: 300px;
+        min-height: 200px;
+        max-height: 350px;
         padding: 0.75rem;
         font-size: 0.85rem;
     }
@@ -71,17 +428,42 @@
     .terminalPromptInteractive {
         font-size: 0.9rem;
     }
+
+    .terminalLine {
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 480px) {
+    .terminalWrapper {
+        margin: 1rem 0.5rem;
+        border-radius: 8px;
+    }
+
+    .terminalHeader {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .trafficLights {
+        gap: 6px;
+    }
+
+    .trafficLight {
+        width: 8px;
+        height: 8px;
+    }
+
+    .terminalTitle {
+        font-size: 0.7rem;
+    }
+
     .interactiveTerminal {
         padding: 0.75rem;
-        margin: 1rem 0.5rem;
     }
 
     .terminalOutput {
-        min-height: 120px;
-        max-height: 250px;
+        min-height: 150px;
+        max-height: 280px;
         padding: 0.5rem;
         font-size: 0.75rem;
     }
@@ -94,7 +476,13 @@
         font-size: 0.85rem;
     }
 
+    .terminalLine {
+        font-size: 0.75rem;
+        margin-bottom: 0.4rem;
+    }
+
     .terminalInputLine {
         flex-wrap: wrap;
+        padding: 0.4rem 0.75rem;
     }
 }

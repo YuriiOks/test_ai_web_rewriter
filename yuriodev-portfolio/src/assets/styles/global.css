@@ -27,6 +27,17 @@ main {
     width: 100%;
 }
 
+/* Dynamic alternating section backgrounds */
+main > section:nth-child(even) {
+    background: var(--section-shaded-bg);
+    border-top: 1px solid var(--section-shaded-border);
+    border-bottom: 1px solid var(--section-shaded-border);
+}
+
+main > section:nth-child(odd) {
+    background: transparent;
+}
+
 /* Ensure all images and media are responsive */
 img, video, canvas {
     max-width: 100%;

@@ -1,8 +1,4 @@
-.sectionFullwidthShaded {
-    background: var(--section-shaded-bg);
-    border-top: 1px solid var(--section-shaded-border);
-    border-bottom: 1px solid var(--section-shaded-border);
-}
+/* Background now controlled by global.css nth-child rules */
 
 .sectionContentWrapper {
     max-width:1200px;
