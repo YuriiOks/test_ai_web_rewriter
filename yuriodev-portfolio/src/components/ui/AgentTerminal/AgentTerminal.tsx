@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './AgentTerminal.module.css';
+// Import the new simplified service function
+import { sendMessage } from '../../../services/agentService'; 
 
 interface Message {
   id: string;
@@ -23,58 +25,26 @@ const AgentTerminal: React.FC = () => {
       content: "[SYSTEM] Connected to AI Engine: v1.0",
       timestamp: new Date(),
     },
-    {
-      id: crypto.randomUUID(),
-      type: 'system',
-      content: "[SYSTEM] Type 'help' for available commands.",
-      timestamp: new Date(),
-    },
   ]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-  const [lastCustomerId, setLastCustomerId] = useState<number | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const terminalOutputRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-scroll to bottom when new messages appear
   useEffect(() => {
     if (terminalOutputRef.current) {
       terminalOutputRef.current.scrollTop = terminalOutputRef.current.scrollHeight;
     }
   }, [messages]);
 
-  const parseCommand = (rawCommand: string): { command: string; customerId?: number; query?: string } => {
-    const trimmed = rawCommand.trim();
+  const handleCommandSubmit = async (rawCommand: string) => {
+    if (!rawCommand) return;
+    
+    setIsProcessing(true);
 
-    // Match: query --id 123 "question text"
-    const queryMatch = trimmed.match(/^query\s+--id\s+(\d+)\s+"([^"]+)"/);
-    if (queryMatch) {
-      return {
-        command: 'query',
-        customerId: parseInt(queryMatch[1]),
-        query: queryMatch[2],
-      };
-    }
-
-    // Match: "plain question" (uses last customer ID)
-    const plainQuestionMatch = trimmed.match(/^"([^"]+)"$/);
-    if (plainQuestionMatch && lastCustomerId) {
-      return {
-        command: 'query',
-        customerId: lastCustomerId,
-        query: plainQuestionMatch[1],
-      };
-    }
-
-    // Other commands
-    return { command: trimmed.toLowerCase() };
-  };
-
-  const executeCommand = async (rawCommand: string) => {
-    const { command, customerId, query } = parseCommand(rawCommand);
-
-    // Add user command to messages
+    // 1. Add user's command to the display
     setMessages(prev => [...prev, {
       id: crypto.randomUUID(),
       type: 'user',
@@ -82,35 +52,69 @@ const AgentTerminal: React.FC = () => {
       timestamp: new Date(),
     }]);
 
-    // Handle different commands
-    switch (command) {
-      case 'help':
-        setMessages(prev => [...prev, {
-          id: crypto.randomUUID(),
-          type: 'assistant',
-          content: `[ASSISTANT] Available commands:
-  - query --id <id> "<question>" : Query customer banking information
-  - info --products              : List available product types
-  - clear                        : Clear terminal history
-  - exit                         : End session`,
-          timestamp: new Date(),
-        }]);
-        break;
+    // 2. Add a "processing" message
+    const processingId = crypto.randomUUID();
+    setMessages(prev => [...prev, {
+      id: processingId,
+      type: 'processing',
+      content: '[PROCESSING] Forwarding to agent...',
+      timestamp: new Date(),
+    }]);
 
-      case 'info':
-        setMessages(prev => [...prev, {
-          id: crypto.randomUUID(),
-          type: 'assistant',
-          content: `[ASSISTANT] Available Product Types:
-  - Fixed Rate ISA
-  - Notice Savings Account
-  - Fixed Rate Bond
-  - Easy Access ISA`,
-          timestamp: new Date(),
-        }]);
-        break;
+    // 3. Send the raw command to the backend
+    const result = await sendMessage(rawCommand);
 
-      case 'clear':
+    // 4. Remove "processing" and display the backend's response
+    setMessages(prev => {
+      const newMessages = prev.filter(m => m.id !== processingId);
+      const responseType = result.status === 'error' ? 'error' : 'assistant';
+      
+      return [
+        ...newMessages,
+        {
+          id: crypto.randomUUID(),
+          type: responseType,
+          content: result.response, // Display the raw response from the backend
+          timestamp: new Date(),
+        }
+      ];
+    });
+
+    setIsProcessing(false);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && !isProcessing) {
+      const command = input.trim();
+      handleCommandSubmit(command);
+      if (command) {
+        setCommandHistory(prev => [command, ...prev]);
+        setHistoryIndex(-1);
+      }
+      setInput('');
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (historyIndex < commandHistory.length - 1) {
+        const newIndex = historyIndex + 1;
+        setHistoryIndex(newIndex);
+        setInput(commandHistory[newIndex]);
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (historyIndex > 0) {
+        const newIndex = historyIndex - 1;
+        setHistoryIndex(newIndex);
+        setInput(commandHistory[newIndex]);
+      } else if (historyIndex <= 0) {
+        setHistoryIndex(-1);
+        setInput('');
+      }
+    } else if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
+        e.preventDefault();
         setMessages([
           {
             id: crypto.randomUUID(),
@@ -119,129 +123,24 @@ const AgentTerminal: React.FC = () => {
             timestamp: new Date(),
           }
         ]);
-        break;
-
-      case 'exit':
-        setMessages(prev => [...prev, {
-          id: crypto.randomUUID(),
-          type: 'system',
-          content: '[SYSTEM] Session terminated. Thank you for using Banking Assistant.',
-          timestamp: new Date(),
-        }]);
-        break;
-
-      case 'query':
-        if (!customerId || !query) {
-          setMessages(prev => [...prev, {
-            id: crypto.randomUUID(),
-            type: 'error',
-            content: '[ERROR] Invalid syntax. Use: query --id <customer_id> "<question>"',
-            timestamp: new Date(),
-          }]);
-          return;
-        }
-
-        // Remember customer ID for future plain queries
-        setLastCustomerId(customerId);
-
-        // Show processing message
-        const processingId = crypto.randomUUID();
-        setMessages(prev => [...prev, {
-          id: processingId,
-          type: 'processing',
-          content: `[PROCESSING] Analyzing customer ${customerId} records...`,
-          timestamp: new Date(),
-        }]);
-
-        // Simulate API call (replace with actual API call later)
-        setTimeout(() => {
-          // Remove processing message and add response
-          setMessages(prev => [
-            ...prev.filter(m => m.id !== processingId),
-            {
-              id: crypto.randomUUID(),
-              type: 'assistant',
-              content: `[ASSISTANT] This is a demo response. Connect to backend API at https://api.yuriodev.co.uk for real banking queries.`,
-              timestamp: new Date(),
-            },
-            {
-              id: crypto.randomUUID(),
-              type: 'log',
-              content: `[LOG] Request processed in 182 ms.`,
-              timestamp: new Date(),
-            }
-          ]);
-        }, 1500);
-        break;
-
-      default:
-        setMessages(prev => [...prev, {
-          id: crypto.randomUUID(),
-          type: 'error',
-          content: `[ERROR] Command not found: ${command}. Type 'help' for available commands.`,
-          timestamp: new Date(),
-        }]);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  };
-
-  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      const command = input.trim();
-      if (command) {
-        // Add to command history
-        setCommandHistory(prev => [...prev, command]);
-        setHistoryIndex(-1);
-
-        // Execute command
-        executeCommand(command);
-        setInput('');
-      }
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      if (commandHistory.length > 0) {
-        const newIndex = historyIndex < commandHistory.length - 1 ? historyIndex + 1 : historyIndex;
-        setHistoryIndex(newIndex);
-        setInput(commandHistory[commandHistory.length - 1 - newIndex]);
-      }
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      if (historyIndex > 0) {
-        const newIndex = historyIndex - 1;
-        setHistoryIndex(newIndex);
-        setInput(commandHistory[commandHistory.length - 1 - newIndex]);
-      } else if (historyIndex === 0) {
-        setHistoryIndex(-1);
-        setInput('');
-      }
-    } else if (e.ctrlKey && e.key === 'l') {
-      e.preventDefault();
-      executeCommand('clear');
-    }
-  };
-
-  // Focus input when clicking on terminal
   const handleTerminalClick = () => {
     inputRef.current?.focus();
   };
 
   return (
     <div className={styles.terminalWrapper}>
-      {/* Mac-style window header */}
       <div className={styles.terminalHeader}>
         <div className={styles.trafficLights}>
           <span className={`${styles.trafficLight} ${styles.red}`}></span>
           <span className={`${styles.trafficLight} ${styles.yellow}`}></span>
           <span className={`${styles.trafficLight} ${styles.green}`}></span>
         </div>
-        <div className={styles.terminalTitle}>assitant@yuriodev: ~</div>
+        <div className={styles.terminalTitle}>assistant@yuriodev: ~</div>
         <div className={styles.terminalActions}></div>
       </div>
-
-      {/* Terminal content */}
       <div className={styles.agentTerminal} onClick={handleTerminalClick}>
         <div className={styles.terminalOutput} ref={terminalOutputRef}>
           {messages.map((message) => (
@@ -254,7 +153,7 @@ const AgentTerminal: React.FC = () => {
           ))}
         </div>
         <div className={styles.terminalInputLine}>
-          <span className={styles.terminalPrompt}>{'assitant@yuriodev: ~'}</span>
+          <span className={styles.terminalPrompt}>{'assistant@yuriodev: ~'}</span>
           <input
             ref={inputRef}
             type="text"
@@ -262,9 +161,10 @@ const AgentTerminal: React.FC = () => {
             onChange={handleInputChange}
             onKeyDown={handleInputKeyDown}
             className={styles.terminalInput}
-            placeholder='Type a command... (try "help")'
+            placeholder='Type a command... (e.g., "help")'
             aria-label="Terminal command input"
             autoComplete="off"
+            disabled={isProcessing}
           />
         </div>
       </div>
