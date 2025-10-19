@@ -1,0 +1,33 @@
+.mainContent {
+    flex: 1;
+    min-height: 100vh;
+    padding-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Constrain all sections to 75% width - same as main portfolio */
+.mainContent section {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Add top padding ONLY for single-section pages (coming soon pages) */
+.mainContent section:first-child:last-child {
+    padding-top: calc(80px + 4rem); /* Header height + normal padding */
+}
+
+@media (max-width: 768px) {
+    /* Add top padding ONLY for single-section pages */
+    .mainContent section:first-child:last-child {
+        padding-top: calc(70px + 2rem); /* Header height (tablet) + normal padding */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Add top padding ONLY for single-section pages */
+    .mainContent section:first-child:last-child {
+        padding-top: calc(60px + 1.5rem); /* Header height (mobile) + normal padding */
+    }
+}

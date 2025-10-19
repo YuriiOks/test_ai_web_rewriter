@@ -1,0 +1,409 @@
+.heroSection {
+    padding: 4rem 2rem;
+    padding-top: calc(80px + 4rem); /* Header height + normal padding */
+    text-align: center;
+    background: var(--section-hero-bg-gradient);
+    position: relative;
+}
+
+.heroTitle {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: var(--hero-title-shadow);
+    animation: subtleGlow 4s ease-in-out infinite;
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .heroTitle {
+    color: var(--accent-secondary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12),
+                 0 0 12px rgba(217, 119, 6, 0.08);
+    animation: none;
+}
+
+/* Option 1: Subtle Warm Glow */
+.heroTitleOption1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .heroTitleOption1 {
+    color: var(--accent-secondary);
+    text-shadow: 0 2px 8px rgba(217, 119, 6, 0.15),
+                 0 1px 2px rgba(0, 0, 0, 0.1);
+    animation: none;
+}
+
+/* Option 2: Layered Depth */
+.heroTitleOption2 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .heroTitleOption2 {
+    color: var(--accent-secondary);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
+                 0 4px 8px rgba(217, 119, 6, 0.08),
+                 0 8px 16px rgba(217, 119, 6, 0.05);
+    animation: none;
+}
+
+/* Option 3: Crisp + Accent */
+.heroTitleOption3 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .heroTitleOption3 {
+    color: var(--accent-secondary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12),
+                 0 0 12px rgba(217, 119, 6, 0.08);
+    animation: none;
+}
+
+/* Option 4: Enhanced Simple */
+.heroTitleOption4 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .heroTitleOption4 {
+    color: var(--accent-secondary);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    animation: none;
+}
+
+@keyframes subtleGlow {
+    0%,100%{filter:hue-rotate(0deg);}
+    25%{filter:hue-rotate(10deg);}
+    75%{filter:hue-rotate(-10deg);}
+}
+
+.heroSubtitle {
+    font-size:1.3rem;
+    color:var(--accent-secondary);
+    margin-bottom:2rem;
+    font-weight:500;
+}
+
+[data-theme="light"] .heroSubtitle {
+    color: #f59e0b;
+}
+
+.typewriter {
+    font-size:1.2rem;
+    margin-bottom:2rem;
+    min-height:2rem;
+    color:var(--accent-tertiary);
+}
+
+[data-theme="light"] .typewriter {
+    color: #0891b2;
+}
+
+.codeBlock {
+    background:var(--bg-card);
+    border:1px solid var(--border-card);
+    border-radius:8px;
+    padding:2rem;
+    margin:2rem auto;
+    max-width:var(--content-max-width);
+    width: 100%;
+    text-align:left;
+    font-family:'Fira Code',monospace;
+    font-size:0.9rem;
+    line-height:1.6;
+    box-shadow: var(--card-shadow);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+[data-theme="dark"] .codeBlock {
+    background: rgba(10, 15, 28, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .codeBlock {
+    border-color: rgba(249, 115, 22, 0.4);
+}
+
+.jsonGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.jsonGrid::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--border-card) 10%,
+        var(--border-card) 90%,
+        transparent 100%
+    );
+    transform: translateX(-50%);
+}
+
+[data-theme="light"] .jsonGrid::before {
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--accent-secondary) 10%,
+        var(--accent-secondary) 90%,
+        transparent 100%
+    );
+}
+
+.jsonColumn {
+    min-width: 0;
+    padding: 0 1rem;
+}
+
+.deploymentSection {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-card);
+}
+
+[data-theme="light"] .deploymentSection {
+    border-top-color: #f59e0b;
+}
+
+.commandLine {
+    color:var(--accent-secondary);
+    margin-bottom:0.5rem;
+}
+
+[data-theme="light"] .commandLine {
+    color: var(--accent-secondary);
+}
+
+.output {
+    color:var(--text-primary);
+    margin-left:2rem;
+}
+
+[data-theme="light"] .output {
+    color: #1e293b;
+}
+
+.outputNested {
+    color:var(--text-primary);
+    margin-left:4rem;
+}
+
+.outputRoot {
+    color:var(--text-primary);
+    margin-left:0;
+}
+
+.jsonKey {
+    color:var(--json-key-color);
+}
+
+[data-theme="light"] .jsonKey {
+    color: #0e7490;
+}
+
+.jsonString {
+    color:var(--accent-primary);
+}
+
+[data-theme="light"] .jsonString {
+    color: #0369a1;
+}
+
+.jsonBoolean, .jsonNumber {
+    color:var(--accent-secondary);
+}
+
+[data-theme="light"] .jsonBoolean, 
+[data-theme="light"] .jsonNumber {
+    color: #f59e0b;
+}
+
+.jsonBrace {
+    color: #00FF41;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+[data-theme="light"] .jsonBrace {
+    color: #1e40af;
+    opacity: 1;
+}
+
+.jsonBraceOuter {
+    color: var(--accent-secondary);
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+[data-theme="light"] .jsonBraceOuter {
+    color: #ea580c;
+}
+
+.jsonBracket {
+    color: #00d4ff;
+    font-weight: 600;
+}
+
+[data-theme="light"] .jsonBracket {
+    color: #1e40af;
+}
+
+.codeBlock .output .success {
+    color:var(--success);
+}
+
+.success {
+    color:var(--success);
+}
+
+[data-theme="light"] .success {
+    color: #10b981;
+}
+
+.ctaButtons {
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+    margin:2rem auto 0;
+    flex-wrap:wrap;
+    max-width: var(--content-max-width);
+    width: 100%;
+}
+
+.ctaButton {
+    padding:0.8rem 1.5rem;
+    border-radius:5px;
+    font-family:'Fira Code',monospace;
+    font-weight:500;
+    transition:all 0.3s ease;
+    position:relative;
+    text-decoration:none;
+    background: var(--cta-button-bg);
+    border: 1px solid var(--cta-button-border);
+    color: var(--cta-button-text);
+}
+
+[data-theme="light"] .ctaButton {
+    background: #ffffff;
+    border: 1px solid var(--accent-secondary);
+    color: var(--accent-secondary);
+}
+
+.ctaButton:hover {
+    background: var(--cta-button-hover-bg);
+    border-color: var(--cta-button-hover-border);
+    color: var(--cta-button-hover-text);
+    box-shadow: 0 0 20px var(--cta-button-hover-shadow);
+    transform: translateY(-2px);
+}
+
+[data-theme="light"] .ctaButton:hover {
+    background: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+    color: #ffffff;
+    box-shadow: 0 0 20px var(--glow-secondary);
+}
+
+.ctaButton::before {
+    content:'> ';
+}
+
+@media (max-width: 768px) {
+    .heroSection {
+        padding: 3rem 1.5rem;
+        padding-top: calc(70px + 3rem); /* Header height (tablet) + normal padding */
+    }
+
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+
+    .heroSubtitle {
+        font-size: 1.1rem;
+    }
+
+    .typewriter {
+        font-size: 1rem;
+    }
+
+    .codeBlock {
+        padding: 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    .jsonGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .jsonGrid::before {
+        display: none;
+    }
+
+    .jsonColumn {
+        padding: 0;
+    }
+
+    .output {
+        margin-left: 1rem;
+    }
+
+    .ctaButtons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .ctaButton {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroSection {
+        padding: 2rem 1rem;
+        padding-top: calc(60px + 2rem); /* Header height (mobile) + normal padding */
+    }
+
+    .heroTitle {
+        font-size: 1.8rem;
+    }
+
+    .heroSubtitle {
+        font-size: 0.95rem;
+    }
+
+    .typewriter {
+        font-size: 0.9rem;
+    }
+
+    .codeBlock {
+        padding: 1rem;
+        font-size: 0.75rem;
+    }
+
+    .output {
+        margin-left: 0.5rem;
+    }
+}

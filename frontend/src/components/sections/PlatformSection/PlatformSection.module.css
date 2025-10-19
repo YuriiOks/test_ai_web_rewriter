@@ -1,0 +1,601 @@
+/* ===========================
+   Platform Section Styles
+   =========================== */
+
+.sectionFullwidthShaded {
+  width: 100%;
+  padding: 3rem 2rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionFullwidthShaded::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-primary),
+    transparent
+  );
+}
+
+.sectionContentWrapper {
+  max-width: var(--content-max-width);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.sectionTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.sectionTitle::before {
+  content: '# ';
+  color: var(--accent-secondary);
+}
+
+/* Dark theme - cyan # prefix and golden/yellow title */
+[data-theme="dark"] .sectionTitle {
+  color: var(--accent-secondary);
+}
+
+[data-theme="dark"] .sectionTitle::before {
+  color: var(--accent-primary);
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-secondary), transparent);
+}
+
+.tagline {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.mission {
+  font-size: 1.125rem;
+  color: var(--text-tertiary);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Current Phase Card */
+.currentPhaseCard {
+  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 4rem;
+  transition: all 0.3s ease;
+}
+
+.currentPhaseCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(var(--accent-secondary-rgb), 0.2);
+  border-color: var(--accent-secondary);
+}
+
+/* Light theme card */
+[data-theme="light"] .currentPhaseCard {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(217, 119, 6, 0.4);
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.12);
+}
+
+[data-theme="light"] .currentPhaseCard:hover {
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.3);
+  border-color: var(--accent-secondary);
+}
+
+.phaseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.phaseTitle {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-family: 'Fira Code', monospace;
+}
+
+.progressPercentage {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-secondary);
+  font-family: 'Fira Code', monospace;
+}
+
+/* Light theme percentage */
+[data-theme="light"] .progressPercentage {
+  color: var(--accent-secondary);
+}
+
+.progressBar {
+  height: 12px;
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.2);
+}
+
+/* Light theme progress bar */
+[data-theme="light"] .progressBar {
+  background: rgba(217, 119, 6, 0.08);
+  border-color: rgba(217, 119, 6, 0.2);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 6px;
+  transition: width 1s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Light theme progress fill */
+[data-theme="light"] .progressFill {
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Roadmap Section */
+.roadmapSection {
+  margin-bottom: 4rem;
+}
+
+.roadmapTitle {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.roadmapGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.roadmapCard {
+  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Light theme roadmap card */
+[data-theme="light"] .roadmapCard {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(217, 119, 6, 0.4);
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.12);
+}
+
+.roadmapCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-primary);
+  transition: all 0.3s ease;
+}
+
+.roadmapCard.completed::before {
+  background: #10b981;
+}
+
+.roadmapCard.active::before {
+  background: var(--accent-secondary);
+}
+
+/* Light theme active before */
+[data-theme="light"] .roadmapCard.active::before {
+  background: var(--accent-secondary);
+}
+
+.roadmapCard.planned::before {
+  background: var(--text-muted);
+}
+
+.roadmapCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(var(--accent-secondary-rgb), 0.2);
+  border-color: var(--accent-secondary);
+}
+
+/* Light theme hover */
+[data-theme="light"] .roadmapCard:hover {
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.3);
+  border-color: var(--accent-secondary);
+}
+
+.phaseNumber {
+  font-size: 0.875rem;
+  color: var(--accent-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Light theme phase number */
+[data-theme="light"] .phaseNumber {
+  color: var(--accent-secondary);
+}
+
+.phaseCardTitle {
+  font-size: 1.25rem;
+  color: var(--accent-secondary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Light theme phase card title - accent-secondary already correct */
+[data-theme="light"] .phaseCardTitle {
+  color: var(--accent-secondary);
+}
+
+.phaseDescription {
+  font-size: 0.938rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.813rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: 'Fira Code', monospace;
+  border: 1px solid;
+}
+
+.roadmapCard.completed .statusBadge {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border-color: #10b981;
+}
+
+.roadmapCard.active .statusBadge {
+  background: rgba(var(--accent-secondary-rgb), 0.1);
+  color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+
+/* Light theme active badge */
+[data-theme="light"] .roadmapCard.active .statusBadge {
+  background: rgba(217, 119, 6, 0.1);
+  color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+
+.roadmapCard.planned .statusBadge {
+  background: rgba(var(--text-muted-rgb), 0.1);
+  color: var(--text-muted);
+  border-color: var(--text-muted);
+}
+
+.completionDate {
+  font-size: 0.813rem;
+  color: var(--text-muted);
+  font-style: italic;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Features Section */
+.featuresSection {
+  margin-bottom: 4rem;
+}
+
+.featuresTitle {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.featureCard {
+  background: var(--background-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent-primary);
+}
+
+.featureIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.featureTitle {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.featureDescription {
+  font-size: 0.938rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.featureFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.statusTag {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.813rem;
+  font-weight: 600;
+}
+
+.statusTag.live {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.statusTag.beta {
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+}
+
+.statusTag.coming-soon {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.featureLink {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.938rem;
+  transition: all 0.2s ease;
+}
+
+.featureLink:hover {
+  color: var(--accent-secondary);
+  transform: translateX(4px);
+}
+
+/* Stats Section */
+.statsSection {
+  margin-bottom: 4rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.statCard {
+  text-align: center;
+  padding: 2rem;
+  background: var(--background-primary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.statValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-size: 0.938rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* CTA Section */
+.ctaSection {
+  text-align: center;
+  padding: 3rem;
+  background: var(--background-primary);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.ctaTitle {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.ctaDescription {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  max-width: var(--content-max-width);
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaButton {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  border: none;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 107, 107, 0.3);
+}
+
+.ctaButton.secondary {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+.ctaButton.secondary:hover {
+  background: var(--accent-primary);
+  color: white;
+  box-shadow: 0 8px 24px rgba(255, 107, 107, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .sectionFullwidthShaded {
+    padding: 6rem 1.5rem 4rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+
+  .tagline {
+    font-size: 1.25rem;
+  }
+
+  .roadmapGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .phaseHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+  }
+
+  .ctaButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}
