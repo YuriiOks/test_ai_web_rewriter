@@ -32,3 +32,6 @@ yuriodev.html
 # All Markdown except README.md in repo root
 *.md
 !README.md
+
+# Environment files
+.env

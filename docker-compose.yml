@@ -1,0 +1,30 @@
+services:
+  frontend:
+    build: ./frontend
+    container_name: yuriodev-frontend
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: yuriodev-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+
+  proxy:
+    image: nginx:stable-alpine
+    container_name: yuriodev-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx-proxy:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - frontend
+      - backend
+    restart: unless-stopped
+
+networks:
+  default:
+    name: yuriodev-network
